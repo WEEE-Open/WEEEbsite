@@ -31,19 +31,10 @@
 	}
 
 	function blockifyMenu(block) {
-		var a = nav.childNodes;
-		if(a) {
-			for(var i = 0; i < a.length; i++) {
-				if(a[i].nodeType == 1) {
-					if(block) {
-						a[i].style.display = "block";
-						a[i].style.width = "100%";
-					} else {
-						a[i].style.display = "";
-						a[i].style.width = "";
-					}
-				}
-			}
+		if(block) {
+			nav.classList.add("block");
+		} else {	
+			nav.classList.remove("block");
 		}
 	}
 

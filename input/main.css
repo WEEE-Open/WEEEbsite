@@ -1,76 +1,76 @@
 * {
-    font-family: sans-serif;
-    box-sizing: border-box;
+	font-family: sans-serif;
+	box-sizing: border-box;
 }
 
 article, nav, footer {
-    display: block;
+	display: block;
 }
 
 html, body {
-    height: 100%;
+	height: 100%;
 }
 
 body {
-    margin: 0;
-    background: #3c3c3c url(img/raee960.jpg) repeat-y bottom;
-    background-size: cover;
+	margin: 0;
+	background: #3c3c3c url(img/raee960.jpg) repeat-y bottom;
+	background-size: cover;
 }
 
 #menu {
-    background: #3c3c3c;
+	background: #3c3c3c;
 }
 
 ::selection {
-    background: #00983a;
-    color: #fff;
+	background: #00983a;
+	color: #fff;
 }
 
 ::-moz-selection { /* non accorpare.*/
-    background: #00983a;
-    color: #fff;
+	background: #00983a;
+	color: #fff;
 }
 
 a {
-    -o-transition: color 500ms;
-    -ms-transition: color 500ms;
-    -moz-transition: color 500ms;
-    -webkit-transition: color 500ms;
-    transition: color 500ms;
-    color: #00983a;
+	-o-transition: color 500ms;
+	-ms-transition: color 500ms;
+	-moz-transition: color 500ms;
+	-webkit-transition: color 500ms;
+	transition: color 500ms;
+	color: #00983a;
 }
 
 a:link, a:visited {
-    color: #00983a;
+	color: #00983a;
 }
 
 a:hover {
-    color: #33ff81;
+	color: #33ff81;
 }
 
 a:active{
-    -o-transition: color 300ms;
-    -ms-transition: color 300ms;
-    -moz-transition: color 300ms;
-    -webkit-transition: color 300ms;
-    transition: color 300ms;
-    color: #00cc4e;
+	-o-transition: color 300ms;
+	-ms-transition: color 300ms;
+	-moz-transition: color 300ms;
+	-webkit-transition: color 300ms;
+	transition: color 300ms;
+	color: #00cc4e;
 }
 
 #logo, #menu, #content, #footer {
-    margin: 0;
-    overflow: hidden;
-    width: 100%;
+	margin: 0;
+	overflow: hidden;
+	width: 100%;
 }
 
 #logo img {
-    display: block;
-    max-width: 26em;
+	display: block;
+	max-width: 26em;
 }
 
 #logo, #content > article {
-    background: #fff;
-    overflow: hidden;
+	background: #fff;
+	overflow: hidden;
 }
 
 #content > article {
@@ -78,8 +78,8 @@ a:active{
 }
 
 #content > article, #footer {
-    padding-left: 0.3em;
-    padding-right: 0.3em; /* questo viene piallato dalle media query */
+	padding-left: 0.3em;
+	padding-right: 0.3em; /* questo viene piallato dalle media query */
 }
 
 h1 {font-size: 1.6rem; font-weight: bold;}
@@ -90,156 +90,161 @@ h5 {font-size: 1rem; font-weight: bold;}
 h6 {font-size: 1rem; font-weight: bold;}
 
 #footer > * {
-    font-size: 76%;
+	font-size: 76%;
 }
 
 #footer, #footer a {
-    color: #c3c3c3;
-    -o-transition: none;
-    -ms-transition: none;
-    -moz-transition: none;
-    -webkit-transition: none;
-    transition: none;
+	color: #c3c3c3;
+	-o-transition: none;
+	-ms-transition: none;
+	-moz-transition: none;
+	-webkit-transition: none;
+	transition: none;
 }
 
 #content {
-    /*background-color: #ccc;*/
-    background-color: #00983a;
+	/*background-color: #ccc;*/
+	background-color: #00983a;
 }
 
 #menu nav {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 #menu a, #menu a:visited, #menu a:link {
-    margin: 0;
-    padding: 0.3em;
-    font-size: 110%;
-    background-color: #3c3c3c;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    /*font-variant: small-caps;*/
-    -o-transition: background-color 500ms;
-    -ms-transition: background-color 500ms;
-    -moz-transition: background-color 500ms;
-    -webkit-transition: background-color 500ms;
-    transition: background-color 500ms;
+	margin: 0;
+	padding: 0.3em;
+	font-size: 110%;
+	background-color: #3c3c3c;
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	/*font-variant: small-caps;*/
+	-o-transition: background-color 500ms;
+	-ms-transition: background-color 500ms;
+	-moz-transition: background-color 500ms;
+	-webkit-transition: background-color 500ms;
+	transition: background-color 500ms;
 }
 
 #menu a:hover, #menu a.active {
-    background-color: #00983a;
+	background-color: #00983a;
 }
 
 #menu a:active {
-    background-color: #00cc4e;
-    -o-transition: background-color 300ms;
-    -ms-transition: background-color 300ms;
-    -moz-transition: background-color 300ms;
-    -webkit-transition: background-color 300ms;
-    transition: background-color 300ms;
+	background-color: #00cc4e;
+	-o-transition: background-color 300ms;
+	-ms-transition: background-color 300ms;
+	-moz-transition: background-color 300ms;
+	-webkit-transition: background-color 300ms;
+	transition: background-color 300ms;
 }
 
 .copyleft {
-    display: inline-block;
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    filter: FlipH;
-    -ms-filter: "FlipH";
+	display: inline-block;
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
 }
 
 #menu-button {
-    padding: 0.3em;
-    font-size: 120%;
-    background-color: #3c3c3c;
-    cursor: pointer;
-    border: 0 none;
-    display: inline-block;
-    -o-transition: background-color 200ms;
-    -ms-transition: background-color 200ms;
-    -moz-transition: background-color 200ms;
-    -webkit-transition: background-color 200ms;
-    transition: background-color 200ms;
+	padding: 0.3em;
+	font-size: 120%;
+	background-color: #3c3c3c;
+	cursor: pointer;
+	border: 0 none;
+	display: inline-block;
+	-o-transition: background-color 200ms;
+	-ms-transition: background-color 200ms;
+	-moz-transition: background-color 200ms;
+	-webkit-transition: background-color 200ms;
+	transition: background-color 200ms;
 }
 
 /* se si usa button invece che div: */
 /*#menu-button:focus {
-    outline:none;
+	outline:none;
 }
 #menu-button::-moz-focus-inner {
-    border:0;
+	border:0;
 }*/
 
 #menu.open #menu-button {
-    background-color: #c3c3c3;
+	background-color: #c3c3c3;
 }
 
 #menu-button img {
-    height: 1.2em;
-    vertical-align: middle;
+	height: 1.2em;
+	vertical-align: middle;
 }
 
 #content .persona *:not(h2) {
-    padding-top: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    display: block;
+	padding-top: 0;
+	margin-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	display: block;
 }
 
 #content .persona h2 {
-    margin: 0.25rem 0;
+	margin: 0.25rem 0;
 }
 
 #content .persona.l {
-    text-align: left;
+	text-align: left;
 }
 
 #content .persona.r {
-    text-align: right;
+	text-align: right;
 }
 
 #content .persona:last-of-type {
-    margin-bottom: 0.5rem; /* che pezza abnorme. */
+	margin-bottom: 0.5rem; /* che pezza abnorme. */
 }
 
 #content p.list {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
 }
 
 img.decorativa {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+}
+
+nav.block > * {
+	display: block;
+	width: 100%;
 }
 
 @media screen and (min-width: 60rem) {
-    #logo > *, #menu > nav, #content > article, #footer > * {
-        width: 60rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
+	#logo > *, #menu > nav, #content > article, #footer > * {
+		width: 60rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-    #content > article, #footer {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
-    }
+	#content > article, #footer {
+		padding-left: 0.5rem !important;
+		padding-right: 0.5rem !important;
+	}
 
-    #content > article > *, #footer > * {
-        padding-left: 0;
-        padding-right: 0;
-    }
+	#content > article > *, #footer > * {
+		padding-left: 0;
+		padding-right: 0;
+	}
 
-    #logo > * {
-        margin-left: calc(50% - 30rem);
-    }
+	#logo > * {
+		margin-left: calc(50% - 30rem);
+	}
 
-    body {
-        background-size: contain;
-    }
+	body {
+		background-size: contain;
+	}
 }
