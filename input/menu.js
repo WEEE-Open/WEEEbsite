@@ -72,3 +72,4 @@
 	mq.addListener(prepareMenu);
 	prepareMenu(mq);
 }());
+
