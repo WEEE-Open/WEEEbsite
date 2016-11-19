@@ -112,6 +112,11 @@ h6 {font-size: 1rem; font-weight: bold;}
 	padding: 0;
 }
 
+#menu nav.block > * {
+	display: block;
+    width: 100%;
+}
+
 #menu a, #menu a:visited, #menu a:link {
 	margin: 0;
 	padding: 0.3em;
@@ -216,11 +221,6 @@ img.decorativa {
 	margin: 0 auto;
 	max-width: 100%;
 	height: auto;
-}
-
-nav.block > * {
-	display: block;
-	width: 100%;
 }
 
 @media screen and (min-width: 60rem) {

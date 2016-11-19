@@ -1,6 +1,6 @@
 (function() {
 	var menu = document.getElementById("menu");
-	var nav  = menu.firstElementChild;
+	var nav = menu.firstElementChild;
 	var button = document.createElement("div");
 	var icon = document.createElement("img");
 	var buttonInserted = false;
@@ -9,7 +9,7 @@
 	function addButton() {
 		button.id = "menu-button";
 		button.textContent =
-		button.addEventListener("click", showHideMenu);
+			button.addEventListener("click", showHideMenu);
 		icon.src = "img/menu.svg";
 		icon.alt = "Menu";
 		button.insertBefore(icon, button.firstChild);
@@ -33,7 +33,7 @@
 	function blockifyMenu(block) {
 		if(block) {
 			nav.classList.add("block");
-		} else {	
+		} else {
 			nav.classList.remove("block");
 		}
 	}
@@ -47,7 +47,7 @@
 	}
 
 	function showHideMenu() {
-		if (menuOpen) {
+		if(menuOpen) {
 			hideMenu();
 			menuOpen = false;
 		} else {
@@ -72,4 +72,3 @@
 	mq.addListener(prepareMenu);
 	prepareMenu(mq);
 }());
-
