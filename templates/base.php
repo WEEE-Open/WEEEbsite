@@ -26,10 +26,11 @@
 	</div>
 	<div id="menu">
 		<nav>
-			<a href="index.html" <?php if($innerpath === 'index.html'){echo 'class="active"';} ?>>Il progetto</a
-			><a href="attivita.html" <?php if($innerpath === 'attivita.html'){echo 'class="active"';} ?>>Attività</a
-			><a href="chi-siamo.html" <?php if($innerpath === 'chi-siamo.html'){echo 'class="active"';} ?>>Chi siamo</a
-			><a href="obiettivi.html" <?php if($innerpath === 'obiettivi.html'){echo 'class="active"';} ?>>Obiettivi</a>
+            <a href="index.html" <?php if($innerpath === 'index.html'){echo 'class="active"';} ?>>WEEE Open</a
+            ><a href="progetto.html" <?php if($innerpath === 'progetto.html'){echo 'class="active"';} ?>>Il progetto</a
+            ><a href="attivita.html" <?php if($innerpath === 'attivita.html'){echo 'class="active"';} ?>>Attività</a
+            ><a href="chi-siamo.html" <?php if($innerpath === 'chi-siamo.html'){echo 'class="active"';} ?>>Chi siamo</a
+            ><a href="obiettivi.html" <?php if($innerpath === 'obiettivi.html'){echo 'class="active"';} ?>>Obiettivi</a>
 		</nav>
 	</div>
 	<div id="content">

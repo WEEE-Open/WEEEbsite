@@ -85,7 +85,7 @@ a:active{
 
 #menu a, #menu a:visited, #menu a:link {
 	margin: 0;
-	padding: 0.3em;
+	padding: 0.3rem;
 	font-size: 110%;
 	background-color: #3c3c3c;
 	color: #fff;
@@ -113,12 +113,12 @@ a:active{
 }
 
 #content > article {
-    line-height: 1.5em;
+    line-height: 1.5rem;
 }
 
 #content > article, #footer {
-    padding-left: 0.3em;
-    padding-right: 0.3em; /* questo viene piallato dalle media query */
+    padding-left: 0.3rem;
+    padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
 
 h1 {font-size: 1.6rem; font-weight: bold;}
@@ -158,7 +158,7 @@ h6 {font-size: 1rem; font-weight: bold;}
 }
 
 #menu-button {
-	padding: 0.3em;
+	padding: 0.3rem;
 	font-size: 120%;
 	background-color: #3c3c3c;
 	cursor: pointer;
@@ -184,7 +184,7 @@ h6 {font-size: 1rem; font-weight: bold;}
 }
 
 #menu-button img {
-	height: 1.2em;
+	height: 1.2rem;
 	vertical-align: middle;
 }
 
@@ -213,8 +213,8 @@ h6 {font-size: 1rem; font-weight: bold;}
 }
 
 #content p.list {
-	margin-top: 0.2em;
-	margin-bottom: 0.2em;
+	margin-top: 0.2rem;
+	margin-bottom: 0.2rem;
 }
 
 img.decorativa {
@@ -230,6 +230,11 @@ img.decorativa {
 		margin-left: auto;
 		margin-right: auto;
 	}
+
+    #menu a, #menu a:visited, #menu a:link {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 
 	#content > article, #footer {
 		padding-left: 0.5rem !important;
