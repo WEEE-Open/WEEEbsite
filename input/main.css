@@ -17,10 +17,6 @@ body {
 	background-size: cover;
 }
 
-#menu {
-	background: #3c3c3c;
-}
-
 ::selection {
 	background: #00983a;
 	color: #fff;
@@ -63,48 +59,18 @@ a:active{
 	width: 100%;
 }
 
+#logo {
+    background: #fff;
+}
+
 #logo img {
 	display: block;
 	max-width: 26em;
 }
 
-#logo, #content > article {
-	background: #fff;
-	overflow: hidden;
-}
-
-#content > article {
-	line-height: 1.5em;
-}
-
-#content > article, #footer {
-	padding-left: 0.3em;
-	padding-right: 0.3em; /* questo viene piallato dalle media query */
-}
-
-h1 {font-size: 1.6rem; font-weight: bold;}
-h2 {font-size: 1.2rem; font-weight: bold;}
-h3 {font-size: 1rem; font-weight: bold;}
-h4 {font-size: 1rem; font-weight: bold;}
-h5 {font-size: 1rem; font-weight: bold;}
-h6 {font-size: 1rem; font-weight: bold;}
-
-#footer > * {
-	font-size: 76%;
-}
-
-#footer, #footer a {
-	color: #c3c3c3;
-	-o-transition: none;
-	-ms-transition: none;
-	-moz-transition: none;
-	-webkit-transition: none;
-	transition: none;
-}
-
-#content {
-	/*background-color: #ccc;*/
-	background-color: #00983a;
+#menu {
+    background: #3c3c3c;
+    border-bottom: 0.4rem solid #00983a;
 }
 
 #menu nav {
@@ -144,6 +110,41 @@ h6 {font-size: 1rem; font-weight: bold;}
 	-moz-transition: background-color 300ms;
 	-webkit-transition: background-color 300ms;
 	transition: background-color 300ms;
+}
+
+#content > article {
+    line-height: 1.5em;
+}
+
+#content > article, #footer {
+    padding-left: 0.3em;
+    padding-right: 0.3em; /* questo viene piallato dalle media query */
+}
+
+h1 {font-size: 1.6rem; font-weight: bold;}
+h2 {font-size: 1.2rem; font-weight: bold;}
+h3 {font-size: 1rem; font-weight: bold;}
+h4 {font-size: 1rem; font-weight: bold;}
+h5 {font-size: 1rem; font-weight: bold;}
+h6 {font-size: 1rem; font-weight: bold;}
+
+#footer > * {
+    font-size: 76%;
+}
+
+#footer, #footer a {
+    color: #c3c3c3;
+    -o-transition: none;
+    -ms-transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    transition: none;
+}
+
+#content {
+    /*background-color: #ccc;*/
+    /*background-color: #00983a;*/
+    background: #fff;
 }
 
 .copyleft {
