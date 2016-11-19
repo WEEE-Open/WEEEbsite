@@ -5,25 +5,26 @@ Il sito ch'è sito su [weeeopen.eu](http://weeeopen.eu).
 Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
 
 ## TODO
+- [ ] Rivedere il testo di tutte le pagine
 - [ ] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
 	- [ ] Metterci le immagini...
 - [ ] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
+- [ ] Link a pagina Facebook e codice su GitHub nel footer?
 - [ ] Creare pagina contatti
 	- [ ] Mettere link a pagina Facebook
 	- [ ] e indirizzo email
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
-- [ ] "Ridurre" la quantità di verde ai lati
-	- [ ] Trovare il modo di renderla meno appariscente senza ridurla
+- [X] "Ridurre" la quantità di verde ai lati
 - [ ] Tradurre tutto in inglese
-- [ ] Favicon
+- [X] Favicon
 - [ ] Capire perché su tutti i browser esistenti, tranne Firefox,
 menu.js spara fuori un `undefined` in mezzo al testo
 - [ ] Capire se `srcset` di `greenday980.jpg` sta funzionando
 - [ ] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
 	- [ ] Creare pagina "eventi passati", o metterli là sotto
-- [ ] Creare una mailing list
+- [ ] Creare una mailing list e\o alias
 
 ## Licenze/crediti
 * Template e contenuto del sito, salvo diverse indicazioni, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/).
