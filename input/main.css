@@ -151,6 +151,27 @@ h2 {font-size: 1.2rem;}
     background: #fff;
 }
 
+a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.linkbutton:active {
+    display: inline-block;
+    padding: 0 0.4rem;
+    color: #fff;
+    text-shadow: 0 0 0.1rem #3c3c3c99;
+    background-color: #00983a;
+    border: 0.1rem solid #00cc4e;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    -o-transition: background-color 200ms;
+    -ms-transition: background-color 200ms;
+    -moz-transition: background-color 200ms;
+    -webkit-transition: background-color 200ms;
+    transition: background-color 200ms;
+}
+
+a.linkbutton:hover, a.linkbutton:active {
+    background-color: #00cc4e;
+    text-shadow: 0 0 0.1rem #3c3c3c;
+}
+
 .copyleft {
 	display: inline-block;
 	-moz-transform: scaleX(-1);
