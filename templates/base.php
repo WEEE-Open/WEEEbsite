@@ -18,11 +18,10 @@
     <meta name="application-name" content="WEEE Open">
     <meta name="msapplication-TileColor" content="#00983A">
     <meta name="msapplication-TileImage" content="img/mstile-144x144.png">
-
 </head>
 <body>
 	<div id="logo">
-		<img src="img/logo325.png" srcset="img/logo650.png 650w, img/logo974.png 974w, img/logo3248.png 3248w" sizes="(max-width: 26em) 100vw, 26em" alt="WEEE Open">
+		<img src="img/logo325.png" srcset="img/logo325.png 325w, img/logo650.png 650w, img/logo974.png 974w, img/logo3248.png 3248w" sizes="(max-width: 26em) 100vw, 26em" alt="WEEE Open">
 	</div>
 	<div id="menu">
 		<nav>
