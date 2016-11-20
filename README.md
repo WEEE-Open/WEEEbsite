@@ -16,12 +16,12 @@ Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà n
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
-- [X] "Ridurre" la quantità di verde ai lati
+- [X] Ridurre la quantità di verde ai lati
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
 - [ ] Capire perché su tutti i browser esistenti, tranne Firefox,
 menu.js spara fuori un `undefined` in mezzo al testo
-- [ ] Capire se `srcset` di `greenday980.jpg` sta funzionando
+- [X] Capire se `srcset` di `greenday980.jpg` sta funzionando
 - [ ] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
 	- [ ] Creare pagina "eventi passati", o metterli là sotto
 - [ ] Creare una mailing list e\o alias
