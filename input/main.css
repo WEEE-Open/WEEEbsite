@@ -79,7 +79,8 @@ a:active{
 }
 
 #menu nav.block > * {
-	display: block;
+	/*display: block;*/
+    float: none;
     width: 100%;
 }
 
@@ -90,7 +91,8 @@ a:active{
 	background-color: #3c3c3c;
 	color: #fff;
 	text-decoration: none;
-	display: inline-block;
+	display: block;
+    float: left;
 	/*font-variant: small-caps;*/
 	-o-transition: background-color 500ms;
 	-ms-transition: background-color 500ms;
@@ -124,9 +126,10 @@ a:active{
 h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     font-weight: bold;
-    text-shadow: 0.05rem 0.05rem 0.05rem #3c3c3c55;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
-h1 {font-size: 1.6rem;}
+h1 {font-size: 1.6rem; margin-top: 0.8em;}
 h2 {font-size: 1.2rem;}
 
 #footer > * {

@@ -8,8 +8,7 @@
 
 	function addButton() {
 		button.id = "menu-button";
-		button.textContent =
-			button.addEventListener("click", showHideMenu);
+		button.addEventListener("click", showHideMenu);
 		icon.src = "img/menu.svg";
 		icon.alt = "Menu";
 		button.insertBefore(icon, button.firstChild);
@@ -30,8 +29,8 @@
 		}
 	}
 
-	function blockifyMenu(block) {
-		if(block) {
+	function blockifyMenu(doBlock) {
+		if(doBlock) {
 			nav.classList.add("block");
 		} else {
 			nav.classList.remove("block");
@@ -57,7 +56,7 @@
 	}
 
 	function showMenu() {
-		nav.style.display = "block";
+		nav.style.display = "";
 		menu.className = "open";
 		icon.src = "img/menu.svg";
 	}

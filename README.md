@@ -19,11 +19,11 @@ Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà n
 - [X] Ridurre la quantità di verde ai lati
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
-- [ ] Capire perché su tutti i browser esistenti, tranne Firefox,
+- [X] Capire perché su tutti i browser esistenti, tranne Firefox,
 menu.js spara fuori un `undefined` in mezzo al testo
 - [X] Capire se `srcset` di `greenday980.jpg` sta funzionando
 - [X] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
-	- [ ] Creare pagina "eventi passati", o metterli là sotto
+	- [X] Creare pagina "eventi passati", o metterli là sotto
 - [ ] Creare una mailing list e\o alias
 
 ## Licenze/crediti
