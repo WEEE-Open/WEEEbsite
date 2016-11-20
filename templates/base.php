@@ -29,7 +29,8 @@
             ><a href="progetto.html" <?php if($innerpath === 'progetto.html'){echo 'class="active"';} ?>>Il progetto</a
             ><a href="attivita.html" <?php if($innerpath === 'attivita.html'){echo 'class="active"';} ?>>Attività</a
             ><a href="chi-siamo.html" <?php if($innerpath === 'chi-siamo.html'){echo 'class="active"';} ?>>Chi siamo</a
-            ><a href="obiettivi.html" <?php if($innerpath === 'obiettivi.html'){echo 'class="active"';} ?>>Obiettivi</a>
+            ><a href="obiettivi.html" <?php if($innerpath === 'obiettivi.html'){echo 'class="active"';} ?>>Obiettivi</a
+            ><a href="contatti.html" <?php if($innerpath === 'contatti.html'){echo 'class="active"';} ?>>Contatti</a>
 		</nav>
 	</div>
 	<div id="content">
@@ -38,7 +39,8 @@
 		</article>
 	</div>
 	<footer id="footer">
-		<p>Copyleft <span class="copyleft">&copy;</span> 2016, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.<!--<a href="" target="_blank">Codice sorgente</a>.--></p>
+		<p>Copyleft <span class="copyleft">&copy;</span> 2016, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>. <a href="https://github.com/lvps/WEEEbsite" target="_blank">Codice sorgente</a>.</p>
+        <p>Seguici su Facebook: <a href="https://www.facebook.com/weeeopenpolito/" target="_blank" rel="nofollow">Team WEEE Open</a></p>
 	</footer>
 	<script src="menu.js"></script>
 </body>

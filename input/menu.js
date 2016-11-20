@@ -67,7 +67,7 @@
 		icon.src = "img/menulight.svg";
 	}
 
-	var mq = window.matchMedia("(max-width: 34em)");
+	var mq = window.matchMedia("(max-width: 36em)");
 	mq.addListener(prepareMenu);
 	prepareMenu(mq);
 }());

@@ -9,10 +9,10 @@ Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà n
 - [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
 	- [ ] Metterci le immagini...
 - [ ] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
-- [ ] Link a pagina Facebook e codice su GitHub nel footer?
-- [ ] Creare pagina contatti
-	- [ ] Mettere link a pagina Facebook
-	- [ ] e indirizzo email
+- [X] Link a pagina Facebook e codice su GitHub nel footer?
+- [X] Creare pagina contatti
+	- [X] Mettere link a pagina Facebook
+	- [X] e indirizzo email
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
