@@ -5,8 +5,8 @@ Il sito ch'è sito su [weeeopen.eu](http://weeeopen.eu).
 Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
 
 ## TODO
-- [ ] Rivedere il testo di tutte le pagine
-- [ ] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
+- [X] Rivedere il testo di tutte le pagine
+- [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
 	- [ ] Metterci le immagini...
 - [ ] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
 - [ ] Link a pagina Facebook e codice su GitHub nel footer?
@@ -22,7 +22,7 @@ Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà n
 - [ ] Capire perché su tutti i browser esistenti, tranne Firefox,
 menu.js spara fuori un `undefined` in mezzo al testo
 - [X] Capire se `srcset` di `greenday980.jpg` sta funzionando
-- [ ] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
+- [X] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
 	- [ ] Creare pagina "eventi passati", o metterli là sotto
 - [ ] Creare una mailing list e\o alias
 
