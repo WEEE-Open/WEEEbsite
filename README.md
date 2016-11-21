@@ -14,8 +14,10 @@ Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà n
 	- [X] Mettere link a pagina Facebook
 	- [X] e indirizzo email
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
+    - [ ] Trovare un ordinamento sensato
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
+	    - [ ] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie?
 - [X] Ridurre la quantità di verde ai lati
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
