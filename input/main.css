@@ -172,6 +172,18 @@ a.linkbutton:hover, a.linkbutton:active {
     text-shadow: 0 0 0.1rem #3c3c3c;
 }
 
+.icon-pdf:before{
+    content: "";
+    background: url("img/pdf.svg") no-repeat;
+    -webkit-background-size: 1rem;
+    background-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    speak: none;
+    margin-right: 0.3rem;
+}
+
 /*
 @font-face {
     font-family: 'icomoon';
