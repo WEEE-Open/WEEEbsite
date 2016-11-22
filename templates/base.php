@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="<?php if(isset($metadata['lang'])){echo $metadata['lang'];} else {echo 'it';} ?>">
 <head>
 	<meta charset="UTF-8">
 	<title><?php
