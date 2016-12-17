@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<?php
+    $active = function(string $what) use ($file_path) {
+        if($file_path === $what){
+            echo ' class="active"';
+        }
+	}
+?>
 <html lang="<?php if(isset($metadata['lang'])){echo $metadata['lang'];} else {echo 'it';} ?>">
 <head>
 	<meta charset="UTF-8">
@@ -25,18 +32,18 @@
 	</div>
 	<div id="menu">
 		<nav>
-            <a href="index.html" <?php if($file_name === 'index.html'){echo 'class="active"';} ?>>WEEE Open</a
-            ><a href="progetto.html" <?php if($file_name === 'progetto.html'){echo 'class="active"';} ?>>Il progetto</a
-            ><a href="attivita.html" <?php if($file_name === 'attivita.html'){echo 'class="active"';} ?>>Attività</a
-            ><a href="chi-siamo.html" <?php if($file_name === 'chi-siamo.html'){echo 'class="active"';} ?>>Chi siamo</a
-            ><a href="obiettivi.html" <?php if($file_name === 'obiettivi.html'){echo 'class="active"';} ?>>Obiettivi</a
-            ><a href="contatti.html" <?php if($file_name === 'contatti.html'){echo 'class="active"';} ?>>Contatti</a>
+            <a href="index.html"<?php $active('index.html') ?>>WEEE Open</a
+            ><a href="progetto.html"<?php $active('progetto.html') ?>>Il progetto</a
+            ><a href="attivita.html"<?php $active('attivita.html') ?>>Attività</a
+            ><a href="obiettivi.html"<?php $active('obiettivi.html') ?>>Obiettivi</a
+            ><a href="chi-siamo.html"<?php $active('chi-siamo.html') ?>>Chi siamo</a
+            ><a href="contatti.html"<?php $active('contatti.html') ?>>Contatti</a>
 		</nav>
 	</div>
 	<div id="content">
-		<article>
+		<section>
 			<?php echo $content ?>
-		</article>
+		</section>
 	</div>
 	<footer id="footer">
 		<p>Copyleft <span class="copyleft">&copy;</span> 2016, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>. <a href="https://github.com/lvps/WEEEbsite" target="_blank">Codice sorgente</a>.</p>

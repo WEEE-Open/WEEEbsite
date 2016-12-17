@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 
-article, nav, footer {
+article, section, nav, footer {
 	display: block;
 }
 
@@ -114,11 +114,11 @@ a:active{
 	transition: background-color 300ms;
 }
 
-#content > article {
+#content > section {
     line-height: 1.5rem;
 }
 
-#content > article, #footer {
+#content > section, #footer {
     padding-left: 0.3rem;
     padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
@@ -308,7 +308,7 @@ img.decorativa {
 }
 
 @media screen and (min-width: 60rem) {
-	#logo > *, #menu > nav, #content > article, #footer > * {
+	#logo > *, #menu > nav, #content > section, #footer > * {
 		width: 60rem;
 		margin-left: auto;
 		margin-right: auto;
@@ -319,12 +319,12 @@ img.decorativa {
         padding-right: 0.5rem;
     }
 
-	#content > article, #footer {
+	#content > section, #footer {
 		padding-left: 0.5rem !important;
 		padding-right: 0.5rem !important;
 	}
 
-	#content > article > *, #footer > * {
+	#content > section > *, #footer > * {
 		padding-left: 0;
 		padding-right: 0;
 	}

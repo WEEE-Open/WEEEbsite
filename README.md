@@ -14,18 +14,29 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 ## TODO
 - [X] Rivedere il testo di tutte le pagine
 - [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
-	- [ ] Metterci le immagini...
+	- [ ] Metterci la foto del disco rigido aperto
+	- [ ] Metterci riquadri che scorrono con ultimi post o altre informazioni ("abbiamo recuperato 9001 pc il mese scorso", "riciclare è bello", etc...)
 - [X] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
 - [X] Link a pagina Facebook e codice su GitHub nel footer?
+    - [ ] Mettere icona Facebook
 - [X] Creare pagina contatti
 	- [X] Mettere link a pagina Facebook
 	- [X] e indirizzo email
+	- [ ] Metterci un "dove siamo"
+- [ ] Trasformare "attività" in "news" (o "blog"?)
+    - [ ] Metterci blog
+    - [ ] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
+    - [ ] Mettere logo Linux Day per quel post
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
+    - [X] Metterla al fondo, di fianco ai contatti
     - [ ] Trovare un ordinamento sensato
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
-	    - [ ] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie?
+	    - [ ] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie
+	    - [ ] Mettere gente affiancata
+	    - [ ] Mettere ombre per effetto pseudo-3D molto material design
 - [X] Ridurre la quantità di verde ai lati
+- [ ] Mettere timeline nella pagina "obiettivi"
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
 - [X] Capire perché su tutti i browser esistenti, tranne Firefox,
