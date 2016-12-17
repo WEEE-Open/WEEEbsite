@@ -1,11 +1,14 @@
 # Sito del team WEEE Open
 Il sito ch'è sito su [weeeopen.eu](http://weeeopen.eu).
 
-## Come effettuare la build
+## Build
+### Installazione
 Dopo aver clonato il repo, entrare nella directory `ma` e dare il comando `composer install`
 per installare le dipendenze del [generatore di siti statici](https://github.com/lvps/mechatronic-anvil).
+Per aggiornarlo: `git submodule foreach git pull`.
 
-Per effettuare la build del sito stesso, eseguire `php build.php` o `build.php`,
+### Build vera e propria
+Per effettuare la build del sito, eseguire `php build.php` o `build.php`,
 il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
 
 ## TODO
