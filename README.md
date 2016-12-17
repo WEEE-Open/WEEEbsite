@@ -2,7 +2,11 @@
 Il sito ch'è sito su [weeeopen.eu](http://weeeopen.eu).
 
 ## Come effettuare la build
-Eseguire `php corkhammer.php` o `corkhammer.php`, il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
+Dopo aver clonato il repo, entrare nella directory `ma` e dare il comando `composer install`
+per installare le dipendenze del [generatore di siti statici](https://github.com/lvps/mechatronic-anvil).
+
+Per effettuare la build del sito stesso, eseguire `php build.php` o `build.php`,
+il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
 
 ## TODO
 - [X] Rivedere il testo di tutte le pagine
@@ -30,7 +34,6 @@ menu.js spara fuori un `undefined` in mezzo al testo
 
 ## Licenze/crediti
 * Template e contenuto del sito, salvo diverse indicazioni, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/).
-* [Corkhammer](https://github.com/lvps/corkhammer/) (`corkhammer.php` e `config.php`) rilasciato sotto licenza MIT.  
 * `img/raee960.jpg`: [originale di mkthedy](https://pixabay.com/it/cestino-elettronico-piastre-622419/), originariamente rilasciata nel pubblico dominio (CC0).
 * `img/greenday555.jpg`, `img/greenday980.jpg`: licenza e stato di copyright incognito (probabilmente © Politecnico di Torino), confidiamo nel fair use.
 * `img/pdf.svg`: *pdf icon* di [Mimooh](https://commons.wikimedia.org/wiki/User:Mimooh), rilasciata sotto licenza [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en)

@@ -1,0 +1,4 @@
+[submodule "ma"]
+	path = ma
+	url = https://github.com/lvps/mechatronic-anvil
+	ignore = dirty
