@@ -1,24 +1,24 @@
 <?php
-function bottone($href) {
+$bottone = function($href) {
 	return "<a href=\"$href\" class=\"linkbutton\">Continua a leggere &rarr;</a>";
-}
+};
 
 $content = '';
-$count = count($metadata['posts']);
 
-for($i = ($metadata['page'] * $metadata['postsPerPage']); $i < ($metadata['page'] * $metadata['postsPerPage'] + $metadata['postsPerPage']); $i++) {
-	$title = $metadata['posts'][$i]['title'];
-	$abstract = $metadata['posts'][$i]['abstract'] ?? $metadata['posts'][$i]['content'];
-	$link = $metadata['posts'][$i]['link'];
-	if(isset($metadata['posts'][$i]['img'])) {
-		$img = '<img class="emblematica" href="' . $metadata['posts'][$i]['img']['href'] . '" alt="' . $metadata['posts'][$i]['img']['alt'] . '" title="' . $metadata['posts'][$i]['img']['title'] . '>';
+foreach($metadata['posts'] as $post) {
+	/** @var \lvps\MechatronicAnvil\File $post */
+	$md = $post->getMetadata();
+
+	$title = $md['title'];
+	$abstract = $md['abstract'] ?? $md['content'];
+	$link = '/' . $post->getRelativeFilename();
+	if(isset($md['img'])) {
+		$img = '<img class="emblematica" href="' . $md['img']['href'] . '" alt="' . $md['img']['alt'] . '" title="' . $md['img']['title'] . '>';
 	} else {
 		$img = '';
 	}
-	if(isset($metadata['posts'][$i]['abstract'])) {
-		$abstract = $metadata['posts'][$i]['abstract'] . ' ' . bottone($link);
-	} else {
-		$abstract = $metadata['posts'][$i]['content'];
+	if(isset($md['abstract'])) {
+		$abstract = $md['abstract'] . ' ' . $bottone($link);
 	}
 
 	$content .= <<<EOF
@@ -29,17 +29,15 @@ for($i = ($metadata['page'] * $metadata['postsPerPage']); $i < ($metadata['page'
 EOF;
 }
 
-$pages = (int) ceil($count / $metadata['postsPerPage']);
-if($pages > 1) {
+if(isset($metadata['pagination'])) {
 	$content .= '<nav class="pages">';
-	$path = substr($file_path, 0, strlen($file_path)-strlen(basename($file_name)));
-	if($metadata['page'] > 1) {
-		$prev =  $path . 'pagina-' . ($metadata['page'] - 1) . '.html';
-		$content .= "<a href=\"$prev\">&larr; Indietro</a>";
+	if(isset($metadata['pagination']['prev'])) {
+		$prev = $metadata['pagination']['prev']->getRelativeFilename();
+		$content .= "<a href=\"/$prev\">&larr; Articoli più recenti</a>";
 	}
-	if($metadata['page'] < $count) {
-		$next =  $path . 'pagina-' . ($metadata['page'] + 1) . '.html';
-		$content .= "<a href=\"$next\">Avanti &rarr;</a>";
+	if(isset($metadata['pagination']['next'])) {
+		$next = $metadata['pagination']['next']->getRelativeFilename();
+		$content .= "<a href=\"/$next\">Articoli più vecchi &rarr;</a>";
 	}
 	$content .= '</nav>';
 }

@@ -33,8 +33,8 @@
 	<div id="menu">
 		<nav>
             <a href="/index.html"<?php $active('index.html') ?>>WEEE Open</a
+            ><a href="/blog/"<?php $active('blog/index.html') ?>>Blog</a
             ><a href="/progetto.html"<?php $active('progetto.html') ?>>Il progetto</a
-            ><a href="/attivita.html"<?php $active('attivita.html') ?>>Attività</a
             ><a href="/obiettivi.html"<?php $active('obiettivi.html') ?>>Obiettivi</a
             ><a href="/chi-siamo.html"<?php $active('chi-siamo.html') ?>>Chi siamo</a
             ><a href="/contatti.html"<?php $active('contatti.html') ?>>Contatti</a>
