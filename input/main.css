@@ -300,6 +300,49 @@ a.linkbutton:hover, a.linkbutton:active {
 	margin-bottom: 0.2rem;
 }
 
+.blogabstract h1 a, .blogabstract h1 a:link, .blogabstract h1 a:visited, .blogabstract h1 a:hover, .blogabstract h1 a:active {
+	text-decoration: none;
+	color: #3c3c3c;
+}
+
+.blogabstract h1 a:hover, .blogabstract h1 a:active {
+	color: #00983a;
+}
+
+.pages {
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+}
+
+.pages .prev {
+	float: left;
+	margin-right: 0.5rem;
+}
+
+.pages .next {
+	float: right;
+	margin-left: 0.5rem;
+}
+
+.pages .prev a:before {
+	content: "← ";
+	speak: none;
+}
+
+.pages .next a:after {
+	content: " →";
+	speak: none;
+}
+
+blockquote {
+	margin: 0;
+	border-left: 0.3em solid #00983a;
+}
+
+blockquote > p, blockquote > * {
+	padding-left: 1em;
+}
+
 img.decorativa {
 	display: block;
 	margin: 0 auto;

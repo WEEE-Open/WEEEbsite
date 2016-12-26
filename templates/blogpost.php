@@ -6,12 +6,12 @@ if(isset($metadata['next']) || isset($metadata['prev'])) {
 	if(isset($metadata['prev'])) {
 		$href = '/' . $metadata['prev']->getRelativeFileName();
 		$name = $metadata['prev']->getMetadata()['title'];
-		$content .= "Precedente: <a class=\"prev\" href=\"$href\">&larr; $name</a>";
+		$content .= "<p class=\"prev\">Precedente: <a href=\"$href\">$name</a></p>";
 	}
 	if(isset($metadata['next'])) {
 		$href = '/' . $metadata['next']->getRelativeFileName();
 		$name = $metadata['next']->getMetadata()['title'];
-		$content .= "Successivo: <a class=\"next\" href=\"$href\">$name &rarr;</a>";
+		$content .= "<p class=\"next\">Successivo: <a href=\"$href\">$name</a></p>";
 	}
 	$content .= '</nav>';
 }

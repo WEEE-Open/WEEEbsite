@@ -1,6 +1,6 @@
 <?php
 $bottone = function($href) {
-	return "<a href=\"$href\" class=\"linkbutton\">Continua a leggere &rarr;</a>";
+	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
 };
 
 $content = '';
@@ -17,14 +17,12 @@ foreach($metadata['posts'] as $post) {
 	} else {
 		$img = '';
 	}
-	if(isset($md['abstract'])) {
-		$abstract = $md['abstract'] . ' ' . $bottone($link);
-	}
+	$b = $bottone($link);
 
 	$content .= <<<EOF
-<article class="blogpost">
+<article class="blogabstract">
     <h1><a href="$link" title="$title">$title</a></h1>
-    $img<p>$abstract</p>
+    <p>$img$abstract</p>$b
 </article>
 EOF;
 }
@@ -33,11 +31,11 @@ if(isset($metadata['pagination'])) {
 	$content .= '<nav class="pages">';
 	if(isset($metadata['pagination']['prev'])) {
 		$prev = $metadata['pagination']['prev']->getRelativeFilename();
-		$content .= "<a href=\"/$prev\">&larr; Articoli più recenti</a>";
+		$content .= "<a class=\"prev\" href=\"/$prev\">&larr; Articoli più recenti</a>";
 	}
 	if(isset($metadata['pagination']['next'])) {
 		$next = $metadata['pagination']['next']->getRelativeFilename();
-		$content .= "<a href=\"/$next\">Articoli più vecchi &rarr;</a>";
+		$content .= "<a class=\"next\" href=\"/$next\">Articoli più vecchi &rarr;</a>";
 	}
 	$content .= '</nav>';
 }
