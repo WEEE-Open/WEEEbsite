@@ -44,7 +44,7 @@ a:hover {
 	color: #33ff81;
 }
 
-a:active{
+a:active {
 	-o-transition: color 300ms;
 	-ms-transition: color 300ms;
 	-moz-transition: color 300ms;
@@ -60,7 +60,7 @@ a:active{
 }
 
 #logo {
-    background: #fff;
+	background: #fff;
 }
 
 #logo img {
@@ -69,8 +69,8 @@ a:active{
 }
 
 #menu {
-    background: #3c3c3c;
-    border-bottom: 0.4rem solid #00983a;
+	background: #3c3c3c;
+	border-bottom: 0.4rem solid #00983a;
 }
 
 #menu nav {
@@ -80,8 +80,8 @@ a:active{
 
 #menu nav.block > * {
 	/*display: block;*/
-    float: none;
-    width: 100%;
+	float: none;
+	width: 100%;
 }
 
 #menu a, #menu a:visited, #menu a:link {
@@ -92,7 +92,7 @@ a:active{
 	color: #fff;
 	text-decoration: none;
 	display: block;
-    float: left;
+	float: left;
 	/*font-variant: small-caps;*/
 	-o-transition: background-color 500ms;
 	-ms-transition: background-color 500ms;
@@ -115,78 +115,80 @@ a:active{
 }
 
 #content > section {
-    line-height: 1.5rem;
+	line-height: 1.5rem;
 }
 
 #content > section, #footer {
-    padding-left: 0.3rem;
-    padding-right: 0.3rem; /* questo viene piallato dalle media query */
+	padding-left: 0.3rem;
+	padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
 
 h1, h2, h3, h4, h5, h6 {
 	color: #3c3c3c;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+	font-size: 1rem;
+	font-weight: bold;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
-h1 {font-size: 1.6rem; margin-top: 0.8em;}
-h2 {font-size: 1.2rem;}
+
+h1 { font-size: 1.6rem; margin-top: 0.8em; }
+
+h2 { font-size: 1.2rem; }
 
 #footer > * {
-    font-size: 76%;
+	font-size: 76%;
 }
 
 #footer, #footer a {
-    color: #c3c3c3;
-    -o-transition: none;
-    -ms-transition: none;
-    -moz-transition: none;
-    -webkit-transition: none;
-    transition: none;
+	color: #c3c3c3;
+	-o-transition: none;
+	-ms-transition: none;
+	-moz-transition: none;
+	-webkit-transition: none;
+	transition: none;
 }
 
 #content {
-    /*background-color: #ccc;*/
-    /*background-color: #00983a;*/
-    background: #fff;
+	/*background-color: #ccc;*/
+	/*background-color: #00983a;*/
+	background: #fff;
 }
 
 a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.linkbutton:active {
-    display: inline-block;
-    padding: 0 0.4rem;
-    color: #fff;
-    text-shadow: 0 0 0.1rem #3c3c3c99;
-    background-color: #00983a;
-    border: 0.1rem solid #00cc4e;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    -o-transition: background-color 200ms;
-    -ms-transition: background-color 200ms;
-    -moz-transition: background-color 200ms;
-    -webkit-transition: background-color 200ms;
-    transition: background-color 200ms;
+	display: inline-block;
+	padding: 0 0.4rem;
+	color: #fff;
+	text-shadow: 0 0 0.1rem #3c3c3c99;
+	background-color: #00983a;
+	border: 0.1rem solid #00cc4e;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	-o-transition: background-color 200ms;
+	-ms-transition: background-color 200ms;
+	-moz-transition: background-color 200ms;
+	-webkit-transition: background-color 200ms;
+	transition: background-color 200ms;
 }
 
 a.linkbutton:hover, a.linkbutton:active {
-    background-color: #00cc4e;
-    text-shadow: 0 0 0.1rem #3c3c3c;
+	background-color: #00cc4e;
+	text-shadow: 0 0 0.1rem #3c3c3c;
 }
 
-.icon-pdf:before{
-    content: "";
+.icon-pdf:before {
+	content: "";
 	display: inline-block;
-    background: url("img/pdf.svg") no-repeat;
-    -webkit-background-size: 1rem;
-    background-size: 1rem;
-    width: 1rem;
-    height: 1rem;
-    speak: none;
-    margin-right: 0.3rem;
+	background: url("img/pdf.svg") no-repeat;
+	-webkit-background-size: 1rem;
+	background-size: 1rem;
+	width: 1rem;
+	height: 1rem;
+	speak: none;
+	margin-right: 0.3rem;
 	vertical-align: middle;
 }
 
-.icon-facebook:before{
+.icon-facebook:before {
 	content: "";
 	display: inline-block;
 	background: url("img/fb.svg") no-repeat;
@@ -242,7 +244,7 @@ a.linkbutton:hover, a.linkbutton:active {
 }
 */
 .notevole {
-    font-size: 110%;
+	font-size: 110%;
 }
 
 .copyleft {
@@ -379,10 +381,10 @@ img.decorativa {
 		margin-right: auto;
 	}
 
-    #menu a, #menu a:visited, #menu a:link {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+	#menu a, #menu a:visited, #menu a:link {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
 
 	#content > section, #footer {
 		padding-left: 0.5rem !important;
