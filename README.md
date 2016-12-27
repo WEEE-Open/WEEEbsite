@@ -14,17 +14,17 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 ## TODO
 - [X] Rivedere il testo di tutte le pagine
 - [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
-	- [ ] Metterci la foto del disco rigido aperto
+	- [X] Metterci la foto del disco rigido aperto
 	- [ ] Metterci riquadri che scorrono con ultimi post o altre informazioni ("abbiamo recuperato 9001 pc il mese scorso", "riciclare è bello", etc...)
 - [X] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
 - [X] Link a pagina Facebook e codice su GitHub nel footer?
-    - [ ] Mettere icona Facebook
+    - [X] Mettere icona Facebook
 - [X] Creare pagina contatti
 	- [X] Mettere link a pagina Facebook
 	- [X] e indirizzo email
 	- [ ] Metterci un "dove siamo"
-- [ ] Trasformare "attività" in "news" (o "blog"?)
-    - [ ] Metterci blog
+- [X] Trasformare "attività" in "news" (o "blog"?)
+    - [X] Metterci blog
     - [ ] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
     - [ ] Mettere logo Linux Day per quel post
 - [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
@@ -51,3 +51,4 @@ menu.js spara fuori un `undefined` in mezzo al testo
 * `img/raee960.jpg`: [originale di mkthedy](https://pixabay.com/it/cestino-elettronico-piastre-622419/), originariamente rilasciata nel pubblico dominio (CC0).
 * `img/greenday555.jpg`, `img/greenday980.jpg`: licenza e stato di copyright incognito (probabilmente © Politecnico di Torino), confidiamo nel fair use.
 * `img/pdf.svg`: *pdf icon* di [Mimooh](https://commons.wikimedia.org/wiki/User:Mimooh), rilasciata sotto licenza [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
+* `img/fb.svg`: [icona ufficiale di Facebook](https://en.facebookbrand.com/assets/f-logo), forse priva di copyright perché troppo "semplice", in ogni caso rappresenta un marchio registrato; usata secondo le linee guida presenti nella medesima pagina.

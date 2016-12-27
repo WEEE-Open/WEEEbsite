@@ -124,6 +124,7 @@ a:active{
 }
 
 h1, h2, h3, h4, h5, h6 {
+	color: #3c3c3c;
     font-size: 1rem;
     font-weight: bold;
     margin-top: 0.5em;
@@ -174,14 +175,28 @@ a.linkbutton:hover, a.linkbutton:active {
 
 .icon-pdf:before{
     content: "";
+	display: inline-block;
     background: url("img/pdf.svg") no-repeat;
     -webkit-background-size: 1rem;
     background-size: 1rem;
     width: 1rem;
     height: 1rem;
-    float: left;
     speak: none;
     margin-right: 0.3rem;
+	vertical-align: middle;
+}
+
+.icon-facebook:before{
+	content: "";
+	display: inline-block;
+	background: url("img/fb.svg") no-repeat;
+	-webkit-background-size: 1rem;
+	background-size: 1rem;
+	width: 1rem;
+	height: 1rem;
+	speak: none;
+	margin-right: 0.3rem;
+	vertical-align: middle;
 }
 
 /*
