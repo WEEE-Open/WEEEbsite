@@ -343,6 +343,13 @@ blockquote > p, blockquote > * {
 	padding-left: 1em;
 }
 
+img.filler {
+	display: block;
+	padding: 0;
+	width: calc(1rem + 100%);
+	margin: 0 0 0 -0.5rem;
+}
+
 img.decorativa {
 	display: block;
 	margin: 0 auto;
@@ -378,5 +385,10 @@ img.decorativa {
 
 	body {
 		background-size: contain;
+	}
+
+	img.filler {
+		margin: 0;
+		width: 100%;
 	}
 }
