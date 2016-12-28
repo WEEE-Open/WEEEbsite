@@ -32,7 +32,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
     - [ ] Trovare un ordinamento sensato
 	- [ ] Mettere foto
 	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
-	    - [ ] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie
+	    - [X] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie
 	    - [ ] Mettere gente affiancata
 	    - [ ] Mettere ombre per effetto pseudo-3D molto material design
 - [X] Ridurre la quantità di verde ai lati
