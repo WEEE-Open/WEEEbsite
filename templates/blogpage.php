@@ -1,4 +1,11 @@
 <?php
+assert(isset($file_path));
+assert(isset($file_name));
+assert(isset($file));
+assert(isset($templatePath));
+assert(isset($content));
+assert(isset($metadata));
+
 $bottone = function($href) {
 	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
 };
@@ -29,6 +36,8 @@ EOF;
 
 if(isset($metadata['pagination'])) {
 	$content .= '<nav class="pages">';
+	// not really but stops some warnings:
+	/** @var \lvps\MechatronicAnvil\File[][] $metadata */
 	if(isset($metadata['pagination']['prev'])) {
 		$prev = $metadata['pagination']['prev']->getRelativeFilename();
 		$content .= "<a class=\"prev\" href=\"/$prev\">&larr; Articoli più recenti</a>";

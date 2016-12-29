@@ -1,5 +1,11 @@
 <!DOCTYPE HTML>
 <?php
+    assert(isset($file_path));
+    assert(isset($file_name));
+    assert(isset($file));
+    assert(isset($templatePath));
+    assert(isset($content));
+    assert(isset($metadata));
     $active = function(string $what) use ($file_path) {
         if($file_path === $what){
             echo ' class="active"';
