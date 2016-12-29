@@ -288,21 +288,42 @@ a.linkbutton:hover, a.linkbutton:active {
 	vertical-align: middle;
 }
 
-#content .persona {
+.persone {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.persone .persona {
+	/* in teoria con 29 dovrebbe allinearsi perfettamente (30rem) */
+	width: 100%;
+	flex-grow: 1;
 	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
-	margin: 0.5rem 0;
+	margin: 0.5rem 0.5rem;
+	padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
-#content .persona * {
-	margin: 0 0.5rem;
+@media screen and (min-width: 40rem) {
+	.persone .persona {
+		/* sarebbe 0.5+0.5, ma per sicurezza contro le approssimazioni dei float... */
+		width: calc(50% - 1.1rem);
+	}
 }
 
-#content .persona *:not(h2) {
+.persone .persona.fill {
+	max-width: 100%;
+	width: 100%;
+}
+
+.persone .persona * {
 	padding-top: 0;
 	margin-top: 0;
 	padding-bottom: 0;
 	margin-bottom: 0;
-	display: block;
+}
+
+.persone .persona h2 {
+	margin: 0.5rem 0;
 }
 
 /*#content .persona h2 {

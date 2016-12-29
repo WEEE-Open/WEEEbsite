@@ -27,14 +27,14 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
     - [X] Metterci blog
     - [ ] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
     - [ ] Mettere logo Linux Day per quel post
-- [ ] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
+- [X] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
     - [X] Metterla al fondo, di fianco ai contatti
-    - [ ] Trovare un ordinamento sensato
+    - [X] Trovare un ordinamento sensato
 	- [ ] Mettere foto
-	- [ ] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
+	- [X] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
 	    - [X] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie
-	    - [ ] Mettere gente affiancata
-	    - [ ] Mettere ombre per effetto pseudo-3D molto material design
+	    - [X] Mettere gente affiancata
+	    - [X] Mettere ombre per effetto pseudo-3D molto material design
 - [X] Ridurre la quantità di verde ai lati
 - [ ] Mettere timeline nella pagina "obiettivi"
 - [ ] Tradurre tutto in inglese
