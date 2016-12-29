@@ -26,10 +26,17 @@ foreach($metadata['posts'] as $post) {
 	}
 	$b = $bottone($link);
 
+	// note: page language, not this post language
+	$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
+	require_once 'printdate.php';
+	$date = printdate($md['date'], $lang);
+
 	$content .= <<<EOF
 <article class="blogabstract">
     <h1><a href="$link" title="$title">$title</a></h1>
-    <p>$img$abstract</p>$b
+    <div class="postdata"><p>$date</p></div>
+    <p>$img$abstract</p>
+    <p>$b</p>
 </article>
 EOF;
 }

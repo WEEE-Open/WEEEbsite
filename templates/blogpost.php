@@ -6,7 +6,10 @@ assert(isset($templatePath));
 assert(isset($content));
 assert(isset($metadata));
 
-$content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.$metadata['date'].'</p></div>' . $content;
+$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
+require_once 'printdate.php';
+
+$content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.printdate($metadata['date'], $lang).'</p></div>' . $content;
 
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';

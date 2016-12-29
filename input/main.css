@@ -357,6 +357,16 @@ a.linkbutton:hover, a.linkbutton:active {
 	color: #00983a;
 }
 
+.postdata {
+	overflow: hidden;
+}
+
+.postdata p {
+	margin: 0;
+	float: right;
+	font-size: 0.9rem;
+}
+
 .pages {
 	padding-top: 1rem;
 	padding-bottom: 2rem;
