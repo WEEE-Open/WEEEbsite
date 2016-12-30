@@ -357,13 +357,34 @@ a.linkbutton:hover, a.linkbutton:active {
 	color: #00983a;
 }
 
+.blogabstract h1 {
+	clear: left;
+}
+
+.blogabstract {
+	overflow: auto; /* clearfix for images taller than abstract */
+}
+
+.blogabstract img.emblematica {
+	display: block;
+	margin: 0 auto;
+	width: 12rem;
+}
+
+@media screen and (min-width: 24rem) {
+	.blogabstract img.emblematica {
+		float: left;
+		margin-right: 1rem;
+	}
+}
+
 .postdata {
 	overflow: hidden;
 }
 
 .postdata p {
 	margin: 0;
-	float: right;
+	float: left;
 	font-size: 0.9rem;
 }
 

@@ -26,7 +26,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 - [X] Trasformare "attività" in "news" (o "blog"?)
     - [X] Metterci blog
     - [ ] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
-    - [ ] Mettere logo Linux Day per quel post
+    - [X] Mettere logo Linux Day per quel post
 - [X] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
     - [X] Metterla al fondo, di fianco ai contatti
     - [X] Trovare un ordinamento sensato
@@ -52,3 +52,4 @@ menu.js spara fuori un `undefined` in mezzo al testo
 * `img/greenday555.jpg`, `img/greenday980.jpg`: licenza e stato di copyright incognito (probabilmente © Politecnico di Torino), confidiamo nel fair use.
 * `img/pdf.svg`: *pdf icon* di [Mimooh](https://commons.wikimedia.org/wiki/User:Mimooh), rilasciata sotto licenza [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
 * `img/fb.svg`: [icona ufficiale di Facebook](https://en.facebookbrand.com/assets/f-logo), forse priva di copyright perché troppo "semplice", in ogni caso rappresenta un marchio registrato; usata secondo le linee guida presenti nella medesima pagina.
+* `blog/media/ldto-2016-tux.svg`: [Logo ufficiale Linux Day Torino 2016](https://github.com/0iras0r/ld2016/blob/877d31f8cbcd0a4add1677a34b432f39f7f4a5d5/2016/static/ld-2016-tux.svg), probabilmente distribuito sotto una licenza libera.
