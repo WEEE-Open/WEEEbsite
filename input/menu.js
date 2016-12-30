@@ -9,7 +9,7 @@
 	function addButton() {
 		button.id = "menu-button";
 		button.addEventListener("click", showHideMenu);
-		icon.src = "img/menu.svg";
+		icon.src = "/img/menu.svg";
 		icon.alt = "Menu";
 		button.insertBefore(icon, button.firstChild);
 		menu.insertBefore(button, menu.firstChild);
@@ -58,13 +58,13 @@
 	function showMenu() {
 		nav.style.display = "";
 		menu.className = "open";
-		icon.src = "img/menu.svg";
+		icon.src = "/img/menu.svg";
 	}
 
 	function hideMenu() {
 		nav.style.display = "none";
 		menu.className = "";
-		icon.src = "img/menulight.svg";
+		icon.src = "/img/menulight.svg";
 	}
 
 	var mq = window.matchMedia("(max-width: 36em)");
