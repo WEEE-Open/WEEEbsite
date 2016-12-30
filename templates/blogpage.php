@@ -20,11 +20,15 @@ foreach($metadata['posts'] as $post) {
 	$abstract = $md['abstract'] ?? $md['content'];
 	$link = '/' . $post->getRelativeFilename();
 	if(isset($md['img'])) {
-		$img = '<img class="emblematica" href="' . $md['img']['href'] . '" alt="' . $md['img']['alt'] . '" title="' . $md['img']['title'] . '>';
+		$img = '<img class="emblematica" src="' . $md['img']['src'] . '" alt="' . $md['img']['alt'] . '" title="' . $md['img']['title'] . '">';
 	} else {
 		$img = '';
 	}
-	$b = $bottone($link);
+
+	$b = '';
+	if(!isset($md['read_more']) || $md['read_more'] === true) {
+		$b = '<p>' . $bottone($link) . '</p>';
+	}
 
 	// note: page language, not this post language
 	$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
@@ -33,10 +37,10 @@ foreach($metadata['posts'] as $post) {
 
 	$content .= <<<EOF
 <article class="blogabstract">
-    <h1><a href="$link" title="$title">$title</a></h1>
-    <div class="postdata"><p>$date</p></div>
-    <p>$img$abstract</p>
-    <p>$b</p>
+	<h1><a href="$link" title="$title">$title</a></h1>
+	<div class="postdata"><p>$date</p></div>
+	<p>$img$abstract</p>
+	$b
 </article>
 EOF;
 }
