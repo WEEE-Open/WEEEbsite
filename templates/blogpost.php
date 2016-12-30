@@ -31,6 +31,9 @@ if(isset($metadata['next']) || isset($metadata['prev'])) {
 		$content .= "<p class=\"next\">Successivo: <a href=\"$href\">$name</a></p>";
 	}
 	$content .= '</nav>';
+} else {
+	/* desperate hack to place a clearfix thingamajig somewhere near the bottom of the page */
+	$content .= '<nav class="pages">&nbsp;</nav>';
 }
 
 require 'base.php';
