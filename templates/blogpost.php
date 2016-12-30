@@ -9,7 +9,12 @@ assert(isset($metadata));
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
 require_once 'printdate.php';
 
-$content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.printdate($metadata['date'], $lang).'</p></div>' . $content;
+$img = '';
+if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['img']['hide'] === true)) {
+	$img = '<img class="emblematica" src="' . $metadata['img']['src'] . '" alt="' . $metadata['img']['alt'] . '" title="' . $metadata['img']['title'] . '">';
+}
+
+$content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.printdate($metadata['date'], $lang).'</p></div>' . $img . $content;
 
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';

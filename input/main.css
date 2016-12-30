@@ -201,48 +201,6 @@ a.linkbutton:hover, a.linkbutton:active {
 	vertical-align: middle;
 }
 
-/*
-@font-face {
-    font-family: 'icomoon';
-    src:  url('fonts/icomoon.eot?zi3id0');
-    src:  url('fonts/icomoon.eot?zi3id0#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?zi3id0') format('truetype'),
-    url('fonts/icomoon.woff?zi3id0') format('woff'),
-    url('fonts/icomoon.svg?zi3id0#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    text-decoration: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-github:before {
-    content: "\e903";
-    margin-right: 0.3em;
-}
-.icon-facebook:before {
-    content: "\e902";
-    margin-right: 0.3em;
-}
-.icon-twitter:before {
-    content: "\e901";
-    margin-right: 0.3em;
-}
-.icon-pdf:before {
-    content: "\e900";
-    margin-right: 0.3em;
-}
-*/
 .notevole {
 	font-size: 110%;
 }
@@ -327,18 +285,6 @@ a.linkbutton:hover, a.linkbutton:active {
 	margin: 0.25rem 0;
 }*/
 
-#content .persona.l {
-	float: left;
-	clear: left;
-	text-align: left;
-}
-
-#content .persona.r {
-	float: right;
-	clear: right;
-	text-align: right;
-}
-
 #content .persona:last-of-type {
 	margin-bottom: 0.5rem; /* che pezza abnorme. */
 }
@@ -365,30 +311,35 @@ a.linkbutton:hover, a.linkbutton:active {
 	overflow: auto; /* clearfix for images taller than abstract */
 }
 
-.blogabstract img.emblematica {
+img.emblematica {
 	display: block;
 	margin: 0 auto;
 	width: 12rem;
 }
 
 @media screen and (min-width: 24rem) {
-	.blogabstract img.emblematica {
+	img.emblematica {
 		float: left;
 		margin-right: 1rem;
 	}
 }
 
-.postdata {
+/* needed if ".postdata p" is floating */
+/*.postdata {
 	overflow: hidden;
-}
+}*/
 
 .postdata p {
 	margin: 0;
-	float: left;
+	/*
+	float: right;
+	clear: both;
+	 */
 	font-size: 0.9rem;
 }
 
 .pages {
+	clear: both; /* this is also a "clearfix" for blogpost.php. */
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
