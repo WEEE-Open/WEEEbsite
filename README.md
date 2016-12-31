@@ -49,7 +49,7 @@ menu.js spara fuori un `undefined` in mezzo al testo
 ## Licenze/crediti
 * Template e contenuto del sito, salvo diverse indicazioni, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/).
 * `img/raee960.jpg`: [originale di mkthedy](https://pixabay.com/it/cestino-elettronico-piastre-622419/), originariamente rilasciata nel pubblico dominio (CC0).
-* `img/greenday555.jpg`, `img/greenday980.jpg`: licenza e stato di copyright incognito (probabilmente © Politecnico di Torino), confidiamo nel fair use.
+* `blog/media/greenday555.jpg`, `blog/media/greenday980.jpg`: licenza e stato di copyright incognito (probabilmente copyright © Politecnico di Torino), confidiamo nel fair use.
 * `img/pdf.svg`: *pdf icon* di [Mimooh](https://commons.wikimedia.org/wiki/User:Mimooh), rilasciata sotto licenza [Creative Commons Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
 * `img/fb.svg`: [icona ufficiale di Facebook](https://en.facebookbrand.com/assets/f-logo), forse priva di copyright perché troppo "semplice", in ogni caso rappresenta un marchio registrato; usata secondo le linee guida presenti nella medesima pagina.
-* `blog/media/ldto-2016-tux.svg`: [Logo ufficiale Linux Day Torino 2016](https://github.com/0iras0r/ld2016/blob/877d31f8cbcd0a4add1677a34b432f39f7f4a5d5/2016/static/ld-2016-tux.svg), probabilmente distribuito sotto una licenza libera.
+* `blog/media/ldto-2016-tux.svg`: [Logo ufficiale Linux Day Torino 2016](https://github.com/0iras0r/ld2016/blob/877d31f8cbcd0a4add1677a34b432f39f7f4a5d5/2016/static/ld-2016-tux.svg), copyright © Comitato Linux Day Torino, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/)
