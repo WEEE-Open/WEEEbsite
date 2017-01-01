@@ -8,9 +8,9 @@ article, section, nav, footer {
 }
 
 /* breaks position: sticky*/
-/*html, body {
+html, body {
 	height: 100%;
-}*/
+}
 
 body {
 	margin: 0;
@@ -75,9 +75,9 @@ a:active {
 }
 
 #menu {
-	position: sticky;
+	/*position: sticky;
 	position: -webkit-sticky;
-	top: 0;
+	top: 0;*/
 	background: #3c3c3c;
 	border-bottom: 0.4rem solid #00983a;
 }

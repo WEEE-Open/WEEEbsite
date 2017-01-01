@@ -14,6 +14,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 ## TODO
 - [X] Rivedere il testo di tutte le pagine
 - [X] Barra di navigazione che segue lo scroll
+    - [ ] Trovare il modo di farla funzionare senza che sparisca a metà pagina per colpa del "footer che non si espande"
 - [X] Footer che non si espande
 - [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
 	- [X] Metterci la foto del disco rigido aperto
