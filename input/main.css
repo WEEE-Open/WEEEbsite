@@ -15,6 +15,12 @@ body {
 	margin: 0;
 	background: #3c3c3c url(img/raee960.jpg) repeat-y bottom;
 	background-size: cover;
+	display: flex;
+	flex-direction: column;
+}
+
+#content {
+	flex: 1;
 }
 
 ::selection {
@@ -55,7 +61,6 @@ a:active {
 
 #logo, #menu, #content, #footer {
 	margin: 0;
-	overflow: hidden;
 	width: 100%;
 }
 
@@ -69,6 +74,9 @@ a:active {
 }
 
 #menu {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
 	background: #3c3c3c;
 	border-bottom: 0.4rem solid #00983a;
 }
@@ -91,8 +99,7 @@ a:active {
 	background-color: #3c3c3c;
 	color: #fff;
 	text-decoration: none;
-	display: block;
-	float: left;
+	display: inline-block;
 	/*font-variant: small-caps;*/
 	-o-transition: background-color 500ms;
 	-ms-transition: background-color 500ms;
@@ -112,6 +119,13 @@ a:active {
 	-moz-transition: background-color 300ms;
 	-webkit-transition: background-color 300ms;
 	transition: background-color 300ms;
+}
+
+/* Prevents margins collapsing (i.e. <h1> margin pushes down #content leaving a gap after #menu */
+#content:before {
+	clear: both;
+	content: "";
+	display: table;
 }
 
 #content > section {
