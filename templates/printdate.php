@@ -24,12 +24,14 @@ function printDate($timestamp, string $lang='', string $timezone='UTC'): string 
 
 	switch($lang) {
 		case 'it':
-			setlocale(LC_TIME, 'it_IT');
+			$oldLocale = setlocale(LC_TIME, 'it_IT', 'it_IT.UTF-8', 'it-IT', 'it');
 			$month = strftime(' %b ', $timestamp);
+			setlocale(LC_TIME, $oldLocale);
 			break;
 		case 'en':
-			setlocale(LC_TIME, "en_US");
+			$oldLocale = setlocale(LC_TIME, 'en_US', 'en_US.UTF-8', 'en-US', 'en');
 			$month = strftime(' %b ', $timestamp);
+			setlocale(LC_TIME, $oldLocale);
 			break;
 		default:
 			$month = date('-n-', $timestamp);
