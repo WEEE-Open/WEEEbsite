@@ -40,6 +40,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 	    - [X] Mettere ombre per effetto pseudo-3D molto material design
 - [X] Ridurre la quantità di verde ai lati
 - [ ] Mettere timeline nella pagina "obiettivi"
+- [ ] Trovare una lightbox funzionante per div.photogallery
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
 - [X] Capire perché su tutti i browser esistenti, tranne Firefox,
