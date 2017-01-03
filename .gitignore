@@ -1,3 +1,5 @@
 .idea
 output/
 input/blog/testpost*
+# you don't want to know, trust me:
+templates/base_eval.php
