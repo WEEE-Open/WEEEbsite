@@ -24,7 +24,7 @@ function onMerged($output) {
 
 	$blog = $output->descendInto('blog');
 	$posts = [];
-	$pinnedPosts = [];
+	$pinnedPosts = ['it' => []];
 	$blog->walkCallback(function($file) use (&$posts, &$pinnedPosts) {
 		/** @var \lvps\MechatronicAnvil\File $file */
 		if($file->getDoRender()) { // TODO: what happens if there's a subdirectory?
@@ -37,23 +37,23 @@ function onMerged($output) {
 					$posts[] = $file;
 				}
 				if(isset($md['pinned']) && $md['pinned'] === true) {
-					$pinnedPosts[] = $file;
+					$pinnedPosts['it'][] = $file;
 				}
 			}
 		}
 	});
 
 	// newest first, oldest last
-	usort($pinnedPosts, function($postA, $postB) {
+	usort($pinnedPosts['it'], function($postA, $postB) {
 		/** @var \lvps\MechatronicAnvil\File $postA */
 		/** @var \lvps\MechatronicAnvil\File $postB */
 		return $postB->getMetadata()['date'] - $postA->getMetadata()['date'];
 	});
 
-	if(count($pinnedPosts) > 0) {
-		$pinnedPosts = array_slice($pinnedPosts, 0, 3);
+	if(count($pinnedPosts['it']) > 0) {
+		$pinnedPosts['it'] = array_slice($pinnedPosts['it'], 0, 3);
 		$index->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
-			'pinnedPosts' => $pinnedPosts,
+			'pinnedPosts' => $pinnedPosts['it'],
 		]));
 	}
 

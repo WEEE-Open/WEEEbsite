@@ -345,6 +345,26 @@ img.emblematica {
 	}
 }
 
+#pinned .pinnedpost {
+	width: calc(100% - 0.6rem); /* padding */
+	padding: 0.5rem;
+	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
+	margin: 0.5rem auto 1rem auto;
+}
+
+#pinned .pinnedpost h1 {
+	margin: 0.5rem;
+	font-size: 1.1rem;
+}
+
+#pinned .pinnedpost p {
+	margin: 0.5rem;
+}
+
+#pinned .pinnedpost .postdata {
+	margin-top: -0.5rem;
+}
+
 /* needed if ".postdata p" is floating */
 /*.postdata {
 	overflow: hidden;
@@ -441,5 +461,22 @@ img.decorativa {
 	img.filler {
 		margin: 0;
 		width: 100%;
+	}
+
+	#pinned {
+		display: flex;
+		justify-content: space-between;
+	}
+
+    #pinned .pinnedpost {
+	    margin: 0 0 1rem 0;
+    }
+
+    #pinned .pinnedpost.pinned-3 {
+	    width: calc(33% - 1rem);
+    }
+
+	#pinned .pinnedpost.pinned-2 {
+		width: calc(50% - 0.5rem);
 	}
 }
