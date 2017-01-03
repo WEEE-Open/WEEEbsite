@@ -6,11 +6,11 @@ assert(isset($templatePath));
 assert(isset($content));
 assert(isset($metadata));
 
-$bottone = function($href) {
-	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
-};
-
 $content = '';
+
+// note: page language, not this post language
+$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
+require_once 'common_functions.php';
 
 foreach($metadata['posts'] as $post) {
 	/** @var \lvps\MechatronicAnvil\File $post */
@@ -27,12 +27,9 @@ foreach($metadata['posts'] as $post) {
 
 	$b = '';
 	if(!isset($md['read_more']) || $md['read_more'] === true) {
-		$b = '<p>' . $bottone($link) . '</p>';
+		$b = '<p>' . printButton($link, $lang) . '</p>';
 	}
 
-	// note: page language, not this post language
-	$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-	require_once 'printdate.php';
 	$date = printdate($md['date'], $lang);
 
 	$content .= <<<EOF

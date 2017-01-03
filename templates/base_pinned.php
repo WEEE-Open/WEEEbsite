@@ -6,14 +6,11 @@ assert(isset($templatePath));
 assert(isset($content));
 assert(isset($metadata));
 
-$lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'printdate.php';
-
 $pinnedContent = '';
 
 // note: page language, not this post language
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'printdate.php';
+require_once 'common_functions.php';
 // TODO: move button to another template:
 $bottone = function($href) {
 	return "<a href=\"$href\">Continua a leggere &rarr;</a>";

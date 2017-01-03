@@ -7,7 +7,7 @@ assert(isset($content));
 assert(isset($metadata));
 
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'printdate.php';
+require_once 'common_functions.php';
 
 $img = '';
 if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['img']['hide'] === true)) {

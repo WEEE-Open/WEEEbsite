@@ -40,3 +40,17 @@ function printDate($timestamp, string $lang='', string $timezone='UTC'): string 
 
 	return date('j', $timestamp) . $month . date('Y', $timestamp);
 }
+
+/**
+ * The usual "read more" button, pointing to a URL.
+ *
+ * @param $href
+ * @param $lang
+ * @return string HTML code of the button
+ */
+function printButton($href, $lang): string {
+	if($lang !== 'it') {
+		throw new \RuntimeException('Not implemented');
+	}
+	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
+};
