@@ -18,7 +18,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 - [X] Footer che non si espande
 - [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
 	- [X] Metterci la foto del disco rigido aperto
-	- [ ] Metterci riquadri che scorrono con ultimi post o altre informazioni ("abbiamo recuperato 9001 pc il mese scorso", "riciclare è bello", etc...)
+	- [X] Metterci riquadri che scorrono con ultimi post o altre informazioni ("abbiamo recuperato 9001 pc il mese scorso", "riciclare è bello", etc...)
 - [X] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
 - [X] Link a pagina Facebook e codice su GitHub nel footer?
     - [X] Mettere icona Facebook
@@ -28,7 +28,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 	- [ ] Metterci un "dove siamo"
 - [X] Trasformare "attività" in "news" (o "blog"?)
     - [X] Metterci blog
-    - [ ] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
+    - [X] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
     - [X] Mettere logo Linux Day per quel post
 - [X] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
     - [X] Metterla al fondo, di fianco ai contatti

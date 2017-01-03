@@ -338,13 +338,6 @@ img.emblematica {
 	width: 12rem;
 }
 
-@media screen and (min-width: 24rem) {
-	img.emblematica {
-		float: left;
-		margin-right: 1rem;
-	}
-}
-
 #pinned .pinnedpost {
 	width: calc(100% - 0.6rem); /* padding */
 	padding: 0.5rem;
@@ -405,6 +398,10 @@ img.emblematica {
 	speak: none;
 }
 
+article ul, section ul {
+	list-style-position: inside;
+}
+
 blockquote {
 	margin: 0;
 	border-left: 0.3em solid #00983a;
@@ -426,6 +423,30 @@ img.decorativa {
 	margin: 0 auto;
 	max-width: 100%;
 	height: auto;
+}
+
+/*.photogallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}*/
+
+.photogallery img {
+	width: calc(50% - 1rem);
+	margin: 0.5rem;
+}
+
+@media screen and (min-width: 24rem) {
+	img.emblematica {
+		float: left;
+		margin-right: 1rem;
+	}
+}
+
+@media screen and (min-width: 40rem) {
+	.photogallery img {
+		width: calc(33% - 1rem);
+	}
 }
 
 @media screen and (min-width: 60rem) {
