@@ -47,7 +47,7 @@ EOF;
 }
 
 if($pinnedContent !== '') {
-	$pinnedContent = '<section id="pinned">' . $pinnedContent . '</section>';
+	$pinnedContent = '<div id="pinned">' . $pinnedContent . '</div>';
 	$pinnedContent = str_replace('{COUNT}', count($metadata['pinnedPosts']), $pinnedContent);
 }
 
