@@ -110,6 +110,7 @@ function onMerged($output) {
 				$pages[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
 					'pagination' => [
 						'next' => $pages[$i + 1],
+						'this' => $i,
 					]
 				]));
 			}
@@ -118,6 +119,7 @@ function onMerged($output) {
 				$pages[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
 					'pagination' => [
 						'prev' => $pages[$i - 1],
+						'this' => $i,
 					]
 				]));
 			}
@@ -126,6 +128,7 @@ function onMerged($output) {
 				'pagination' => [
 					'next' => $pages[$i + 1],
 					'prev' => $pages[$i - 1],
+					'this' => $i,
 				]
 			]));
 		}

@@ -12,6 +12,9 @@ $content = '';
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
 require_once 'common_functions.php';
 
+/** @var $file \lvps\MechatronicAnvil\File */
+$file->addMetadataOnBottom($file->getParent()->getMetadata());
+
 foreach($metadata['posts'] as $post) {
 	/** @var \lvps\MechatronicAnvil\File $post */
 	$md = $post->getMetadata();
@@ -34,7 +37,7 @@ foreach($metadata['posts'] as $post) {
 
 	$content .= <<<EOF
 <article class="blogabstract">
-	<h1><a href="$link" title="$title">$title</a></h1>
+	<h2><a href="$link" title="$title">$title</a></h2>
 	<div class="postdata"><p>$date</p></div>
 	<p>$img$abstract</p>
 	$b
@@ -42,19 +45,26 @@ foreach($metadata['posts'] as $post) {
 EOF;
 }
 
+$metadata['title'] = 'Blog';
+
 if(isset($metadata['pagination'])) {
 	$content .= '<nav class="pages">';
-	// not really but stops some warnings:
-	/** @var \lvps\MechatronicAnvil\File[][] $metadata */
 	if(isset($metadata['pagination']['prev'])) {
+		/** @noinspection PhpUndefinedMethodInspection */
 		$prev = $metadata['pagination']['prev']->getRelativeFilename();
 		$content .= "<a class=\"prev\" href=\"/$prev\">&larr; Articoli più recenti</a>";
 	}
 	if(isset($metadata['pagination']['next'])) {
+		/** @noinspection PhpUndefinedMethodInspection */
 		$next = $metadata['pagination']['next']->getRelativeFilename();
 		$content .= "<a class=\"next\" href=\"/$next\">Articoli più vecchi &rarr;</a>";
 	}
 	$content .= '</nav>';
+
+	if($metadata['pagination']['this'] > 0) {
+		$i = $metadata['pagination']['this'];
+		$metadata['title'] .= " (pagina $i)";
+	}
 }
 
 require 'base.php';
