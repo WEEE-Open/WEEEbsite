@@ -1,5 +1,6 @@
 .idea
 output/
 input/blog/testpost*
+testpost/
 # you don't want to know, trust me:
 templates/base_eval.php
