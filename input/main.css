@@ -359,6 +359,10 @@ img.emblematica {
 	margin-top: -0.5rem;
 }
 
+#pinned img.emblematica {
+	margin-bottom: 0.5rem;
+}
+
 /* needed if ".postdata p" is floating */
 /*.postdata {
 	overflow: hidden;
