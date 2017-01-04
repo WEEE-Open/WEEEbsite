@@ -25,7 +25,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 - [X] Creare pagina contatti
 	- [X] Mettere link a pagina Facebook
 	- [X] e indirizzo email
-	- [ ] Metterci un "dove siamo"
+	- [X] Metterci un "dove siamo"
 - [X] Trasformare "attività" in "news" (o "blog"?)
     - [X] Metterci blog
     - [X] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
