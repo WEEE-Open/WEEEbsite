@@ -38,7 +38,7 @@ foreach($metadata['pinnedPosts'] as $post) {
 
 	$pinnedContent .= <<<EOF
 	<article class="pinnedpost pinned-{COUNT}">
-		<h1><a href="$link" title="$title">$title</a></h1>
+		<h2><a href="$link" title="$title">$title</a></h2>
 		<div class="postdata"><p>$date</p></div>
 		<p>$img$abstract</p>
 		$b

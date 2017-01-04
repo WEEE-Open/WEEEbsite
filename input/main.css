@@ -129,11 +129,11 @@ a:active {
 	display: table;
 }
 
-#content > section {
+#content > div {
 	line-height: 1.5rem;
 }
 
-#content > section, #footer {
+#content > div, #footer {
 	padding-left: 0.3rem;
 	padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
@@ -146,9 +146,19 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.5em;
 }
 
-h1 { font-size: 1.6rem; margin-top: 0.8em; }
+h1, .blogabstract h2 { font-size: 1.6rem; margin-top: 0.8em; }
 
 h2 { font-size: 1.2rem; }
+
+h2 a, h2 a:link, h2 a:visited {
+	text-decoration: none;
+	color: #3c3c3c;
+}
+
+h2 a:hover, h2 a:active {
+	text-decoration: none;
+	color: #00983a;
+}
 
 #footer > * {
 	font-size: 76%;
@@ -315,20 +325,11 @@ a.linkbutton:hover, a.linkbutton:active {
 	margin-bottom: 0.2rem;
 }
 
-.blogabstract h1 a, .blogabstract h1 a:link, .blogabstract h1 a:visited, .blogabstract h1 a:hover, .blogabstract h1 a:active {
-	text-decoration: none;
-	color: #3c3c3c;
-}
-
-.blogabstract h1 a:hover, .blogabstract h1 a:active {
-	color: #00983a;
-}
-
-.blogabstract h1 {
+.blogabstract h2, .pinnedpost h2 {
 	clear: left;
 }
 
-.blogabstract {
+.blogabstract, .pinnedpost {
 	overflow: auto; /* clearfix for images taller than abstract */
 }
 
@@ -343,12 +344,10 @@ img.emblematica {
 	padding: 0.5rem;
 	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
 	margin: 0.5rem auto 1rem auto;
-	overflow: hidden;
 }
 
-#pinned .pinnedpost h1 {
+#pinned .pinnedpost h2 {
 	margin: 0.5rem;
-	font-size: 1.1rem;
 }
 
 #pinned .pinnedpost p {
@@ -403,7 +402,7 @@ img.emblematica {
 	speak: none;
 }
 
-article ul, section ul {
+ul {
 	list-style-position: inside;
 }
 
@@ -455,7 +454,7 @@ img.decorativa {
 }
 
 @media screen and (min-width: 60rem) {
-	#logo > *, #menu > nav, #content > section, #footer > * {
+	#logo > *, #menu > nav, #content > div, #footer > * {
 		width: 60rem;
 		margin-left: auto;
 		margin-right: auto;
@@ -466,12 +465,12 @@ img.decorativa {
 		padding-right: 0.5rem;
 	}
 
-	#content > section, #footer {
+	#content > div, #footer {
 		padding-left: 0.5rem !important;
 		padding-right: 0.5rem !important;
 	}
 
-	#content > section > *, #footer > * {
+	#content > div > *, #footer > * {
 		padding-left: 0;
 		padding-right: 0;
 	}
