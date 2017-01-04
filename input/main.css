@@ -185,7 +185,7 @@ h2 a:hover, h2 a:active {
 	background: #fff;
 }
 
-a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.linkbutton:active {
+/*a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.linkbutton:active {
 	display: inline-block;
 	padding: 0 0.4rem;
 	color: #fff;
@@ -204,7 +204,7 @@ a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.lin
 a.linkbutton:hover, a.linkbutton:active {
 	background-color: #00cc4e;
 	text-shadow: 0 0 0.1rem #3c3c3c;
-}
+}*/
 
 .icon-pdf:before {
 	content: "";
@@ -337,6 +337,7 @@ img.emblematica {
 	display: block;
 	margin: 0 auto;
 	width: 12rem;
+	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
 }
 
 #pinned .pinnedpost {
