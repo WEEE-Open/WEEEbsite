@@ -11,7 +11,7 @@ require_once 'common_functions.php';
 
 $img = '';
 if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['img']['hide'] === true)) {
-	$img = '<img class="emblematica" src="' . $metadata['img']['src'] . '" alt="' . $metadata['img']['alt'] . '" title="' . $metadata['img']['title'] . '">';
+	$img = printImgEmblematica($metadata['img']);
 }
 
 $content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.printdate($metadata['date'], $lang).'</p></div>' . $img . $content;

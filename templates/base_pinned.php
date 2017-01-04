@@ -24,7 +24,7 @@ foreach($metadata['pinnedPosts'] as $post) {
 	$abstract = $md['abstract'] ?? $md['content'];
 	$link = '/' . $post->getRelativeFilename();
 	if(isset($md['img'])) {
-		$img = '<img class="emblematica" src="' . $md['img']['src'] . '" alt="' . $md['img']['alt'] . '" title="' . $md['img']['title'] . '">';
+		$img = printImgEmblematica($md['img']);
 	} else {
 		$img = '';
 	}

@@ -54,3 +54,25 @@ function printButton($href, $lang): string {
 	}
 	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
 };
+
+function unDoubleQuote(string $string): string {
+	$open = true;
+
+	$string = preg_replace_callback('#"#', function() use (&$open) {
+		if($open) {
+			$replacement = '“';
+		} else {
+			$replacement = '”';
+		}
+		$open = !$open;
+		return $replacement;
+	}, $string);
+	if(!$open) {
+		throw new \RuntimeException('Number of double quotes doesn\'t match!');
+	}
+	return $string;
+}
+
+function printImgEmblematica(array $mdImg): string {
+	return '<img class="emblematica" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
+}
