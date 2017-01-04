@@ -41,6 +41,18 @@ function printDate($timestamp, string $lang='', string $timezone='UTC'): string 
 	return date('j', $timestamp) . $month . date('Y', $timestamp);
 }
 
+function printDateMachineReadable($timestamp) {
+	if(!date_default_timezone_set('UTC')) {
+		throw new Exception('Server doesn\'t know about the UTC time zone.');
+	}
+
+	return date('Y-m-d', $timestamp);
+}
+
+function printPostData($timestamp, $lang) {
+	return '<div class="postdata"><time datetime="'.printDateMachineReadable($timestamp).'">'.printDate($timestamp, $lang).'</time></div>';
+}
+
 /**
  * The usual "read more" button, pointing to a URL.
  *

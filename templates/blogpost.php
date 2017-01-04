@@ -14,7 +14,7 @@ if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['im
 	$img = printImgEmblematica($metadata['img']);
 }
 
-$content = '<h1>'.$metadata['title'].'</h1><div class="postdata"><p>'.printdate($metadata['date'], $lang).'</p></div>' . $img . $content;
+$content = '<h1>'.$metadata['title'].'</h1>' . printPostData($metadata['date'], $lang) . $img . $content;
 
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';

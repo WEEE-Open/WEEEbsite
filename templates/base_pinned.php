@@ -34,12 +34,12 @@ foreach($metadata['pinnedPosts'] as $post) {
 		$b = '<p>' . $bottone($link) . '</p>';
 	}
 
-	$date = printdate($md['date'], $lang);
+	$date = printPostData($md['date'], $lang);
 
 	$pinnedContent .= <<<EOF
 	<article class="pinnedpost pinned-{COUNT}">
 		<h2><a href="$link" title="$title">$title</a></h2>
-		<div class="postdata"><p>$date</p></div>
+		$date
 		<p>$img$abstract</p>
 		$b
 	</article>

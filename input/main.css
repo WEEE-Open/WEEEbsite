@@ -351,7 +351,7 @@ img.emblematica {
 	margin: 0.5rem;
 }
 
-#pinned .pinnedpost p {
+#pinned .pinnedpost > * {
 	margin: 0.5rem;
 }
 
@@ -363,12 +363,7 @@ img.emblematica {
 	margin-bottom: 0.5rem;
 }
 
-/* needed if ".postdata p" is floating */
-/*.postdata {
-	overflow: hidden;
-}*/
-
-.postdata p {
+.postdata p, .postdata time {
 	margin: 0;
 	/*
 	float: right;
@@ -429,12 +424,6 @@ img.decorativa {
 	max-width: 100%;
 	height: auto;
 }
-
-/*.photogallery {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}*/
 
 .photogallery img {
 	width: calc(50% - 1rem);

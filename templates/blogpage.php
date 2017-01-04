@@ -33,12 +33,12 @@ foreach($metadata['posts'] as $post) {
 		$b = '<p>' . printButton($link, $lang) . '</p>';
 	}
 
-	$date = printdate($md['date'], $lang);
+	$date = printPostData($md['date'], $lang);
 
 	$content .= <<<EOF
 <article class="blogabstract">
 	<h2><a href="$link" title="$title">$title</a></h2>
-	<div class="postdata"><p>$date</p></div>
+	$date
 	<p>$img$abstract</p>
 	$b
 </article>
