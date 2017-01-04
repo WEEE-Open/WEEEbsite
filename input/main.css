@@ -425,15 +425,30 @@ img.decorativa {
 	height: auto;
 }
 
+img.decorativa-flow {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+}
+
 .photogallery img {
 	width: calc(50% - 1rem);
 	margin: 0.5rem;
 }
 
 @media screen and (min-width: 24rem) {
-	img.emblematica {
+	img.emblematica, img.inflow {
+		max-width: 50%;
 		float: left;
 		margin-right: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	img.decorativa-flow {
+		max-width: 50%;
+		float: left;
+		margin: 1rem 1rem 1rem 0;
 	}
 }
 
