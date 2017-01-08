@@ -95,6 +95,7 @@ function onMerged($output) {
 		}
 
 		$thisPage->setParser($parser);
+		$thisPage->setMtime($postsInThisPage[0]->getMtime());
 		$thisPage->addMetadataOnTop($blog->getMetadata());
 		$thisPage->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
 			'posts' => $postsInThisPage,

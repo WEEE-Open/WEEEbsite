@@ -7,7 +7,8 @@ assert(isset($content));
 assert(isset($metadata));
 
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'common_functions.php';
+require_once TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php'));
 
 $img = '';
 if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['img']['hide'] === true)) {
@@ -36,4 +37,5 @@ if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">&nbsp;</nav>';
 }
 
-require 'base.php';
+require TEMPLATES . DIRECTORY_SEPARATOR . 'base.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'base.php'));

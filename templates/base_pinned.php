@@ -10,11 +10,14 @@ $pinnedContent = '';
 
 // note: page language, not this post language
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'common_functions.php';
-// TODO: move button to another template:
-$bottone = function($href) {
-	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
-};
+require_once TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php'));
+
+if(isset($metadata['pinnedPosts']) && count($metadata['pinnedPosts']) > 0) {
+	// @var doesn't work, for no apparent reason.
+	/** @noinspection PhpUndefinedMethodInspection */
+	$file->upDate($metadata['pinnedPosts'][0]->getMtime());
+}
 
 foreach($metadata['pinnedPosts'] as $post) {
 	/** @var \lvps\MechatronicAnvil\File $post */
@@ -31,7 +34,7 @@ foreach($metadata['pinnedPosts'] as $post) {
 
 	$b = '';
 	if(!isset($md['read_more']) || $md['read_more'] === true) {
-		$b = '<p>' . $bottone($link) . '</p>';
+		$b = '<p>' . printButton($link, $lang) . '</p>';
 	}
 
 	$date = printPostData($md['date'], $lang);
@@ -57,4 +60,5 @@ if($replaced < 1) {
 	throw new \RuntimeException('Cannot find {PINNED} tag!');
 }
 
-require 'base.php';
+require TEMPLATES . DIRECTORY_SEPARATOR . 'base.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'base.php'));

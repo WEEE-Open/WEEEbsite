@@ -1,7 +1,7 @@
 <?php
 assert(isset($file_path));
 assert(isset($file_name));
-assert(isset($file));
+assert(isset($file)); /** @var \lvps\MechatronicAnvil\File $file */
 assert(isset($templatePath));
 assert(isset($content));
 assert(isset($metadata));
@@ -10,9 +10,9 @@ $content = '';
 
 // note: page language, not this post language
 $lang = isset($metadata['lang']) ? $metadata['lang'] : 'it';
-require_once 'common_functions.php';
+require_once TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php'));
 
-/** @var $file \lvps\MechatronicAnvil\File */
 $file->addMetadataOnBottom($file->getParent()->getMetadata());
 
 foreach($metadata['posts'] as $post) {
@@ -67,4 +67,5 @@ if(isset($metadata['pagination'])) {
 	}
 }
 
-require 'base.php';
+require TEMPLATES . DIRECTORY_SEPARATOR . 'base.php';
+$file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'base.php'));
