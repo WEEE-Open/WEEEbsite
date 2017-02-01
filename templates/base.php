@@ -53,9 +53,9 @@ $active = function(string $what) use ($file_path) {
 	</nav>
 </div>
 <div id="content">
-	<div>
+	<main role="main">
 		<?php echo $content ?>
-	</div>
+	</main>
 </div>
 <footer id="footer">
 	<p>Copyleft <span class="copyleft">&copy;</span> 2016, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.

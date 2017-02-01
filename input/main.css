@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 
-article, section, nav, footer {
+article, section, nav, footer, main {
 	display: block;
 }
 
@@ -129,11 +129,11 @@ a:active {
 	display: table;
 }
 
-#content > div {
+#content main {
 	line-height: 1.5rem;
 }
 
-#content > div, #footer {
+#content main, #footer {
 	padding-left: 0.3rem;
 	padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
@@ -459,7 +459,7 @@ img.decorativa-flow {
 }
 
 @media screen and (min-width: 60rem) {
-	#logo > *, #menu > nav, #content > div, #footer > * {
+	#logo > *, #menu > nav, #content main, #footer > * {
 		width: 60rem;
 		margin-left: auto;
 		margin-right: auto;
@@ -470,12 +470,12 @@ img.decorativa-flow {
 		padding-right: 0.5rem;
 	}
 
-	#content > div, #footer {
+	#content main, #footer {
 		padding-left: 0.5rem !important;
 		padding-right: 0.5rem !important;
 	}
 
-	#content > div > *, #footer > * {
+	#content main > *, #footer > * {
 		padding-left: 0;
 		padding-right: 0;
 	}
