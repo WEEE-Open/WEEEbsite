@@ -53,7 +53,7 @@ $active = function(string $what) use ($file_path) {
 	</nav>
 </div>
 <div id="content">
-	<main role="main">
+	<main>
 		<?php echo $content ?>
 	</main>
 </div>
