@@ -41,6 +41,7 @@ il prodotto finito apparirà nella cartella `output`, a meno di unhandled except
 - [X] Ridurre la quantità di verde ai lati
 - [ ] Mettere timeline nella pagina "obiettivi"
 - [ ] Trovare una lightbox funzionante per div.photogallery
+	- [ ] Creare la suddetta lightbox, poiché non esiste nulla di veramente *semplice* e senza milioni di dipendenze
 - [ ] Tradurre tutto in inglese
 - [X] Favicon
 - [X] Capire perché su tutti i browser esistenti, tranne Firefox,
@@ -48,7 +49,7 @@ menu.js spara fuori un `undefined` in mezzo al testo
 - [X] Capire se `srcset` di `greenday980.jpg` sta funzionando
 - [X] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
 	- [X] Creare pagina "eventi passati", o metterli là sotto
-- [ ] Creare una mailing list e\o alias
+- [X] Creare una mailing list e\o alias
 
 ## Licenze/crediti
 * Template e contenuto del sito, salvo diverse indicazioni, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/).
