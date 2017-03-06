@@ -53,6 +53,10 @@ function printPostData($timestamp, $lang) {
 	return '<div class="postdata"><time datetime="'.printDateMachineReadable($timestamp).'">'.printDate($timestamp, $lang).'</time></div>';
 }
 
+function facebookLink($url, $title, $lang) {
+	return "<small>Il post <a class=\"icon-facebook\" target=\"blank\" rel=\"nofollow\" href=\"$url\" title=\"$title\">$title</a> è stato pubblicato anche su Facebook.</small>";
+}
+
 /**
  * The usual "read more" button, pointing to a URL.
  *

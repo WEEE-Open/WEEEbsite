@@ -17,19 +17,24 @@ if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['im
 
 $content = '<h1>'.$metadata['title'].'</h1>' . printPostData($metadata['date'], $lang) . $img . $content;
 
+if(isset($metadata['facebook'])) {
+	$content .= '<p>' . facebookLink($metadata['facebook'], $metadata['title'], $lang) . '</p>';
+}
+
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';
 	// not really but stops some warnings:
 	/** @var \lvps\MechatronicAnvil\File[] $metadata */
+	if(isset($metadata['next'])) {
+		// yes, prev and next are reversed.
+		$href = '/' . $metadata['next']->getRelativeFileName();
+		$name = $metadata['next']->getMetadata()['title'];
+		$content .= "<p class=\"prev\">Successivo: <a href=\"$href\">$name</a></p>";
+	}
 	if(isset($metadata['prev'])) {
 		$href = '/' . $metadata['prev']->getRelativeFileName();
 		$name = $metadata['prev']->getMetadata()['title'];
-		$content .= "<p class=\"prev\">Precedente: <a href=\"$href\">$name</a></p>";
-	}
-	if(isset($metadata['next'])) {
-		$href = '/' . $metadata['next']->getRelativeFileName();
-		$name = $metadata['next']->getMetadata()['title'];
-		$content .= "<p class=\"next\">Successivo: <a href=\"$href\">$name</a></p>";
+		$content .= "<p class=\"next\">Precedente: <a href=\"$href\">$name</a></p>";
 	}
 	$content .= '</nav>';
 } else {
