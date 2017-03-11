@@ -1,5 +1,5 @@
 # Sito del team WEEE Open
-Il sito ch'è sito su [weeeopen.eu](http://weeeopen.eu).
+Il sito ch'è sito su [weeeopen.polito.it](http://weeeopen.polito.it).
 
 ## Build
 ### Installazione
