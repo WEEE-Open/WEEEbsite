@@ -52,9 +52,7 @@ function onMerged($output) {
 
 	if(count($pinnedPosts['it']) > 0) {
 		$pinnedPosts['it'] = array_slice($pinnedPosts['it'], 0, 3);
-		$index->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
-			'pinnedPosts' => $pinnedPosts['it'],
-		]));
+		$index->addMetadataOnTop(['pinnedPosts' => $pinnedPosts['it']]);
 	}
 
 	// oldest first, newest last
@@ -64,14 +62,14 @@ function onMerged($output) {
 		return $postA->getMetadata()['date'] - $postB->getMetadata()['date'];
 	});
 	if(isset($posts[1])) {
-		$posts[0]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata(['next' => $posts[1]]));
+		$posts[0]->addMetadataOnTop(['next' => $posts[1]]);
 	}
 	if(isset($posts[count($posts) - 2])) {
-		$posts[count($posts) - 1]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata(['prev' => $posts[count($posts) - 2]]));
+		$posts[count($posts) - 1]->addMetadataOnTop(['prev' => $posts[count($posts) - 2]]);
 	}
 	for($i = 1; $i < count($posts) - 1; $i++) {
-		$posts[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata(['next' => $posts[$i + 1]]));
-		$posts[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata(['prev' => $posts[$i - 1]]));
+		$posts[$i]->addMetadataOnTop(['next' => $posts[$i + 1]]);
+		$posts[$i]->addMetadataOnTop(['prev' => $posts[$i - 1]]);
 	}
 
 	// oldest last, newest first
@@ -97,10 +95,10 @@ function onMerged($output) {
 		$thisPage->setParser($parser);
 		$thisPage->setMtime($postsInThisPage[0]->getMtime());
 		$thisPage->addMetadataOnTop($blog->getMetadata());
-		$thisPage->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
+		$thisPage->addMetadataOnTop([
 			'posts' => $postsInThisPage,
 			'template' => 'blogpage.php',
-		]));
+		]);
 
 		$pages[] = $thisPage;
 	}
@@ -108,30 +106,30 @@ function onMerged($output) {
 	foreach($pages as $i => $page) {
 		if($i === 0) {
 			if($pagesCount > 1) {
-				$pages[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
+				$pages[$i]->addMetadataOnTop([
 					'pagination' => [
 						'next' => $pages[$i + 1],
 						'this' => $i,
 					]
-				]));
+				]);
 			}
 		} else if($i === $pagesCount - 1) {
 			if($pagesCount > 1) {
-				$pages[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
+				$pages[$i]->addMetadataOnTop([
 					'pagination' => [
 						'prev' => $pages[$i - 1],
 						'this' => $i,
 					]
-				]));
+				]);
 			}
 		} else {
-			$pages[$i]->addMetadataOnTop(new \lvps\MechatronicAnvil\Metadata([
+			$pages[$i]->addMetadataOnTop([
 				'pagination' => [
 					'next' => $pages[$i + 1],
 					'prev' => $pages[$i - 1],
 					'this' => $i,
 				]
-			]));
+			]);
 		}
 	}
 }
