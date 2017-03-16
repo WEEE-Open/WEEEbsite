@@ -54,7 +54,7 @@ function printPostData($timestamp, $lang) {
 }
 
 function facebookLink($url, $title, $lang) {
-	return "<small>Il post <a class=\"icon-facebook\" target=\"blank\" rel=\"nofollow\" href=\"$url\" title=\"$title\">$title</a> è stato pubblicato anche su Facebook.</small>";
+	return "<small>L'articolo <a class=\"icon-facebook\" target=\"blank\" rel=\"nofollow\" href=\"$url\" title=\"$title\">$title</a> è stato pubblicato anche su Facebook.</small>";
 }
 
 /**
