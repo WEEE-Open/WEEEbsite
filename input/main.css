@@ -344,6 +344,10 @@ img.emblematica {
 	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
 }
 
+img.emblematica.noshadow {
+	box-shadow: none;
+}
+
 #pinned .pinnedpost {
 	width: calc(100% - 0.6rem); /* padding */
 	padding: 0.5rem;

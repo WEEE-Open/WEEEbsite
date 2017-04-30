@@ -90,5 +90,10 @@ function unDoubleQuote(string $string): string {
 }
 
 function printImgEmblematica(array $mdImg): string {
-	return '<img class="emblematica" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
+	if(isset($mdImg['shadow']) && $mdImg['shadow'] === 'no') {
+		$shadow = ' noshadow';
+	} else {
+		$shadow = '';
+	}
+	return '<img class="emblematica'.$shadow.'" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
 }
