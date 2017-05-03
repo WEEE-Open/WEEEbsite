@@ -316,10 +316,6 @@ a.linkbutton:hover, a.linkbutton:active {
 	margin-bottom: 0;
 }
 
-/*#content .persona h2 {
-	margin: 0.25rem 0;
-}*/
-
 #content .persona:last-of-type {
 	margin-bottom: 0.5rem; /* che pezza abnorme. */
 }
