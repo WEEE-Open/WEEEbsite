@@ -320,6 +320,10 @@ a.linkbutton:hover, a.linkbutton:active {
 	margin-bottom: 0.5rem; /* che pezza abnorme. */
 }
 
+.persona strong {
+	color: #00983a;
+}
+
 #content p.list {
 	margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
