@@ -21,6 +21,10 @@ if(isset($metadata['facebook'])) {
 	$content .= '<p>' . facebookLink($metadata['facebook'], $metadata['title'], $lang) . '</p>';
 }
 
+if(isset($metadata['medium'])) {
+	$content .= '<p>' . mediumLink($metadata['medium'], $metadata['title'], $lang) . '</p>';
+}
+
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';
 	// not really but stops some warnings:

@@ -57,6 +57,10 @@ function facebookLink($url, $title, $lang) {
 	return "<small>L'articolo <a class=\"icon-facebook\" target=\"blank\" rel=\"nofollow\" href=\"$url\" title=\"$title\">$title</a> è stato pubblicato anche su Facebook.</small>";
 }
 
+function mediumLink($url, $title, $lang) {
+	return "<small>L'articolo <a target=\"blank\" rel=\"nofollow\" href=\"$url\" title=\"$title\">$title</a> è stato pubblicato anche su Medium.</small>";
+}
+
 /**
  * The usual "read more" button, pointing to a URL.
  *
