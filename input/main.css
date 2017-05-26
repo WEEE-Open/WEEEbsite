@@ -445,6 +445,11 @@ img.decorativa-flow {
 	margin: 0.5rem;
 }
 
+small.author {
+	display: block;
+	text-align: end;
+}
+
 @media screen and (min-width: 24rem) {
 	img.emblematica, img.inflow {
 		max-width: 50%;

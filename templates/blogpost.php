@@ -17,6 +17,10 @@ if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['im
 
 $content = '<h1>'.$metadata['title'].'</h1>' . printPostData($metadata['date'], $lang) . $img . $content;
 
+if(isset($metadata['author'])) {
+	$content .= '<p>' . authorFooter($metadata['author'], $lang) . '</p>';
+}
+
 if(isset($metadata['facebook'])) {
 	$content .= '<p>' . facebookLink($metadata['facebook'], $metadata['title'], $lang) . '</p>';
 }

@@ -20,7 +20,7 @@ foreach($metadata['posts'] as $post) {
 	$md = $post->getMetadata();
 
 	$title = $md['title'];
-	$abstract = $md['abstract'] ?? $md['content'];
+	$abstract = $md['abstract'] ?? $md['content']; // TODO: doesn't work, there's no "content" field. Whatever.
 	$link = '/' . $post->getRelativeFilename();
 	if(isset($md['img'])) {
 		$img = printImgEmblematica($md['img']);
