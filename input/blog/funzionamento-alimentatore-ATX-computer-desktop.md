@@ -43,7 +43,9 @@ Le impostazioni del CMOS sono necessarie alle prime fasi di avvio del computer e
 
 \[scrivere anche qualcosa sul 20+4 pin]
 
-Il segnale di PS_ON# (verificare nome...) viene utilizzato per accendere l'alimentatore e di conseguenza il computer: internamente all'alimentatore &egrave; connesso al +5 V (standby? Avrebbe senso... Si puo' verificare? Col multimetro? E misurare la Rpu? Indagare senza bruciare il multimetro.), quando si preme il tasto di accensione del computer (direttamente o tramite circuiteria? verificare col multimetro ad ali scollegato), il segnale di PS_ON# viene cortocircuitato col riferimento di terra quindi portato alla tensione di circa 0 V. L'alimentatore rileva questo e procede ad attivare la roba(?). Dopo alcuni millisecondi, quando le tensioni di uscita sono stabilizzate, l'alimentatore attiva il segnale PWR_OK (verificare nome, tensione, pull-up, pull-down, cose varie): la scheda madre a questo punto rimuove il cortocircuito tra PS_ON# (verificare con multimetro.) e terra e procede all'avvio del computer.
+Il segnale di PS_ON# (verificare nome...) viene utilizzato per accendere l'alimentatore e di conseguenza il computer: internamente all'alimentatore &egrave; connesso al +5 V (standby? Avrebbe senso... Ma ci sono circa 30 ohm tra lui e 5Vsb e tra lui e massa, e sta a 3.0 V spaccati...), quando si preme il tasto di accensione del computer (direttamente o tramite circuiteria? verificare col multimetro ad ali scollegato), il segnale di PS_ON# viene cortocircuitato col riferimento di terra quindi portato alla tensione di circa 0 V. L'alimentatore rileva questo e procede ad attivare la roba(?). Dopo alcuni millisecondi, quando le tensioni di uscita sono stabilizzate, l'alimentatore attiva il segnale PWR_OK (verificare nome, tensione, pull-up, pull-down, cose varie... e' attacato al 5 V non sb): la scheda madre a questo punto NON rimuove il cortocircuito tra PS_ON# (verificare con multimetro.) e terra e procede all'avvio del computer.
+
+(1300 megaohm sul PS_ON-5VSB, 1350 sul PS_ON-GND... 50 k pull up?)
 
 \[Dire che si puo' cortocircuitare a mano il verde col nero]
 
