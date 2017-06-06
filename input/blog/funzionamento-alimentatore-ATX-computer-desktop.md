@@ -45,6 +45,12 @@ Le impostazioni del CMOS sono necessarie alle prime fasi di avvio del computer e
 
 Il segnale di PS_ON# (verificare nome...) viene utilizzato per accendere l'alimentatore e di conseguenza il computer: internamente all'alimentatore &egrave; connesso al +5 V (standby? Avrebbe senso... Si puo' verificare? Col multimetro? E misurare la Rpu? Indagare senza bruciare il multimetro.), quando si preme il tasto di accensione del computer (direttamente o tramite circuiteria? verificare col multimetro ad ali scollegato), il segnale di PS_ON# viene cortocircuitato col riferimento di terra quindi portato alla tensione di circa 0 V. L'alimentatore rileva questo e procede ad attivare la roba(?). Dopo alcuni millisecondi, quando le tensioni di uscita sono stabilizzate, l'alimentatore attiva il segnale PWR_OK (verificare nome, tensione, pull-up, pull-down, cose varie): la scheda madre a questo punto rimuove il cortocircuito tra PS_ON# (verificare con multimetro.) e terra e procede all'avvio del computer.
 
+\[Dire che si puo' cortocircuitare a mano il verde col nero]
+
+\[Inserire schema circuitale della Rpu anche se e' una banalita']
+
 \[Dire che non dovrebbe spegnersi l'alimentatore dopo aver disconnesso PS_ON e GND che poi e' COM, e abbiamo un alimentatore che lo fa...]
 
 \[E lo spegnimento?]
+
+\[Dire che esiste il tester, e lo abbiamo, e abbiamo un alimentatore che oscilla tra 2 e 5 V sul 3.3 perche' e' pieno di condensatori "esplosi"]
