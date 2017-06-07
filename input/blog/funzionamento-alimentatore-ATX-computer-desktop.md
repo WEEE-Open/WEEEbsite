@@ -58,8 +58,4 @@ In uno degli alimentatori che abbiamo provato in laboratorio, il segnale PS_ON# 
 
 \[Inserire schema circuitale della Rpu anche se e' una banalita']
 
-\[Dire che non dovrebbe spegnersi l'alimentatore dopo aver disconnesso PS_ON e GND che poi e' COM, e abbiamo un alimentatore che lo fa...]
-
-\[E lo spegnimento?]
-
 \[Dire che esiste il tester, e lo abbiamo, e abbiamo un alimentatore che oscilla tra 2 e 5 V sul 3.3 perche' e' pieno di condensatori "esplosi"]
