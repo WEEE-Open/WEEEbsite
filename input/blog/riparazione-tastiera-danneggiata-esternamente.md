@@ -3,11 +3,6 @@ date: 2017-06-05T17:00:00Z
 template: blogpost.php
 author: Emanuele Guido
 abstract: In laboratorio capita a volte di ricevere dispositivi il cui problema maggiore è l'essere danneggiato esternamente. In queste situazioni la cosa da fare in genere è trovare un apparecchio simile e danneggiato ed usarne le componenti come ricambi.
-img:
-    src: /blog/media/riparazione-tastiera-mini.jpg
-    alt: Riparazione della tastiera
-    title: Riparazione della tastiera
-    hide: true
 ---
 
 In laboratorio capita a volte di ricevere dispositivi il cui problema maggiore è l'essere danneggiato esternamente.  
@@ -31,7 +26,7 @@ segnale viene inviato ad un microcontrollore che lo elabora.
 
 ## All'opera
 
-<img class="decorativa-flow" src="riparazione-tastiera.jpg" alt="Riparazione della tastiera" title="Riparazione della tastiera">
+<img class="decorativa-flow" src="media/riparazione-tastiera.jpg" alt="Riparazione della tastiera" title="Riparazione della tastiera">
 
 La prima fase del lavoro è quella dello smontaggio. Vanno rimosse tutte le viti e in caso di viti di diverse
 dimensioni ne va segnata la posizione per facilitare la fase di riassemblaggio ed evitare di danneggiare le
