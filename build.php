@@ -5,6 +5,16 @@ define('OUTPUT', 'output');
 
 $parsers = ['UnderscoreDotYaml', 'HTMLWithYAMLFrontMatter', 'HTMLWithDefaultTemplate', 'YamlForMarkdown', 'MarkdownWithYAMLFrontMatter', 'Markdown', 'CSSMinify'];
 
+function onParsed($output) {
+	/** @var \lvps\MechatronicAnvil\Directory $output */
+	$output->recursiveWalkCallback(function($file) {
+		/** @var \lvps\MechatronicAnvil\File $file */
+		if(substr($file->getExtension(), 0, 4) === 'wip.') {
+			$file->doNotRender();
+		}
+	});
+}
+
 function onMerged($output) {
 	$parser = new \lvps\MechatronicAnvil\Parsers\NoContentPHPTemplate();
 	$index = NULL;
