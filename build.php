@@ -2,6 +2,7 @@
 <?php
 define('INPUT', 'input');
 define('OUTPUT', 'output');
+chdir(__DIR__);
 
 $parsers = ['UnderscoreDotYaml', 'HTMLWithYAMLFrontMatter', 'HTMLWithDefaultTemplate', 'YamlForMarkdown', 'MarkdownWithYAMLFrontMatter', 'Markdown', 'CSSMinify'];
 
