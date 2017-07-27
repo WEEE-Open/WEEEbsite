@@ -14,7 +14,7 @@ html, body {
 
 body {
 	margin: 0;
-	background: #3c3c3c url(img/raee960.jpg) repeat-y bottom;
+	background: #3c3c3c url(img/raee960.jpg) repeat-y top;
 	background-size: cover;
 	display: flex;
 	flex-direction: column;
