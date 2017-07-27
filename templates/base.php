@@ -47,7 +47,6 @@ $active = function(string $what) use ($file_path) {
 		<a href="/index.html"<?php $active('index.html') ?>>WEEE Open</a
 		><a href="/blog/"<?php $active('blog/index.html') ?>>Blog</a
 		><a href="/progetto.html"<?php $active('progetto.html') ?>>Il progetto</a
-		><a href="/obiettivi.html"<?php $active('obiettivi.html') ?>>Obiettivi</a
 		><a href="/chi-siamo.html"<?php $active('chi-siamo.html') ?>>Chi siamo</a
 		><a href="/entra-nel-team.html"<?php $active('entra-nel-team.html') ?>>Entra nel team</a
 		><a href="/contatti.html"<?php $active('contatti.html') ?>>Contatti</a>
