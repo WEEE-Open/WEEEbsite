@@ -121,7 +121,7 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
         * Per uscire da questo stadio è necessario un riavvio del sistema;
  
  Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
- ![ linea temporale stati] (media/states.png)
+ ![](media/states.png?raw=true)
  Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
 
 
