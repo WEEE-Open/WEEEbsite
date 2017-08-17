@@ -47,7 +47,6 @@ $active = function(string $what) use ($file_path) {
 		<a href="/index.html"<?php $active('index.html') ?>>WEEE Open</a
 		><a href="/blog/"<?php $active('blog/index.html') ?>>Blog</a
 		><a href="/progetto.html"<?php $active('progetto.html') ?>>Il progetto</a
-		><a href="/obiettivi.html"<?php $active('obiettivi.html') ?>>Obiettivi</a
 		><a href="/entra-nel-team.html"<?php $active('entra-nel-team.html') ?>>Entra nel team</a
 		><a href="/chi-siamo.html"<?php $active('chi-siamo.html') ?>>Chi siamo</a
 		><a href="/contatti.html"<?php $active('contatti.html') ?>>Contatti</a>
@@ -59,9 +58,10 @@ $active = function(string $what) use ($file_path) {
 	</main>
 </div>
 <footer id="footer">
-	<p>Copyleft <span class="copyleft">&copy;</span> 2016, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
+	<p>Copyleft <span class="copyleft">&copy;</span>, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
 		<a href="https://github.com/WEEE-Open/WEEEbsite" target="_blank">Codice sorgente</a>.</p>
 	<p>Seguici su Facebook: <a class="icon-facebook" href="https://www.facebook.com/weeeopenpolito/" target="_blank" rel="nofollow">Team WEEE Open</a></p>
+	<p><small>Il Team WEEE Open &egrave; finanziato dal Politecnico di Torino tramite i contributi alla progettualit&agrave; studentesca.</small></p>
 </footer>
 <script src="/menu.js"></script>
 </body>
