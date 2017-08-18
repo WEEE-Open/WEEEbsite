@@ -19,27 +19,28 @@ Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alime
 Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio tener alimentati dei moduli quando il pc rimane spento (e.g. RTC, WakeOnLan) . Quando si parler&agrave; di consumi 
 ci si riferir&agrave; all'aalimentazione principale.
  
-Pi&ugrave; avanti parleremo dei contesti relativi ai processi che non sono altro che informazioni sul stato attuale di esecuzione che devono essere memorizzate così che quando è nuovamente
+Pi&ugrave; avanti parleremo dei contesti relativi ai processi (WIP) che non sono altro che informazioni sul stato attuale di esecuzione che devono essere memorizzate così che quando è nuovamente
  schedulato per l'esecuzione sul processore pu&ograve; riprendere le sue operazioni da una posizione identica. Ci si render&agrave; conto che in diversi questi contesti verranno persi; questo avviene 
  a livello di specifica, mentre in pratica ogni OS implementa sistemi per salvarli in modo permanente.
   
 1. Stati G (Sistema Globale):
-Sono stati che descrivono la percezione che ha l'utente finale del sistema.
+Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
     * _G0_: 
-        * Il sistema è completamente funzionante e alimentato con il 100% dell'energia a disposizione; 
-    * _G1_ "Sistema  addormentato": 
-        * Il pc sembra spento pur non essendolo effettivamente, i consumi in generale sono ridotti;
-        * La sessione di lavoro pu&ograve; essere ripristinata senza necessariamente riavviare il sistema; 
-        * I contesti relativi ai processi sono salvati in memoria;
-    * _G2_ Spegnimento software: 
-        * Il pc comsuma piccole quantit&agrave; di energia 
-        * Per ripristinare la sessione di lavoro c'è un'alta latenza; 
-        * Nessun processo viene salvato, è necessario riavviare il sistema; 
+        * Il sistema è completamente funzionante e alimentato con il 100% dell'energia a disposizione
+        * Alcuni dispositivi in quel momento inutilizzati potrebbero essere in uno stato "addormentato", purché possano tornare a uno stato di funzionamento in tempi brevi
+    * _G1_ "Sistema addormentato": 
+        * Il pc sembra spento pur non essendolo effettivamente, i consumi in generale sono ridotti
+        * La sessione di lavoro può essere ripristinata senza necessariamente riavviare il sistema
+        * I contesti relativi ai processi sono salvati in memoria
+    * _G2_ Spegnimento software:
+        * Il pc comsuma piccole quantità di energia
+        * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
+        * Nessun contesto viene salvato dall'hardware, ma può essere salvato preventivamente dal sistema operativo (WIP)? (ibernazione = G2?)
     * _G3_ Spegnimento meccanico:
-        * Azionato da un comando meccanico (switch ON/OFF) 
-        * Il sistema deve essere riavviato per ripristinare la sessione;
-        * Non viene consumata energia;
- 
+        * Azionato da un comando meccanico (tasto ON/OFF)
+        * Il sistema deve essere riavviato per ripristinare la sessione
+        * Non viene consumata energia
+
  2.  Stati S:
     Sono stati che descrivono cosa accade a livello di sistema.
     * _S0_ stato attivo:
