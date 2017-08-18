@@ -2,20 +2,20 @@ title: "Gestione dell'alimentazione, parte 1: definizione degli stati ACPI"
 date: 2017-09-01T10:00:00Z
 template: blogpost.php
 author: Federico Bassignana
-abstract: Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto è strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
+abstract: Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto fa riferimento all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ciò che avviene anche nei desktop; mentre a livello pratico le cose posso essere abbastanza diverse, infatti i desktop verranno trattati più avanti. 
 ---
 Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. 
-Quanto scritto è strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico 
-le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
+Quanto scritto fa riferimento all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ciò che avviene anche nei desktop; mentre a livello pratico 
+le cose posso essere abbastanza diverse, infatti i desktop verranno trattati più avanti. 
  
-Nel corso degli anni le maggiori case produttrici in comune accordo hanno sviluppato standard di gestione energetica al fine di avere una maggiore compatibilità tra dispositivi.
-A inizio / metà anni 90 venne introdotto lo standard **APM** (Advanced Power Management) presto diventato obsoleto a causa di una sempre maggiore necessità di risparmio energetico.
-Venne infatti rimpiazzato dalla specifica **ACPI** (Advanced Configuration Power Interface) che permette un controllo completo dell'alimentazione direttamente dal sistema operativo 
-(a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS) .
+Nel corso degli anni le maggiori case produttrici hanno sviluppato in comune accordo standard di gestione energetica al fine di avere una maggiore compatibilità tra i loro dispositivi.
+Nel 1992 venne introdotto lo standard **APM** (*Advanced Power Management*), tuttavia presto diventato obsoleto a causa di una sempre maggiore necessità di risparmio energetico.
+Venne infatti rimpiazzato dalla specifica **ACPI** (*Advanced Configuration Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS.
  
-Per semplificare queste specifiche sono stati definiti degli stati che descrivono il comportamento delle principali componenti del pc. A loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia,
+La specifica ACPI definisce, tra le altre cose, degli **stati** che descrivono il comportamento delle principali componenti del computer in base al risparmio energetico desiderato. Quindi di fatto la specifica definisce ogni componente, nonché l'intero computer, come una macchina a stati finiti, dal punto di vista della gestione energetica.   
+Gli stati a loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia, (WIP)
  
-Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alimentazione principale e da un'alimentazione secondaria sempre presente (Se non diversamente specificato) di circa 3.3 V.
+Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alimentazione principale e da un'alimentazione secondaria sempre presente (Se non diversamente specificato) di circa 3.3 V (WIP).
 Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio tener alimentati dei moduli quando il pc rimane spento (e.g. RTC, WakeOnLan) . Quando si parler&agrave; di consumi 
 ci si riferir&agrave; all'aalimentazione principale.
  
