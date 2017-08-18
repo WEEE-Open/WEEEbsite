@@ -2,10 +2,10 @@ title: "Gestione dell'alimentazione, parte 1: definizione degli stati ACPI"
 date: 2017-09-01T10:00:00Z
 template: blogpost.php
 author: Federico Bassignana
-abstract: Questo &egrave; il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto &egrave; strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
+abstract: Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto è strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
 ---
-Questo &egrave; il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. 
-Quanto scritto &egrave; strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico 
+Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. 
+Quanto scritto è strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico 
 le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
  
 Nel corso degli anni le maggiori case produttrici in comune accordo hanno sviluppato standard di gestione energetica al fine di avere una maggiore compatibilità tra dispositivi.
@@ -13,9 +13,9 @@ A inizio / metà anni 90 venne introdotto lo standard **APM** (Advanced Power Ma
 Venne infatti rimpiazzato dalla specifica **ACPI** (Advanced Configuration Power Interface) che permette un controllo completo dell'alimentazione direttamente dal sistema operativo 
 (a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS) .
  
- Per semplificare queste specifiche sono stati definiti degli stati che descrivono il comportamento delle principali componenti del pc. A loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia,
+Per semplificare queste specifiche sono stati definiti degli stati che descrivono il comportamento delle principali componenti del pc. A loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia,
  
-Prima di tutto bisogna specificare che ogni dispositivo &egrave; alimentato dall'alimentazione principale e da un'alimentazione secondaria sempre presente (Se non diversamente specificato) di circa 3.3 V.
+Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alimentazione principale e da un'alimentazione secondaria sempre presente (Se non diversamente specificato) di circa 3.3 V.
 Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio tener alimentati dei moduli quando il pc rimane spento (e.g. RTC, WakeOnLan) . Quando si parler&agrave; di consumi 
 ci si riferir&agrave; all'aalimentazione principale.
  
@@ -33,8 +33,8 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema.
         * I contesti relativi ai processi sono salvati in memoria;
     * _G2_ Spegnimento software: 
         * Il pc comsuma piccole quantit&agrave; di energia 
-        * Per ripristinare la sessione di lavoro c'&egrave; un'alta latenza; 
-        * Nessun processo viene salvato, &egrave; necessario riavviare il sistema; 
+        * Per ripristinare la sessione di lavoro c'è un'alta latenza; 
+        * Nessun processo viene salvato, è necessario riavviare il sistema; 
     * _G3_ Spegnimento meccanico:
         * Azionato da un comando meccanico (switch ON/OFF) 
         * Il sistema deve essere riavviato per ripristinare la sessione;
@@ -55,14 +55,14 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema.
         * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) 
 			e viene comunque mantenuta alimentata.
         * Le unit&agrave; come CPU, Chipset, dispositivi di I/O mandano i contesti alla RAM, che sar&agrave; l'unico dispositivo rimasto alimentato, e vengono spenti. 
-			Questo permette di avere un "risveglio" del  sistema piuttosto rapido ma l'inconvegnente &egrave; che se viene a mancare corrente tutto viene perso;  
+			Questo permette di avere un "risveglio" del  sistema piuttosto rapido ma l'inconvegnente è che se viene a mancare corrente tutto viene perso;  
     * _S4_ stato "addormentato" (Ibernazione, sospensione su Hard Disk):
         * Alta latenza per tornare allo stato attivo (_S0_);
         * In questo livello anche la RAM viene spenta;
         * Tutti i contesti del sistema vengono salvati in un file su memoria di massa;
      * _S5_ spegnimento software:
         * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto; 
-        * Per riavviare la sessione &egrave; necessario un riavvio completo del sistema operativo;
+        * Per riavviare la sessione è necessario un riavvio completo del sistema operativo;
 3. Stati D:
 Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
     * _D0_ Completamente operativo:
@@ -77,7 +77,7 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
 		* _D3<sub>COLD</sub>_:
 			* L'alimentazione principale viene totalmente rimossa dal dispositivo;
 			* Si porta lo stato Link al livello:
-				1. _L2_ se l'alimentazione ausiliaria (AUX) &egrave; supportata dal dispositivo;
+				1. _L2_ se l'alimentazione ausiliaria (AUX) è supportata dal dispositivo;
 				2. _L3_ in caso contrario;
 			* Il clock del BUS PCI viene interrotto;
 4. Stati C:
@@ -90,7 +90,7 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
         * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come **CPU throttling**)
     * _C2_ :
         * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come **Undervolting**)
-        * &Egrave; necessario più tempo per "risvegliare il sistema";
+        * è necessario più tempo per "risvegliare il sistema";
      * _C3_:
         * Vengono spenti il generatore di clock e le cache;
         * Richiede pi&ugrave; tempo per il riavvio;
@@ -120,11 +120,11 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
         * In questo livello agisce il segnale **WAKE#** ('#' sta a indicare che si attiva quando il segnale ha valore logico 0) necessario ad avviare il computer da remoto attraverso il WakeOnLan
      * _L3_:
         * Vengono rimossi l'alimentazione e il clock
-        * Il dispositivo &egrave; completamente spento visto che la tensione AUX non &egrave; supportata;
+        * Il dispositivo è completamente spento visto che la tensione AUX non è supportata;
         * Per uscire da questo stadio è necessario un riavvio del sistema;
  
- Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
- <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
- Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
+Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
+<img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
+Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
 
 
