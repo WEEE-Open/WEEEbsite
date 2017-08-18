@@ -1,5 +1,9 @@
-Gestione dell'alimentazione dei notebook
-----------------------------------------------------
+title: "Gestione dell'alimentazione, parte 1: definizione degli stati ACPI"
+date: 2017-09-01T10:00:00Z
+template: blogpost.php
+author: Federico Bassignana
+abstract: Questo &egrave; il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto &egrave; strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
+---
 Questo &egrave; il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. 
 Quanto scritto &egrave; strettamente legato all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ci&ograve; che avviene anche nei desktop, mentre a livello pratico 
 le cose posso essere abbastanza diverse infatti i desktop verranno trattati pi&ugrave; avanti. 
@@ -27,7 +31,6 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema.
         * Il pc sembra spento pur non essendolo effettivamente, i consumi in generale sono ridotti;
         * La sessione di lavoro pu&ograve; essere ripristinata senza necessariamente riavviare il sistema; 
         * I contesti relativi ai processi sono salvati in memoria;
-        
     * _G2_ Spegnimento software: 
         * Il pc comsuma piccole quantit&agrave; di energia 
         * Per ripristinare la sessione di lavoro c'&egrave; un'alta latenza; 
@@ -72,11 +75,11 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
 			* Viene ancora fornita l'alimentazione al dispositivo;
 			* Si alza il livello dello stato Link a _L1_ in modo che il dispositivo non supporti pi&ugrave; il clock fornito dal bus;
 		* _D3<sub>COLD</sub>_:
-				* L'alimentazione principale viene totalmente rimossa dal dispositivo;
-				* Si porta lo stato Link al livello:
-					1. _L2_ se l'alimentazione ausiliaria (AUX) &egrave; supportata dal dispositivo;
-					2. _L3_ in caso contrario;
-				* Il clock del BUS PCI viene interrotto;
+			* L'alimentazione principale viene totalmente rimossa dal dispositivo;
+			* Si porta lo stato Link al livello:
+				1. _L2_ se l'alimentazione ausiliaria (AUX) &egrave; supportata dal dispositivo;
+				2. _L3_ in caso contrario;
+			* Il clock del BUS PCI viene interrotto;
 4. Stati C:
     Descrivono il comportamento della CPU.
     * _C0_:
@@ -121,7 +124,7 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
         * Per uscire da questo stadio è necessario un riavvio del sistema;
  
  Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
- ![](media/states.png?raw=true)
+ <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
  Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
 
 
