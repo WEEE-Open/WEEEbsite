@@ -44,27 +44,43 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
  2.  Stati S:
     Sono stati che descrivono cosa accade a livello di sistema.
     * _S0_ stato attivo:
-        * Il computer è alimentato, ci troviamo nella situazione in cui l'utente finale utilizza l'apparecchio;
+        * Il computer è alimentato, l'utente finale utilizza l'apparecchio
     * _S1_ / _S2_ stati "addormentati" (solitamente inutilizzati): 
         * _S1_:
-            * Breve tempo di riaccensione;
-            * Nessun processo viene perso; 
+            * Breve tempo di riaccensione
+            * Nessun contesto dei processi (WIP) viene perso
         * _S2_:
-            * A differenza dello stato _S1_ i contesti presenti nella CPU e nelle cache vengono persi; 
+            * A differenza dello stato _S1_ i contesti presenti nei registri della CPU e nelle cache vengono persi
     * _S3_ stato "addormentato" (e.g. stand-by, sospensione in RAM):
-        * Breve tempo di ripristino della sessione; 
+        * Breve tempo di ripristino della sessione
         * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) 
-			e viene comunque mantenuta alimentata.
-        * Le unit&agrave; come CPU, Chipset, dispositivi di I/O mandano i contesti alla RAM, che sar&agrave; l'unico dispositivo rimasto alimentato, e vengono spenti. 
-			Questo permette di avere un "risveglio" del  sistema piuttosto rapido ma l'inconvegnente è che se viene a mancare corrente tutto viene perso;  
-    * _S4_ stato "addormentato" (Ibernazione, sospensione su Hard Disk):
-        * Alta latenza per tornare allo stato attivo (_S0_);
-        * In questo livello anche la RAM viene spenta;
-        * Tutti i contesti del sistema vengono salvati in un file su memoria di massa;
-     * _S5_ spegnimento software:
-        * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto; 
-        * Per riavviare la sessione è necessario un riavvio completo del sistema operativo;
-3. Stati D:
+			e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
+        * Le unità come CPU, chipset e dispositivi di I/O mandano i contesti alla RAM (WIP), che sarà l'unico dispositivo rimasto alimentato, e vengono spenti. 
+			Questo permette di avere un "risveglio" del  sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro/i contesti/boh (WIP) viene perso;  
+    * _S4_ stato "addormentato" (ibernazione, sospensione su Hard Disk):
+        * Alta latenza per tornare allo stato attivo (_S0_)
+        * In questo livello anche la RAM viene spenta
+        * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
+    * _S5_ spegnimento software:
+        * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
+        * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
+
+3. Stati C:
+    Descrivono il comportamento della CPU.
+    * _C0_:
+        In questo stato la CPU esegue le istruzioni normalmente;
+    * _C1_:
+        * Bassa latenza di ripristino della sessione;
+        * La CPU si trova in uno stato in cui NON esegue istruzioni;
+        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come **CPU throttling**)
+    * _C2_ :
+        * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come **Undervolting**)
+        * è necessario più tempo per "risvegliare il sistema";
+    * _C3_:
+        * Vengono spenti il generatore di clock e le cache;
+        * Richiede pi&ugrave; tempo per il riavvio;
+
+4. Stati D:
 Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
     * _D0_ Completamente operativo:
         * Il dispositivo è completamente attivo;
@@ -81,20 +97,6 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
 				1. _L2_ se l'alimentazione ausiliaria (AUX) è supportata dal dispositivo;
 				2. _L3_ in caso contrario;
 			* Il clock del BUS PCI viene interrotto;
-4. Stati C:
-    Descrivono il comportamento della CPU.
-    * _C0_:
-        In questo stato la CPU esegue le istruzioni normalmente;
-    * _C1_:
-        * Bassa latenza di ripristino della sessione;
-        * La CPU si trova in uno stato in cui NON esegue istruzioni;
-        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come **CPU throttling**)
-    * _C2_ :
-        * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come **Undervolting**)
-        * è necessario più tempo per "risvegliare il sistema";
-     * _C3_:
-        * Vengono spenti il generatore di clock e le cache;
-        * Richiede pi&ugrave; tempo per il riavvio;
 5. Stati L:
     Descrivono il comportamento dell' interfaccia PCIe
     * _L0_:
