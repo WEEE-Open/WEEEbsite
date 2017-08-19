@@ -19,12 +19,11 @@ Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alime
 Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio tener alimentati dei moduli quando il pc rimane spento (e.g. RTC, WakeOnLan) . Quando si parler&agrave; di consumi 
 ci si riferir&agrave; all'aalimentazione principale.
  
-Pi&ugrave; avanti parleremo dei contesti relativi ai processi (WIP) che non sono altro che informazioni sul stato attuale di esecuzione che devono essere memorizzate così che quando è nuovamente
- schedulato per l'esecuzione sul processore pu&ograve; riprendere le sue operazioni da una posizione identica. Ci si render&agrave; conto che in diversi questi contesti verranno persi; questo avviene 
- a livello di specifica, mentre in pratica ogni OS implementa sistemi per salvarli in modo permanente.
+La specifica ACPI fa riferimento in vari punti al contesto del sistema (*system context*) e al contesto del dispositivo (*device context*): questi non sono altro che "dati variabili" memorizzati nel dispositivo e necessari al suo immediato funzionamento. Ad esempio, su una CPU il contesto potrebbe indicare il contenuto dei registri, su un dispositivo USB il suo indirizzo sul bus, e così via.
+Ci si renderà conto che in diversi stati questi contesti verranno persi; questo avviene a livello di specifica, mentre in pratica ogni OS implementa (WIP) sistemi per salvarli in modo permanente.
   
 1. Stati G (Sistema Globale):
-Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
+    Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
     * _G0_: 
         * Il sistema è completamente funzionante e alimentato con il 100% dell'energia a disposizione
         * Alcuni dispositivi in quel momento inutilizzati potrebbero essere in uno stato "addormentato", purché possano tornare a uno stato di funzionamento in tempi brevi
@@ -41,7 +40,7 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
         * Il sistema deve essere riavviato per ripristinare la sessione
         * Non viene consumata energia
 
- 2.  Stati S:
+ 2. Stati S:
     Sono stati che descrivono cosa accade a livello di sistema.
     * _S0_ stato attivo:
         * Il computer è alimentato, l'utente finale utilizza l'apparecchio
@@ -72,9 +71,9 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
     * _C1_:
         * Bassa latenza di ripristino della sessione;
         * La CPU si trova in uno stato in cui NON esegue istruzioni;
-        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come **CPU throttling**)
+        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*)
     * _C2_ :
-        * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come **Undervolting**)
+        * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come *undervolting*)
         * è necessario più tempo per "risvegliare il sistema";
     * _C3_:
         * Vengono spenti il generatore di clock e le cache;
