@@ -128,7 +128,7 @@ Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione 
 * _C4_, _C4E_, _C6_:
 	* Viene ridotta anche la tensione (anche a 0 V nel caso di C6)
 
-Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di più e che meglio si prestano a complesse operazioni di risparmio energetico (mentre su uno schermo, ad esempio, a parte ridurre la luminosità non si può fare molto), [esistono altre sottili differenze e sotto-stati](http://www.hardwaresecrets.com/everything-you-need-to-know-about-the-cpu-c-states-power-saving-modes/), ma esulano dall'ambito di questo articolo e talvolta anche dalla specifica ACPI.
+Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di più e che meglio si prestano a complesse operazioni di risparmio energetico (mentre su uno schermo, ad esempio, a parte ridurre la luminosità non si può fare molto), [esistono altre sottili differenze e sotto stati](http://www.hardwaresecrets.com/everything-you-need-to-know-about-the-cpu-c-states-power-saving-modes/), ma esulano dall'ambito di questo articolo e talvolta anche dalla specifica ACPI.
 
 ## Stati P
 
@@ -139,25 +139,33 @@ Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di pi�
 (WIP) (sono obsoleti. Fine.)
 
 ## Stati D
-Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
-    * _D0_ Completamente operativo:
-        * Il dispositivo è completamente attivo;
-	* _D1_ , _D2_ :
-		Sono stati intermedi, quindi non ben documentaati nelle specifiche, le loro caratteristiche variano da periferica a periferica;
-	* _D3_:
-		Si suddivide in 2 sotto livelli di transizione:
-		* _D3<sub>HOT</sub>_ :
-			* Viene ancora fornita l'alimentazione al dispositivo;
-			* Si alza il livello dello stato Link a _L1_ in modo che il dispositivo non supporti pi&ugrave; il clock fornito dal bus, se è dispositivo PCIe
-		* _D3<sub>COLD</sub>_:
-			* L'alimentazione principale viene totalmente rimossa dal dispositivo;
-			* Si porta lo stato Link al livello:
-				1. _L2_ se l'alimentazione ausiliaria (AUX) è supportata dal dispositivo;
-				2. _L3_ in caso contrario;
-			* Il clock del BUS PCI viene interrotto;
+Sono stati che descrivono il comportamento dei vari dispositivi collegati al sistema.
+
+* _D0_ Completamente operativo:
+    * Il dispositivo è completamente attivo
+* _D1_, _D2_:
+	* Sono stati intermedi, le loro caratteristiche variano a seconda del tipo di periferica
+* _D3_:
+	Si suddivide in 2 sotto livelli:
+	* _D3<sub>HOT</sub>_ :
+		* Viene ancora fornita l'alimentazione al dispositivo
+		* Se è un dispositivo PCIe, si porta lo stato Link a _L1_ in modo che il dispositivo non supporti/riceva? (WIP) più il clock fornito dal bus
+		* Il dispositivo è ancora enumerabile (identificabile, rilevabile) dal sistema operativo
+	* _D3_ o _D3<sub>COLD</sub>_:
+		* L'alimentazione principale viene totalmente rimossa dal dispositivo
+		* Il contesto del dispositivo viene perso
+		* Se è un dispositivo PCIe, si porta lo stato Link al livello:
+			1. _L2_ se l'alimentazione ausiliaria (AUX) è supportata dal dispositivo
+			2. _L3_ in caso contrario
+		* Il clock del BUS PCIe viene interrotto
+		* Il dispositivo non è più enumerabile finché non verrà nuovamente inizializzato
+
+Gli stati D0 e D3<sub>COLD</sub> sono definiti e obbligatori per tutti i dispositivi, mentre gli altri sono obbligatori o ammessi solo per alcune classi di dispositivi indicati dalla specifica.
 
 ## Stati L
-Descrivono il comportamento dell' interfaccia PCIe
+
+Descrivono il comportamento dell'interfaccia PCIe.
+
 * _L0_:
     * Il bus funziona a regime;
 * _L0<sub>s</sub>_ IDLE elettrico (autonomo):
