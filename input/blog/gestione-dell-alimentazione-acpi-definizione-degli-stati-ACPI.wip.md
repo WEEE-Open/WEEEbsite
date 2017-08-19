@@ -4,6 +4,7 @@ template: blogpost.php
 author: Federico Bassignana
 abstract: Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto fa riferimento all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ciò che avviene anche nei desktop; mentre a livello pratico le cose posso essere abbastanza diverse, infatti i desktop verranno trattati più avanti. 
 ---
+## Introduzione
 Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. 
 Quanto scritto fa riferimento all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ciò che avviene anche nei desktop; mentre a livello pratico 
 le cose posso essere abbastanza diverse, infatti i desktop verranno trattati più avanti. 
@@ -22,67 +23,69 @@ ci si riferir&agrave; all'aalimentazione principale.
 La specifica ACPI fa riferimento in vari punti al contesto del sistema (*system context*) e al contesto del dispositivo (*device context*): questi non sono altro che "dati variabili" memorizzati nel dispositivo e necessari al suo immediato funzionamento. Ad esempio, su una CPU il contesto potrebbe indicare il contenuto dei registri, su un dispositivo USB il suo indirizzo sul bus, e così via.
 Ci si renderà conto che in diversi stati questi contesti verranno persi; questo avviene a livello di specifica, mentre in pratica ogni OS implementa (WIP) sistemi per salvarli in modo permanente.
   
-1. Stati G (Sistema Globale):
-    Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
-    * _G0_: 
-        * Il sistema è completamente funzionante e alimentato con il 100% dell'energia a disposizione
-        * Alcuni dispositivi in quel momento inutilizzati potrebbero essere in uno stato "addormentato", purché possano tornare a uno stato di funzionamento in tempi brevi
-    * _G1_ "Sistema addormentato": 
-        * Il pc sembra spento pur non essendolo effettivamente, i consumi in generale sono ridotti
-        * La sessione di lavoro può essere ripristinata senza necessariamente riavviare il sistema
-        * I contesti relativi ai processi sono salvati in memoria
-    * _G2_ Spegnimento software:
-        * Il pc comsuma piccole quantità di energia
-        * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
-        * Nessun contesto viene salvato dall'hardware, ma può essere salvato preventivamente dal sistema operativo (WIP)? (ibernazione = G2?)
-    * _G3_ Spegnimento meccanico:
-        * Azionato da un comando meccanico (tasto ON/OFF)
-        * Il sistema deve essere riacceso col medesimo tasto, poi riavviato per ripristinare la sessione (WIP) (altrimenti si può pensare che il normale tasto di accensione sia quello del G3. La specifica non dà definizioni chiare, fa solo l'esempio di "un grande tasto rosso"...)
-        * Non viene consumata energia
+## Stati G (Sistema Globale)
+Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
 
- 2. Stati S:
-    Sono stati che descrivono cosa accade a livello di sistema.
-    * _S0_ stato attivo:
-        * Il computer è alimentato, l'utente finale utilizza l'apparecchio
-    * _S1_ / _S2_ stati "addormentati" (solitamente inutilizzati): 
-        * _S1_:
-            * Breve tempo di riaccensione
-            * Nessun contesto viene perso
-        * _S2_:
-            * Breve tempo di riaccensione
-            * Vengono persi il contesto della CPU e le cache 
-    * _S3_ stato "addormentato" (e.g. stand-by, sospensione in RAM):
-        * Breve tempo di ripristino della sessione
-        * Il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
-        * Al "risveglio" il sistema operativo ripristina i contesti dalla RAM. Questo permette un risveglio del sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro viene persa, in quanto la RAM è volatile  
-        * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
-		* I dispositivi possono essere in stati non spenti (WIP)
-    * _S4_ stato "addormentato" (ibernazione, sospensione su hard disk):
-        * Alta latenza per tornare allo stato attivo (_S0_)
-        * In questo livello anche la RAM viene spenta
-        * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
-        * Al risveglio il sistema operativo ripristina i contesti dal file
-        * I dispositivi devono essere spenti (WIP)
-    * _S5_ spegnimento software:
-        * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
-        * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
+* _G0_: 
+    * Il sistema è completamente funzionante e alimentato con il 100% dell'energia a disposizione
+    * Alcuni dispositivi in quel momento inutilizzati potrebbero essere in uno stato "addormentato", purché possano tornare a uno stato di funzionamento in tempi brevi
+* _G1_ "Sistema addormentato": 
+    * Il pc sembra spento pur non essendolo effettivamente, i consumi in generale sono ridotti
+    * La sessione di lavoro può essere ripristinata senza necessariamente riavviare il sistema
+    * I contesti relativi ai processi sono salvati in memoria
+* _G2_ Spegnimento software:
+    * Il pc comsuma piccole quantità di energia
+    * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
+    * Nessun contesto viene salvato dall'hardware, ma può essere salvato preventivamente dal sistema operativo (WIP)? (ibernazione = G2?)
+* _G3_ Spegnimento meccanico:
+    * Azionato da un comando meccanico (tasto ON/OFF)
+    * Il sistema deve essere riacceso col medesimo tasto, poi riavviato per ripristinare la sessione (WIP) (altrimenti si può pensare che il normale tasto di accensione sia quello del G3. La specifica non dà definizioni chiare, fa solo l'esempio di "un grande tasto rosso"...)
+    * Non viene consumata energia
 
-3. Stati C:
-    Descrivono il comportamento della CPU.
-    * _C0_:
-        In questo stato la CPU esegue le istruzioni normalmente
-    * _C1_:
-        * La CPU si trova in uno stato in cui NON esegue istruzioni
-        * Bassa latenza di ripristino della sessione
-        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*) (WIP, 
-    * _C2_ :
-        * Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
-        * è necessario più tempo per "risvegliare il sistema";
-    * _C3_:
-        * Vengono spenti il generatore di clock e le cache;
-        * Richiede pi&ugrave; tempo per il riavvio;
+## Stati S
+Sono stati che descrivono cosa accade a livello di sistema.
 
-4. Stati D:
+* _S0_ stato attivo:
+    * Il computer è alimentato, l'utente finale utilizza l'apparecchio
+* _S1_ / _S2_ stati "addormentati" (solitamente inutilizzati): 
+    * _S1_:
+        * Breve tempo di riaccensione
+        * Nessun contesto viene perso
+    * _S2_:
+        * Breve tempo di riaccensione
+        * Vengono persi il contesto della CPU e le cache 
+* _S3_ stato "addormentato" (e.g. stand-by, sospensione in RAM):
+    * Breve tempo di ripristino della sessione
+    * Il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
+    * Al "risveglio" il sistema operativo ripristina i contesti dalla RAM. Questo permette un risveglio del sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro viene persa, in quanto la RAM è volatile  
+    * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
+	* I dispositivi possono essere in stati non spenti (WIP)
+* _S4_ stato "addormentato" (ibernazione, sospensione su hard disk):
+    * Alta latenza per tornare allo stato attivo (_S0_)
+    * In questo livello anche la RAM viene spenta
+    * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
+    * Al risveglio il sistema operativo ripristina i contesti dal file
+    * I dispositivi devono essere spenti (WIP)
+* _S5_ spegnimento software:
+    * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
+    * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
+
+## Stati C
+Descrivono il comportamento della CPU.
+* _C0_:
+    In questo stato la CPU esegue le istruzioni normalmente
+* _C1_:
+    * La CPU si trova in uno stato in cui NON esegue istruzioni
+    * Bassa latenza di ripristino della sessione
+    * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*) (WIP, 
+* _C2_ :
+    * Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
+    * è necessario più tempo per "risvegliare il sistema";
+* _C3_:
+    * Vengono spenti il generatore di clock e le cache;
+    * Richiede pi&ugrave; tempo per il riavvio;
+
+## Stati D
 Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
     * _D0_ Completamente operativo:
         * Il dispositivo è completamente attivo;
@@ -99,34 +102,35 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
 				1. _L2_ se l'alimentazione ausiliaria (AUX) è supportata dal dispositivo;
 				2. _L3_ in caso contrario;
 			* Il clock del BUS PCI viene interrotto;
-5. Stati L:
-    Descrivono il comportamento dell' interfaccia PCIe
-    * _L0_:
-        * Il bus funziona a regime;
-    * _L0<sub>s</sub>_ IDLE elettrico (autonomo):
-        * bassa latenza di uscita (circa 1 μs); 
-        * Viene ridotto il consumo energetico anche se questo IDLE duranta brevi intervalli di tempo visto che un livello di transizione; 
-        * In ogni permutazione di stato (_L0_  &#8592;&#8594; _L1_)è necessario passare per questo livello
-    * _L1_ IDLE elettrico (Richiamato da un livello superiore):
-        * Bassa latenza di uscita (circa 2-4 μs)
-        * Livello gestito dal protocollo ASPM (Active State Power Management, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da 0 a _L2_ / _L3 READY_;
-        * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione;
-        * Sono inoltre possibili delle ulteriori operazioni per il risparmio energetico:
-            * Spegnimento di tutti i dispositivi radio;
-            * **Clock gating** sulla maggior parte delle porte PCIe (viene ridotta ulteriormente la frequenza);
-            * Spegnimento PLL (Phase Locked Loop, sono circuiti di controllo molto usati nelle telecomunicazioni che permettono di ottenere, dato un segnale in ingresso, uno in uscita con la 
-                stessa fase di quello in entrata);
-    * _L2_ / _L3 READY_:
-        * Fase di transizione tra gli stati _L0<sub>s</sub>_ a _L2_ / _L3_
-        * Prepara la porta PCIe a rimuovere la tensione d'alimentazione e il clock;
-        * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara per entrare nel livello _D3<sub>COLD</sub>_;
-    * _L2_:
-		* Il dispositivo alimentato dalla tensione AUX
-        * In questo livello agisce il segnale **WAKE#** ('#' sta a indicare che si attiva quando il segnale ha valore logico 0) necessario ad avviare il computer da remoto attraverso il WakeOnLan
-     * _L3_:
-        * Vengono rimossi l'alimentazione e il clock
-        * Il dispositivo è completamente spento visto che la tensione AUX non è supportata;
-        * Per uscire da questo stadio è necessario un riavvio del sistema;
+
+## Stati L
+Descrivono il comportamento dell' interfaccia PCIe
+* _L0_:
+    * Il bus funziona a regime;
+* _L0<sub>s</sub>_ IDLE elettrico (autonomo):
+    * bassa latenza di uscita (circa 1 μs); 
+    * Viene ridotto il consumo energetico anche se questo IDLE duranta brevi intervalli di tempo visto che un livello di transizione; 
+    * In ogni permutazione di stato (_L0_  &#8592;&#8594; _L1_)è necessario passare per questo livello
+* _L1_ IDLE elettrico (Richiamato da un livello superiore):
+    * Bassa latenza di uscita (circa 2-4 μs)
+    * Livello gestito dal protocollo ASPM (Active State Power Management, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da 0 a _L2_ / _L3 READY_;
+    * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione;
+    * Sono inoltre possibili delle ulteriori operazioni per il risparmio energetico:
+        * Spegnimento di tutti i dispositivi radio;
+        * **Clock gating** sulla maggior parte delle porte PCIe (viene ridotta ulteriormente la frequenza);
+        * Spegnimento PLL (Phase Locked Loop, sono circuiti di controllo molto usati nelle telecomunicazioni che permettono di ottenere, dato un segnale in ingresso, uno in uscita con la 
+            stessa fase di quello in entrata);
+* _L2_ / _L3 READY_:
+    * Fase di transizione tra gli stati _L0<sub>s</sub>_ a _L2_ / _L3_
+    * Prepara la porta PCIe a rimuovere la tensione d'alimentazione e il clock;
+    * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara per entrare nel livello _D3<sub>COLD</sub>_;
+* _L2_:
+	* Il dispositivo alimentato dalla tensione AUX
+    * In questo livello agisce il segnale **WAKE#** ('#' sta a indicare che si attiva quando il segnale ha valore logico 0) necessario ad avviare il computer da remoto attraverso il WakeOnLan
+* _L3_:
+    * Vengono rimossi l'alimentazione e il clock
+    * Il dispositivo è completamente spento visto che la tensione AUX non è supportata;
+    * Per uscire da questo stadio è necessario un riavvio del sistema;
  
 Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
 <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
