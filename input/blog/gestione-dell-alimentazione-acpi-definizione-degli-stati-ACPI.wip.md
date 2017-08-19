@@ -11,7 +11,7 @@ le cose posso essere abbastanza diverse, infatti i desktop verranno trattati pi�
  
 Nel corso degli anni le maggiori case produttrici hanno sviluppato in comune accordo standard di gestione energetica al fine di avere una maggiore compatibilità tra i loro dispositivi.
 Nel 1992 venne introdotto lo standard **APM** (*Advanced Power Management*), tuttavia presto diventato obsoleto a causa di una sempre maggiore necessità di risparmio energetico.
-Venne infatti rimpiazzato dalla specifica **ACPI** (*Advanced Configuration Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS.
+Venne infatti rimpiazzato dalla [specifica **ACPI**](http://www.uefi.org/acpi/specs) (*Advanced Configuration and Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS.
  
 La specifica ACPI definisce, tra le altre cose, degli **stati** che descrivono il comportamento delle principali componenti del computer in base al risparmio energetico desiderato. Quindi di fatto la specifica definisce ogni componente, nonché l'intero computer, come una macchina a stati finiti, dal punto di vista della gestione energetica.   
 Gli stati a loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia, (WIP)
@@ -91,6 +91,24 @@ Descrivono il comportamento della CPU. Si trovano tutti all'interno dello stato 
 Il passaggio dallo stato C0 a C1 avviene, nei processori x86, tramite l'istruzione **HLT** (*halt*) che interrompe l'esecuzione di ulteriori istruzioni fino alla ricezione di un interrupt, che riporta il processore nello stato C0.  
 Linux talvolta utilizza le istruzioni **MWAIT** o **MWAITX**, ma a grandi linee il funzionamento è identico.  
 Il firmware ACPI indica al sistema operativo la latenza di caso peggiore per tornare dagli stati C2 e C3 allo stato C0, mentre per lo stato C1 la specifica richiede che sia così bassa da "non preoccuparsene": è il sistema operativo a decidere quale passare a questi stati, in base al carico di lavoro e alla massima latenza accettabile.
+
+Su Linux è possibile visualizzare il tempo speso dal processore nei vari stati tramite il comando `cpupower`.  
+Ad esempio, `cpupower monitor -i 10` mi restituisce queste informazioni, relative agli ultimi 10 secondi:
+```
+    |Mperf               || Idle_Stats         
+CPU | C0   | Cx   | Freq || POLL | C1   | C2   
+   0|  9,17| 90,83|  1772||  0,00|  7,92| 83,15
+   1|  4,18| 95,82|  1457||  0,00|  4,74| 91,20
+   2|  7,72| 92,28|  1591||  0,00|  7,69| 84,80
+   3|  3,90| 96,10|  1422||  0,00|  3,71| 92,52
+   4|  7,32| 92,68|  1413||  0,00|  8,03| 84,86
+   5|  8,95| 91,05|  1596||  0,00|  6,63| 84,53
+   6| 10,61| 89,39|  1604||  0,00|  8,02| 81,57
+   7|  3,39| 96,61|  1495||  0,00|  7,29| 89,43
+```
+Gli 8 core del processore sono considerati come processori separati. Prendendo ad esempio il core 0, si può notare che ha passato circa il 9% del tempo nello stato C0, ad una frequenza media di 1.77 GHz (alternando tra 1.4 e 1.9 GHz a causa del Dynamic Frequency Scaling, ma non è indicato dall'output del comando), e circa l'8% e l'83% del tempo negli stati C1 e C2, rispettivamente.
+
+Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un vero stato: si tratta di un ciclo di busy wait, utilizzato dal sistema operativo quando sono imminenti altre operazioni e la latenza per entrare e uscire dallo stato C1 sarebbe troppo alta, ma ciò è fuori dall'ambito della specifica ACPI.
 
 ## Stati P
 
