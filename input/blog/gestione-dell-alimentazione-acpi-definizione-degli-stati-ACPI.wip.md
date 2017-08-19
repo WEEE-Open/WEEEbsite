@@ -43,7 +43,7 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
     * Non viene consumata energia
 
 ## Stati S
-Sono stati che descrivono cosa accade a livello di sistema.
+Sono stati che descrivono cosa accade a livello di sistema. S0 è associato a G0, S1-S4 si trovano all'interno di G1 e S5 è associato a G2. 
 
 * _S0_ stato attivo:
     * Il computer è alimentato, l'utente finale utilizza l'apparecchio
@@ -71,19 +71,30 @@ Sono stati che descrivono cosa accade a livello di sistema.
     * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
 
 ## Stati C
-Descrivono il comportamento della CPU.
+
+Descrivono il comportamento della CPU. Si trovano tutti all'interno dello stato G0.
+
 * _C0_:
-    In questo stato la CPU esegue le istruzioni normalmente
+    * La CPU esegue le istruzioni normalmente
 * _C1_:
-    * La CPU si trova in uno stato in cui NON esegue istruzioni
+    * La CPU si trova in uno stato in cui *non* esegue istruzioni
     * Bassa latenza di ripristino della sessione
-    * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*) (WIP, 
+    * Mediante software viene ridotta la frequenza interna della CPU (*Dynamic Frequency Scaling*, conosciuto anche come *CPU throttling*) (WIP) (è previsto dalla specifica? nella sezione 2.5 non viene detto)
 * _C2_ :
     * Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
-    * è necessario più tempo per "risvegliare il sistema";
+    * è necessario più tempo per "risvegliare il sistema", cioè tornare allo stato C0, rispetto allo stato C1
 * _C3_:
-    * Vengono spenti il generatore di clock e le cache;
-    * Richiede pi&ugrave; tempo per il riavvio;
+    * Viene spento il generatore di clock (WIP)
+    * Le cache mantengono i dati memorizzati ma non vengono più aggiornate
+    * Richiede più tempo per il risveglio
+
+Il passaggio dallo stato C0 a C1 avviene, nei processori x86, tramite l'istruzione **HLT** (*halt*) che interrompe l'esecuzione di ulteriori istruzioni fino alla ricezione di un interrupt, che riporta il processore nello stato C0.  
+Linux talvolta utilizza le istruzioni **MWAIT** o **MWAITX**, ma a grandi linee il funzionamento è identico.  
+Il firmware ACPI indica al sistema operativo la latenza di caso peggiore per tornare dagli stati C2 e C3 allo stato C0, mentre per lo stato C1 la specifica richiede che sia così bassa da "non preoccuparsene": è il sistema operativo a decidere quale passare a questi stati, in base al carico di lavoro e alla massima latenza accettabile.
+
+## Stati P
+
+(WIP) (sezione 2.6, validi in C0 e D0 (!), definiti in appendice A)
 
 ## Stati D
 Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
