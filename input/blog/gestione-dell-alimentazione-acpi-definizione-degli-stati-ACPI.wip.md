@@ -21,7 +21,7 @@ Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio 
 ci si riferir&agrave; all'aalimentazione principale.
  
 La specifica ACPI fa riferimento in vari punti al contesto del sistema (*system context*) e al contesto del dispositivo (*device context*): questi non sono altro che "dati variabili" memorizzati nel dispositivo e necessari al suo immediato funzionamento. Ad esempio, su una CPU il contesto potrebbe indicare il contenuto dei registri, su un dispositivo USB il suo indirizzo sul bus, e così via.
-Ci si renderà conto che in diversi stati questi contesti verranno persi; questo avviene a livello di specifica, mentre in pratica ogni OS implementa (WIP) sistemi per salvarli in modo permanente.
+La specifica stabilisce in quali stati i contesti devono essere mantenuti, in quali possono essere persi, e in quali vengono persi dall'hardware ma è richiesto al sistema operativo di implementare un metodo per salvarli in modo permanente.
   
 ## Stati G (Sistema Globale)
 Sono stati che descrivono la percezione che ha l'utente finale del sistema complessivo, cioè del computer.
@@ -81,19 +81,21 @@ Descrivono il comportamento della CPU. Si trovano tutti all'interno dello stato 
     * Bassa latenza di ripristino della sessione
     * Mediante software viene ridotta la frequenza interna della CPU (*Dynamic Frequency Scaling*, conosciuto anche come *CPU throttling*) (WIP) (è previsto dalla specifica? nella sezione 2.5 non viene detto)
 * _C2_ :
-    * Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
-    * è necessario più tempo per "risvegliare il sistema", cioè tornare allo stato C0, rispetto allo stato C1
+	* È necessario più tempo per "risvegliare il sistema", cioè tornare allo stato C0, ma i consumi sono più bassi rispetto allo stato C1
 * _C3_:
-    * Viene spento il generatore di clock (WIP)
-    * Le cache mantengono i dati memorizzati ma non vengono più aggiornate
-    * Richiede più tempo per il risveglio
+	* Richiede più tempo per il risveglio
+    * Le cache non vengono più aggiornate quindi al risveglio non saranno più valide 
 
-Il passaggio dallo stato C0 a C1 avviene, nei processori x86, tramite l'istruzione **HLT** (*halt*) che interrompe l'esecuzione di ulteriori istruzioni fino alla ricezione di un interrupt, che riporta il processore nello stato C0.  
-Linux talvolta utilizza le istruzioni **MWAIT** o **MWAITX**, ma a grandi linee il funzionamento è identico.  
+Il passaggio dallo stato C0 a C1 avviene, nei processori x86, tramite l'istruzione **HLT** (*halt*) che interrompe l'esecuzione di ulteriori istruzioni fino alla ricezione di una richiesta di interrupt, che riporta il processore nello stato C0.  
+Linux talvolta utilizza le istruzioni **MWAIT** o **MWAITX**, ma a grandi linee il funzionamento è lo stesso.  
 Il firmware ACPI indica al sistema operativo la latenza di caso peggiore per tornare dagli stati C2 e C3 allo stato C0, mentre per lo stato C1 la specifica richiede che sia così bassa da "non preoccuparsene": è il sistema operativo a decidere quale passare a questi stati, in base al carico di lavoro e alla massima latenza accettabile.
 
+Negli stati C1 e successivi di solito viene effettuato *clock gating* per interrompere la distribuzione del clock, e quindi azzerare il consumo di potenza dinamico dei transistor, su tutte le parti del processore ad eccezione di quelle che devono rilevare interrupt o altri eventi esterni.  
+Nello stato C3 non viene più distribuito segnale di clock all'interno della CPU.  
+La differenza tra C1 e C2 è che il primo viene raggiunto tramite un'istruzione macchina, mentre il secondo con altri meccanismi che di solito si traducono nell'inviare un segnale a un piedino del processore, oltre al fatto che lo stato C2 ha consumi più bassi e latenza di uscita più alta rispetto al C1.
+
 Su Linux è possibile visualizzare il tempo speso dal processore nei vari stati tramite il comando `cpupower`.  
-Ad esempio, `cpupower monitor -i 10` mi restituisce queste informazioni, relative agli ultimi 10 secondi:
+Ad esempio, `cpupower monitor -i 10` restituisce queste informazioni, relative agli ultimi 10 secondi:
 ```
     |Mperf               || Idle_Stats         
 CPU | C0   | Cx   | Freq || POLL | C1   | C2   
@@ -114,6 +116,10 @@ Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un
 
 (WIP) (sezione 2.6, validi in C0 e D0 (!), definiti in appendice A)
 
+## Stati T
+
+(WIP) (sono obsoleti. Fine.)
+
 ## Stati D
 Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati al sistema.
     * _D0_ Completamente operativo:
@@ -124,7 +130,7 @@ Sono stati che descrivono il comportamento di tutti i vari dispositivi collegati
 		Si suddivide in 2 sotto livelli di transizione:
 		* _D3<sub>HOT</sub>_ :
 			* Viene ancora fornita l'alimentazione al dispositivo;
-			* Si alza il livello dello stato Link a _L1_ in modo che il dispositivo non supporti pi&ugrave; il clock fornito dal bus;
+			* Si alza il livello dello stato Link a _L1_ in modo che il dispositivo non supporti pi&ugrave; il clock fornito dal bus, se è dispositivo PCIe
 		* _D3<sub>COLD</sub>_:
 			* L'alimentazione principale viene totalmente rimossa dal dispositivo;
 			* Si porta lo stato Link al livello:
