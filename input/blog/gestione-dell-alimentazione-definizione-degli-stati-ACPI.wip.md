@@ -1,5 +1,5 @@
 title: "Gestione dell'alimentazione, parte 1: definizione degli stati ACPI"
-date: 2017-09-01T10:00:00Z
+date: 2017-08-19T10:00:00Z
 template: blogpost.php
 author: Federico Bassignana
 abstract: Questo è il primo di una serie di articoli riguardanti le tecniche utilizzate dalle case produttrici di pc per gestire il sistema di alimentazione nei loro dispositivi. Quanto scritto fa riferimento all'elettronica presente nei laptop ma, a livello teorico, non si discosta di molto ciò che avviene anche nei desktop; mentre a livello pratico le cose posso essere abbastanza diverse, infatti i desktop verranno trattati più avanti. 
@@ -11,14 +11,10 @@ le cose posso essere abbastanza diverse, infatti i desktop verranno trattati pi�
  
 Nel corso degli anni le maggiori case produttrici hanno sviluppato in comune accordo standard di gestione energetica al fine di avere una maggiore compatibilità tra i loro dispositivi.
 Nel 1992 venne introdotto lo standard **APM** (*Advanced Power Management*), tuttavia presto diventato obsoleto a causa di una sempre maggiore necessità di risparmio energetico.
-Venne infatti rimpiazzato dalla [specifica **ACPI**](http://www.uefi.org/acpi/specs) (*Advanced Configuration and Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione attraverso il BIOS.
+Venne infatti rimpiazzato dalla [specifica **ACPI**](http://www.uefi.org/acpi/specs) (*Advanced Configuration and Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione solo attraverso il BIOS.
  
-La specifica ACPI definisce, tra le altre cose, degli **stati** che descrivono il comportamento delle principali componenti del computer in base al risparmio energetico desiderato. Quindi di fatto la specifica definisce ogni componente, nonché l'intero computer, come una macchina a stati finiti, dal punto di vista della gestione energetica.   
-Gli stati a loro volta sono suddivisi in più livelli che crescono quanto pi&ugrave; il sistema risparmia energia, (WIP)
- 
-Prima di tutto bisogna specificare che ogni dispositivo è alimentato dall'alimentazione principale e da un'alimentazione secondaria sempre presente (Se non diversamente specificato) di circa 3.3 V (WIP).
-Quest'ultima svolge un ruolo importante in diverse situazioni come pper esempio tener alimentati dei moduli quando il pc rimane spento (e.g. RTC, WakeOnLan) . Quando si parler&agrave; di consumi 
-ci si riferir&agrave; all'aalimentazione principale.
+La specifica ACPI definisce, tra le altre cose, degli **stati** che descrivono il comportamento delle principali componenti del computer in base al risparmio energetico desiderato. Quindi di fatto la specifica definisce ogni componente, nonché l'intero computer, come una macchina a stati finiti, dal punto di vista della gestione energetica.  
+In generale gli stati 0 (G0, S0, D0, etc...) sono stati attivi, in cui il sistema è disponibili all'utente, mentre gli altri sono stati "addormentati", dove un numero più alto corrisponde a minori consumi e maggiore tempo per tornare allo stato attivo.
  
 La specifica ACPI fa riferimento in vari punti al contesto del sistema (*system context*) e al contesto del dispositivo (*device context*): questi non sono altro che "dati variabili" memorizzati nel dispositivo e necessari al suo immediato funzionamento. Ad esempio, su una CPU il contesto potrebbe indicare il contenuto dei registri, su un dispositivo USB il suo indirizzo sul bus, e così via.
 La specifica stabilisce in quali stati i contesti devono essere mantenuti, in quali possono essere persi, e in quali vengono persi dall'hardware ma è richiesto al sistema operativo di implementare un metodo per salvarli in modo permanente.
@@ -36,7 +32,7 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
 * _G2_ Spegnimento software:
     * Il pc comsuma piccole quantità di energia
     * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
-    * Nessun contesto viene salvato dall'hardware, ma può essere salvato preventivamente dal sistema operativo (WIP)? (ibernazione = G2?)
+    * Nessun contesto viene salvato
 * _G3_ Spegnimento meccanico:
     * Azionato da un comando meccanico (tasto ON/OFF)
     * Il sistema deve essere riacceso col medesimo tasto, poi riavviato per ripristinare la sessione (WIP) (altrimenti si può pensare che il normale tasto di accensione sia quello del G3. La specifica non dà definizioni chiare, fa solo l'esempio di "un grande tasto rosso"...)
@@ -65,7 +61,7 @@ Sono stati che descrivono cosa accade a livello di sistema. S0 è associato a G0
     * In questo livello anche la RAM viene spenta
     * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
     * Al risveglio il sistema operativo ripristina i contesti dal file
-    * I dispositivi devono essere spenti (WIP)
+    * Si assume che i dispositivi siano spenti (stato D3) (WIP)
 * _S5_ Spegnimento software:
     * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
     * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
@@ -139,17 +135,19 @@ Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di pi�
 (WIP) (sono obsoleti. Fine.)
 
 ## Stati D
+
 Sono stati che descrivono il comportamento dei vari dispositivi collegati al sistema.
 
 * _D0_ Completamente operativo:
     * Il dispositivo è completamente attivo
 * _D1_, _D2_:
 	* Sono stati intermedi, le loro caratteristiche variano a seconda del tipo di periferica
+	* Utilizzati raramente
 * _D3_:
 	Si suddivide in 2 sotto livelli:
 	* _D3<sub>HOT</sub>_ :
 		* Viene ancora fornita l'alimentazione al dispositivo
-		* Se è un dispositivo PCIe, si porta lo stato Link a _L1_ in modo che il dispositivo non supporti/riceva? (WIP) più il clock fornito dal bus
+		* Se è un dispositivo PCIe, si porta lo stato Link a _L1_ in modo che il dispositivo non riceva più il clock fornito dal bus
 		* Il dispositivo è ancora enumerabile (identificabile, rilevabile) dal sistema operativo
 	* _D3_ o _D3<sub>COLD</sub>_:
 		* L'alimentazione principale viene totalmente rimossa dal dispositivo
@@ -162,15 +160,26 @@ Sono stati che descrivono il comportamento dei vari dispositivi collegati al sis
 
 Gli stati D0 e D3<sub>COLD</sub> sono definiti e obbligatori per tutti i dispositivi, mentre gli altri sono obbligatori o ammessi solo per alcune classi di dispositivi indicati dalla specifica.
 
-## Stati L
+## Stati non-ACPI
+
+Anche alcuni bus, come quello PCI e PCIe, per gestire il risparmio energetico utilizzano un sistema di stati simile a quello ACPI, ma non trattato da quella specifica. Vista la loro importanza soprattutto nei computer portatili verranno accennati qui di seguito.
+
+### Stati B
+
+Descrivono il comportamento del bus PCIe (WIP)
+
+### Stati L
 
 Descrivono il comportamento dell'interfaccia PCIe.
+
+È necessario specificare che ogni dispositivo PCIe è alimentato dall'alimentazione principale, che può essere disattivata per il risparmio energetico, e da un'alimentazione secondaria sempre presente (se non diversamente specificato) di circa 3.3 V.
+Quest'ultima svolge un ruolo importante in diverse situazioni in cui è necessario mantenere abilitati dei moduli a computer spento, ad esempio per il Wake on LAN.
 
 * _L0_:
     * Il bus funziona a regime
 * _L0<sub>s</sub>_ IDLE elettrico (autonomo):
     * Bassa latenza di uscita (circa 1 μs), per tornare a L0
-    * Viene ridotto il consumo energetico anche se questo IDLE dura brevi intervalli di tempo, essendo che un livello di transizione
+    * Viene ridotto il consumo energetico anche se questo IDLE dura brevi intervalli di tempo, essendo un livello di transizione
     * In ogni transizione di stato (_L0_ ⟷ _L1_) è necessario passare per questo livello
 * _L1_ IDLE elettrico (richiamato da un livello superiore):
     * Bassa latenza di uscita (circa 2-4 μs)
@@ -196,8 +205,6 @@ I PLL sono circuiti di controllo molto usati nelle telecomunicazioni che permett
 
 ## Riassunto
 
-Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
+Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati dal "più acceso" al "più spento".
 <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
 Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
-
-
