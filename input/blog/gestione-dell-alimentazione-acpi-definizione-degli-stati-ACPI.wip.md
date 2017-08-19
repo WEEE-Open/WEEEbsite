@@ -112,6 +112,24 @@ Gli 8 core del processore sono considerati come processori separati. Prendendo a
 
 Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un vero stato: si tratta di un ciclo di busy wait, utilizzato dal sistema operativo quando sono imminenti altre operazioni e la latenza per entrare e uscire dallo stato C1 sarebbe troppo alta, ma ciò è fuori dall'ambito della specifica ACPI.
 
+### Stati C addizionali
+
+Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione del risparmio energetico, talvolta supportano stati C addizionali. Come sempre, più il numero dello stato cresce, più i consumi diminuiscono e la latenza per tornare allo stato C0 aumenta:
+
+* _C1E_ (Intel):
+	* Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
+	* È utilizzato in alternativa allo stato C1
+* _C1E_ (AMD):
+	* Viene interrotta la distribuzione di clock all'interno della CPU, come nel C3
+	* Viene raggiunto in automatico dalla CPU quando tutti i core si trovano nello stato C0
+* _C2E_:
+	* Viene ridotta anche la tensione
+	* È utilizzato in alternativa allo stato C2
+* _C4_, _C4E_, _C6_:
+	* Viene ridotta anche la tensione (anche a 0 V nel caso di C6)
+
+Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di più e che meglio si prestano a complesse operazioni di risparmio energetico (mentre su uno schermo, ad esempio, a parte ridurre la luminosità non si può fare molto), [esistono altre sottili differenze e sotto-stati](http://www.hardwaresecrets.com/everything-you-need-to-know-about-the-cpu-c-states-power-saving-modes/), ma esulano dall'ambito di questo articolo e talvolta anche dalla specifica ACPI.
+
 ## Stati P
 
 (WIP) (sezione 2.6, validi in C0 e D0 (!), definiti in appendice A)
