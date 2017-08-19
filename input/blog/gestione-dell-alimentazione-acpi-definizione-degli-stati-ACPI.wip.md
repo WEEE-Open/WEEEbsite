@@ -37,7 +37,7 @@ Ci si renderà conto che in diversi stati questi contesti verranno persi; questo
         * Nessun contesto viene salvato dall'hardware, ma può essere salvato preventivamente dal sistema operativo (WIP)? (ibernazione = G2?)
     * _G3_ Spegnimento meccanico:
         * Azionato da un comando meccanico (tasto ON/OFF)
-        * Il sistema deve essere riavviato per ripristinare la sessione
+        * Il sistema deve essere riacceso col medesimo tasto, poi riavviato per ripristinare la sessione (WIP) (altrimenti si può pensare che il normale tasto di accensione sia quello del G3. La specifica non dà definizioni chiare, fa solo l'esempio di "un grande tasto rosso"...)
         * Non viene consumata energia
 
  2. Stati S:
@@ -47,19 +47,22 @@ Ci si renderà conto che in diversi stati questi contesti verranno persi; questo
     * _S1_ / _S2_ stati "addormentati" (solitamente inutilizzati): 
         * _S1_:
             * Breve tempo di riaccensione
-            * Nessun contesto dei processi (WIP) viene perso
+            * Nessun contesto viene perso
         * _S2_:
-            * A differenza dello stato _S1_ i contesti presenti nei registri della CPU e nelle cache vengono persi
+            * Breve tempo di riaccensione
+            * Vengono persi il contesto della CPU e le cache 
     * _S3_ stato "addormentato" (e.g. stand-by, sospensione in RAM):
         * Breve tempo di ripristino della sessione
-        * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) 
-			e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
-        * Le unità come CPU, chipset e dispositivi di I/O mandano i contesti alla RAM (WIP), che sarà l'unico dispositivo rimasto alimentato, e vengono spenti. 
-			Questo permette di avere un "risveglio" del  sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro/i contesti/boh (WIP) viene perso;  
-    * _S4_ stato "addormentato" (ibernazione, sospensione su Hard Disk):
+        * Il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
+        * Al "risveglio" il sistema operativo ripristina i contesti dalla RAM. Questo permette un risveglio del sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro viene persa, in quanto la RAM è volatile  
+        * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
+		* I dispositivi possono essere in stati non spenti (WIP)
+    * _S4_ stato "addormentato" (ibernazione, sospensione su hard disk):
         * Alta latenza per tornare allo stato attivo (_S0_)
         * In questo livello anche la RAM viene spenta
         * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
+        * Al risveglio il sistema operativo ripristina i contesti dal file
+        * I dispositivi devono essere spenti (WIP)
     * _S5_ spegnimento software:
         * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
         * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
@@ -67,13 +70,13 @@ Ci si renderà conto che in diversi stati questi contesti verranno persi; questo
 3. Stati C:
     Descrivono il comportamento della CPU.
     * _C0_:
-        In questo stato la CPU esegue le istruzioni normalmente;
+        In questo stato la CPU esegue le istruzioni normalmente
     * _C1_:
-        * Bassa latenza di ripristino della sessione;
-        * La CPU si trova in uno stato in cui NON esegue istruzioni;
-        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*)
+        * La CPU si trova in uno stato in cui NON esegue istruzioni
+        * Bassa latenza di ripristino della sessione
+        * Mediante software viene ridotta la frequenza interna della CPU (Dynamic Frequency Scaling, conosciuto anche come *CPU throttling*) (WIP, 
     * _C2_ :
-        * Viene ridotta anche la tensione (Dynamic voltage Scaling, conosciuto anche come *undervolting*)
+        * Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
         * è necessario più tempo per "risvegliare il sistema";
     * _C3_:
         * Vengono spenti il generatore di clock e le cache;
