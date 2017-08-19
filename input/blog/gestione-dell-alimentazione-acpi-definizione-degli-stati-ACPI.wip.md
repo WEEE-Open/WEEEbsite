@@ -45,28 +45,28 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
 ## Stati S
 Sono stati che descrivono cosa accade a livello di sistema. S0 è associato a G0, S1-S4 si trovano all'interno di G1 e S5 è associato a G2. 
 
-* _S0_ stato attivo:
+* _S0_ Stato attivo:
     * Il computer è alimentato, l'utente finale utilizza l'apparecchio
-* _S1_ / _S2_ stati "addormentati" (solitamente inutilizzati): 
+* _S1_ / _S2_ Stati "addormentati" (solitamente inutilizzati): 
     * _S1_:
         * Breve tempo di riaccensione
         * Nessun contesto viene perso
     * _S2_:
         * Breve tempo di riaccensione
         * Vengono persi il contesto della CPU e le cache 
-* _S3_ stato "addormentato" (e.g. stand-by, sospensione in RAM):
+* _S3_ Stato "addormentato" (e.g. stand-by, sospensione in RAM):
     * Breve tempo di ripristino della sessione
     * Il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
     * Al "risveglio" il sistema operativo ripristina i contesti dalla RAM. Questo permette un risveglio del sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro viene persa, in quanto la RAM è volatile  
     * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
 	* I dispositivi possono essere in stati non spenti (WIP)
-* _S4_ stato "addormentato" (ibernazione, sospensione su hard disk):
+* _S4_ Stato "addormentato" (e.g. ibernazione, sospensione su hard disk):
     * Alta latenza per tornare allo stato attivo (_S0_)
     * In questo livello anche la RAM viene spenta
     * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
     * Al risveglio il sistema operativo ripristina i contesti dal file
     * I dispositivi devono essere spenti (WIP)
-* _S5_ spegnimento software:
+* _S5_ Spegnimento software:
     * Simile allo stato _S4_ ma il sistema operativo non salva nessun contesto
     * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
 
@@ -80,7 +80,7 @@ Descrivono il comportamento della CPU. Si trovano tutti all'interno dello stato 
     * La CPU si trova in uno stato in cui *non* esegue istruzioni
     * Bassa latenza di ripristino della sessione
     * Mediante software viene ridotta la frequenza interna della CPU (*Dynamic Frequency Scaling*, conosciuto anche come *CPU throttling*) (WIP) (è previsto dalla specifica? nella sezione 2.5 non viene detto)
-* _C2_ :
+* _C2_:
 	* È necessario più tempo per "risvegliare il sistema", cioè tornare allo stato C0, ma i consumi sono più bassi rispetto allo stato C1
 * _C3_:
 	* Richiede più tempo per il risveglio
@@ -167,32 +167,35 @@ Gli stati D0 e D3<sub>COLD</sub> sono definiti e obbligatori per tutti i disposi
 Descrivono il comportamento dell'interfaccia PCIe.
 
 * _L0_:
-    * Il bus funziona a regime;
+    * Il bus funziona a regime
 * _L0<sub>s</sub>_ IDLE elettrico (autonomo):
-    * bassa latenza di uscita (circa 1 μs); 
-    * Viene ridotto il consumo energetico anche se questo IDLE duranta brevi intervalli di tempo visto che un livello di transizione; 
-    * In ogni permutazione di stato (_L0_  &#8592;&#8594; _L1_)è necessario passare per questo livello
-* _L1_ IDLE elettrico (Richiamato da un livello superiore):
+    * Bassa latenza di uscita (circa 1 μs), per tornare a L0
+    * Viene ridotto il consumo energetico anche se questo IDLE dura brevi intervalli di tempo, essendo che un livello di transizione
+    * In ogni transizione di stato (_L0_ ⟷ _L1_) è necessario passare per questo livello
+* _L1_ IDLE elettrico (richiamato da un livello superiore):
     * Bassa latenza di uscita (circa 2-4 μs)
-    * Livello gestito dal protocollo ASPM (Active State Power Management, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da 0 a _L2_ / _L3 READY_;
-    * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione;
+    * Livello gestito dal protocollo **ASPM** (*Active State Power Management*, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da L0 a L2 o L3 READY
+    * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione
     * Sono inoltre possibili delle ulteriori operazioni per il risparmio energetico:
-        * Spegnimento di tutti i dispositivi radio;
-        * **Clock gating** sulla maggior parte delle porte PCIe (viene ridotta ulteriormente la frequenza);
-        * Spegnimento PLL (Phase Locked Loop, sono circuiti di controllo molto usati nelle telecomunicazioni che permettono di ottenere, dato un segnale in ingresso, uno in uscita con la 
-            stessa fase di quello in entrata);
-* _L2_ / _L3 READY_:
-    * Fase di transizione tra gli stati _L0<sub>s</sub>_ a _L2_ / _L3_
-    * Prepara la porta PCIe a rimuovere la tensione d'alimentazione e il clock;
-    * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara per entrare nel livello _D3<sub>COLD</sub>_;
+        * Spegnimento di tutti i dispositivi radio
+        * *Clock gating* sulla maggior parte delle porte PCIe (viene ridotta ulteriormente la frequenza)
+        * Spegnimento **PLL** (*Phase Locked Loop*)
+* _L2 READY_ / _L3 READY_:
+    * Fase di transizione tra lo stato L0<sub>s</sub> e L2 o L3
+    * Prepara la porta PCIe a rimuovere la tensione d'alimentazione e il clock
+    * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara per entrare nel livello _D3<sub>COLD</sub>_
 * _L2_:
 	* Il dispositivo alimentato dalla tensione AUX
-    * In questo livello agisce il segnale **WAKE#** ('#' sta a indicare che si attiva quando il segnale ha valore logico 0) necessario ad avviare il computer da remoto attraverso il WakeOnLan
+    * In questo livello agisce il segnale **WAKE#** (il simbolo # indica un segnale "attivo basso", cioè attivato con uno stato logico 0), necessario ad esempio ad avviare il computer da remoto attraverso il Wake On LAN
 * _L3_:
     * Vengono rimossi l'alimentazione e il clock
-    * Il dispositivo è completamente spento visto che la tensione AUX non è supportata;
-    * Per uscire da questo stadio è necessario un riavvio del sistema;
- 
+    * Il dispositivo è completamente spento, visto che la tensione AUX non è supportata
+    * Per uscire da questo stadio è necessario un riavvio del sistema
+
+I PLL sono circuiti di controllo molto usati nelle telecomunicazioni che permettono di ottenere, dato un segnale in ingresso, uno in uscita con la stessa fase di quello in entrata. Nei computer di solito vengono utilizzati per ottenere una frequenza più alta da quella di un oscillatore.
+
+## Riassunto
+
 Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati secondo una linea temporale tutte le fasi necessarie per lo spegnimento di un computer.
 <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
 Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
