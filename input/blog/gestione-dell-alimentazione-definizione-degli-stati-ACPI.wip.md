@@ -89,6 +89,8 @@ Negli stati C1 e successivi di solito viene effettuato *clock gating* per interr
 Nello stato C3 non viene più distribuito segnale di clock all'interno della CPU.  
 La differenza tra C1 e C2 è che il primo viene raggiunto tramite un'istruzione macchina, mentre il secondo con altri meccanismi che di solito si traducono nell'inviare un segnale a un piedino del processore, oltre al fatto che lo stato C2 ha consumi più bassi e latenza di uscita più alta rispetto al C1.
 
+### Esempio pratico
+
 Su Linux è possibile visualizzare il tempo speso dal processore nei vari stati tramite il comando `cpupower`.  
 Ad esempio, `cpupower monitor -i 10` restituisce queste informazioni, relative agli ultimi 10 secondi:
 ```
@@ -105,11 +107,49 @@ CPU | C0   | Cx   | Freq || POLL | C1   | C2
 ```
 Gli 8 core del processore sono considerati come processori separati. Prendendo ad esempio il core 0, si può notare che ha passato circa il 9% del tempo nello stato C0, ad una frequenza media di 1.77 GHz (alternando tra 1.4 e 1.9 GHz a causa del Dynamic Frequency Scaling, ma non è indicato dall'output del comando), e circa l'8% e l'83% del tempo negli stati C1 e C2, rispettivamente.
 
-Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un vero stato: si tratta di un ciclo di busy wait, utilizzato dal sistema operativo quando sono imminenti altre operazioni e la latenza per entrare e uscire dallo stato C1 sarebbe troppo alta, ma ciò è fuori dall'ambito della specifica ACPI.
+Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un vero stato: si tratta di un ciclo di busy wait, utilizzato dal sistema operativo quando sono imminenti altre operazioni e la latenza per entrare e uscire dallo stato C1 sarebbe troppo alta, ma ciò non fa parte della specifica ACPI.
+
+Sempre su Linux, all'interno delle directory `/sys/devices/system/cpu/cpu0/cpuidle/state0` e successive, si trovano inoltre alcuni "file" con informazioni sull'uso degli stati C, divisi per core (a partire da cpu0). La [documentazione ufficiale del kernel](https://www.kernel.org/doc/Documentation/cpuidle/sysfs.txt) indica quali dati sono disponibili e come interpretarli.
+
+Poiché la latenza di uscita è indicata dal firmware ACPI per tutti gli stati successivi a C1, si possono leggere da quella directory i valori rilevati dal kernel.
+Utilizzando il comando `cat /sys/devices/system/cpu/cpu0/cpuidle/state*/{name,latency}` e formattando un po' meglio l'output si ha, ad esempio:
+
+| Stato | Latenza |
+|-------|---------|
+| POLL  | 0       |
+| C1    | 0       |
+| C2    | 100     |
+
+La latenza di uscita dallo stato, per tornare a C0, è espressa in microsecondi.
+
+Su un computer portatile recente si possono avere risultati più interessanti, ad esempio:
+
+```
+    |Idle_Stats                                                    
+CPU | POLL | C1-S | C1E- | C3-S | C6-S | C7s- | C8-S | C9-S | C10- 
+   0|  0,00| 16,08|  0,49|  0,04|  0,43|  0,00|  6,40|  0,00| 74,10
+   2|  0,00|  0,00|  0,00|  0,00|  0,00|  1,19|  2,53| 11,42| 79,80
+   1|  0,00|  0,00|  0,03|  0,00|  0,14|  0,00| 16,22|  0,00| 80,92
+   3|  0,00|  0,00|  0,00|  0,00|  0,00|  0,00|  3,09|  0,00| 96,17
+```
+
+| Stato  | Latenza |
+|--------|---------|
+| POLL   | 0       |
+| C1-SKL | 2       |
+| C1E-SKL| 10      |
+| C3-SKL | 70      |
+| C6-SKL | 85      |
+| C7s-SKL| 124     |
+| C8-SKL | 200     |
+| C9-SKL | 480     |
+| C10-SKL| 890     |
+
+Il suffisso SKL indica che il processore appartiene alla serie Intel Skylake, dettaglio non particolarmente rilevante nella trattazione corrente e che può tranquillamente essere ignorato.
 
 ### Stati C addizionali
 
-Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione del risparmio energetico, talvolta supportano stati C addizionali. La specifica ACPI non li definisce esplicitamente: per alcuni ammette un metodo con cui la CPU può comunicare quali supporta, mentre altri (e.g. C1E) sono di fatto invisibili al sistema operativo.  
+Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione del risparmio energetico, talvolta supportano stati C addizionali. La specifica ACPI non li definisce esplicitamente: per alcuni ammette un metodo con cui la CPU può comunicare quali supporta, mentre altri sono di fatto invisibili al sistema operativo.  
 Come sempre, più il numero dello stato cresce, più i consumi diminuiscono e la latenza per tornare allo stato C0 aumenta:
 
 * _C1E_ (Intel):
