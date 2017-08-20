@@ -109,10 +109,10 @@ Gli 8 core del processore sono considerati come processori separati. Prendendo a
 
 Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un vero stato: si tratta di un ciclo di busy wait, utilizzato dal sistema operativo quando sono imminenti altre operazioni e la latenza per entrare e uscire dallo stato C1 sarebbe troppo alta, ma ciò non fa parte della specifica ACPI.
 
-Sempre su Linux, all'interno delle directory `/sys/devices/system/cpu/cpu0/cpuidle/state0` e successive, si trovano inoltre alcuni "file" con informazioni sull'uso degli stati C, divisi per core (a partire da cpu0). La [documentazione ufficiale del kernel](https://www.kernel.org/doc/Documentation/cpuidle/sysfs.txt) indica quali dati sono disponibili e come interpretarli.
+Sempre su Linux, all'interno della directory `/sys/devices/system/cpu/cpu0/cpuidle/state0` e successive si trovano inoltre alcuni "file" con informazioni sull'uso degli stati C, divisi per core (a partire da cpu0). La [documentazione del kernel](https://www.kernel.org/doc/Documentation/cpuidle/sysfs.txt) indica quali dati sono disponibili e come interpretarli.
 
 Poiché la latenza di uscita è indicata dal firmware ACPI per tutti gli stati successivi a C1, si possono leggere da quella directory i valori rilevati dal kernel.
-Utilizzando il comando `cat /sys/devices/system/cpu/cpu0/cpuidle/state*/{name,latency}` e formattando un po' meglio l'output si ha, ad esempio:
+Utilizzando il comando `cat /sys/devices/system/cpu/cpu0/cpuidle/state*/{name,latency}` e formattando l'output in una tabella si può vedere che:
 
 | Stato | Latenza |
 |-------|---------|
@@ -120,7 +120,7 @@ Utilizzando il comando `cat /sys/devices/system/cpu/cpu0/cpuidle/state*/{name,la
 | C1    | 0       |
 | C2    | 100     |
 
-La latenza di uscita dallo stato, per tornare a C0, è espressa in microsecondi.
+I valori sono espressi in microsecondi.
 
 Su un computer portatile recente si possono avere risultati più interessanti, ad esempio:
 
