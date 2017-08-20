@@ -52,14 +52,13 @@ Sono stati che descrivono cosa accade a livello di sistema. S0 è associato a G0
         * Vengono persi il contesto della CPU e le cache 
 * _S3_ Stato "addormentato" (e.g. stand-by, sospensione in RAM):
     * Breve tempo di ripristino della sessione
-    * Il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
+    * Prima di entrare nello stato il sistema operativo salva nella RAM i contesti di tutte le unità come CPU, chipset e dispositivi di I/O, che vengono spenti
     * Al "risveglio" il sistema operativo ripristina i contesti dalla RAM. Questo permette un risveglio del sistema piuttosto rapido ma l'inconveniente è che se viene a mancare corrente la sessione di lavoro viene persa, in quanto la RAM è volatile  
-    * La memoria viene copiata in un file su memorie di massa (letteralmente "Memory image" -> copia della memoria virtuale dei processi, per salvare lo stato del sistema) e viene comunque mantenuta alimentata. (WIP) (il normale standby non salva nulla sulla memoria di massa!)
 	* I dispositivi possono essere in stati non spenti (WIP)
 * _S4_ Stato "addormentato" (e.g. ibernazione, sospensione su hard disk):
     * Alta latenza per tornare allo stato attivo (_S0_)
     * In questo livello anche la RAM viene spenta
-    * Tutti i contesti del sistema vengono salvati in un file su memoria di massa
+    * Prima di entrare nello stato il sistema operativo salva tutti i contesti del sistema in un file su memoria di massa (letteralmente *Memory image* → copia della memoria virtuale dei processi, in pratica l'intero contenuto della RAM viene salvato in un file)
     * Al risveglio il sistema operativo ripristina i contesti dal file
     * Si assume che i dispositivi siano spenti (stato D3) (WIP)
 * _S5_ Spegnimento software:
@@ -110,19 +109,22 @@ Lo stato C3 non è supportato dal processore in questione, mentre POLL non è un
 
 ### Stati C addizionali
 
-Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione del risparmio energetico, talvolta supportano stati C addizionali. Come sempre, più il numero dello stato cresce, più i consumi diminuiscono e la latenza per tornare allo stato C0 aumenta:
+Alcuni processori, soprattutto quelli per laptop, più sensibili alla questione del risparmio energetico, talvolta supportano stati C addizionali. La specifica ACPI non li definisce esplicitamente: per alcuni ammette un metodo con cui la CPU può comunicare quali supporta, mentre altri (e.g. C1E) sono di fatto invisibili al sistema operativo.  
+Come sempre, più il numero dello stato cresce, più i consumi diminuiscono e la latenza per tornare allo stato C0 aumenta:
 
 * _C1E_ (Intel):
 	* Viene ridotta anche la tensione (*Dynamic Voltage Scaling*, conosciuto anche come *undervolting*)
-	* È utilizzato in alternativa allo stato C1
+	* È utilizzato automaticamente in alternativa allo stato C1
 * _C1E_ (AMD):
 	* Viene interrotta la distribuzione di clock all'interno della CPU, come nel C3
-	* Viene raggiunto in automatico dalla CPU quando tutti i core si trovano nello stato C0
+	* Viene utilizzato in automatico dalla CPU quando tutti i core si trovano nello stato C0
 * _C2E_:
 	* Viene ridotta anche la tensione
 	* È utilizzato in alternativa allo stato C2
-* _C4_, _C4E_, _C6_:
+* _C4_, _C4E_, _C6_ e successivi:
 	* Viene ridotta anche la tensione (anche a 0 V nel caso di C6)
+* _S0i1_ e simili:
+	* (WIP)
 
 Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di più e che meglio si prestano a complesse operazioni di risparmio energetico (mentre su uno schermo, ad esempio, a parte ridurre la luminosità non si può fare molto), [esistono altre sottili differenze e sotto stati](http://www.hardwaresecrets.com/everything-you-need-to-know-about-the-cpu-c-states-power-saving-modes/), ma esulano dall'ambito di questo articolo e talvolta anche dalla specifica ACPI.
 
@@ -147,7 +149,7 @@ Sono stati che descrivono il comportamento dei vari dispositivi collegati al sis
 	Si suddivide in 2 sotto livelli:
 	* _D3<sub>HOT</sub>_ :
 		* Viene ancora fornita l'alimentazione al dispositivo
-		* Se è un dispositivo PCIe, si porta lo stato Link a _L1_ in modo che il dispositivo non riceva più il clock fornito dal bus
+		* Se è un dispositivo PCIe, si porta lo stato Link a L1 in modo che il dispositivo ignori il clock fornito dal bus
 		* Il dispositivo è ancora enumerabile (identificabile, rilevabile) dal sistema operativo
 	* _D3_ o _D3<sub>COLD</sub>_:
 		* L'alimentazione principale viene totalmente rimossa dal dispositivo
@@ -162,7 +164,8 @@ Gli stati D0 e D3<sub>COLD</sub> sono definiti e obbligatori per tutti i disposi
 
 ## Stati non-ACPI
 
-Anche alcuni bus, come quello PCI e PCIe, per gestire il risparmio energetico utilizzano un sistema di stati simile a quello ACPI, ma non trattato da quella specifica. Vista la loro importanza soprattutto nei computer portatili verranno accennati qui di seguito.
+Anche alcuni dispositivi o bus, come quello PCI e PCIe, per gestire il risparmio energetico utilizzano un sistema di stati simile a quello ACPI, ma non trattato da quella specifica.
+Vista la loro importanza soprattutto nei computer portatili verranno accennati qui di seguito.
 
 ### Stati B
 
@@ -183,7 +186,7 @@ Quest'ultima svolge un ruolo importante in diverse situazioni in cui è necessar
     * In ogni transizione di stato (_L0_ ⟷ _L1_) è necessario passare per questo livello
 * _L1_ IDLE elettrico (richiamato da un livello superiore):
     * Bassa latenza di uscita (circa 2-4 μs)
-    * Livello gestito dal protocollo **ASPM** (*Active State Power Management*, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da L0 a L2 o L3 READY
+    * Livello gestito dal protocollo **ASPM** (*Active State Power Management*, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da L0 a L2 READY o L3 READY
     * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione
     * Sono inoltre possibili delle ulteriori operazioni per il risparmio energetico:
         * Spegnimento di tutti i dispositivi radio
@@ -203,8 +206,12 @@ Quest'ultima svolge un ruolo importante in diverse situazioni in cui è necessar
 
 I PLL sono circuiti di controllo molto usati nelle telecomunicazioni che permettono di ottenere, dato un segnale in ingresso, uno in uscita con la stessa fase di quello in entrata. Nei computer di solito vengono utilizzati per ottenere una frequenza più alta da quella di un oscillatore.
 
+### Stati RC
+
+(WIP)
+
 ## Riassunto
 
-Tutti gli stati appena descritti sono riassunti nella seguente immagine dove vengono collocati dal "più acceso" al "più spento".
+Tutti gli stati ACPI e PCIe appena descritti sono riassunti nella seguente immagine dove vengono collocati dal "più acceso" al "più spento".
 <img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
 Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
