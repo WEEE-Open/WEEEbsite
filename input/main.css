@@ -142,6 +142,15 @@ a:active {
 	padding-right: 0.3rem; /* questo viene piallato dalle media query */
 }
 
+#content main > *, #footer > * {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#content main ul ul {
+	padding-left: 1em;
+}
+
 strong, b {
 	color: #3c3c3c;
 }
@@ -507,11 +516,6 @@ small.author {
 	#content main, #footer {
 		padding-left: 0.5rem !important;
 		padding-right: 0.5rem !important;
-	}
-
-	#content main > *, #footer > * {
-		padding-left: 0;
-		padding-right: 0;
 	}
 
 	#logo > * {
