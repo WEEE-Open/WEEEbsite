@@ -3,6 +3,10 @@
 	box-sizing: border-box;
 }
 
+pre, code {
+	font-family: monospace;
+}
+
 article, section, nav, footer, main {
 	display: block;
 }
@@ -418,6 +422,23 @@ blockquote {
 blockquote > p, blockquote > * {
 	padding-left: 1em;
 }
+
+table, td, tr {
+	border-collapse: collapse;
+}
+
+thead {
+	text-align: left;
+}
+
+tr {
+	border-bottom: 0.1em solid #3c3c3c;
+}
+
+td {
+	padding-right: 1.2em;
+}
+
 
 img.filler {
 	display: block;
