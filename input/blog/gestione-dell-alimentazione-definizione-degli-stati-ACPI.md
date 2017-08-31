@@ -14,7 +14,7 @@ Nel 1992 venne introdotto lo standard **APM** (*Advanced Power Management*), tut
 Venne infatti rimpiazzato dalla [specifica **ACPI**](http://www.uefi.org/acpi/specs) (*Advanced Configuration and Power Interface*), di cui si occupa questo articolo e che permette un controllo completo dell'alimentazione direttamente dal sistema operativo, a differenza del precedente metodo che ne permetteva la gestione solo attraverso il BIOS.
  
 La specifica ACPI definisce, tra le altre cose, degli **stati** che descrivono il comportamento delle principali componenti del computer in base al risparmio energetico desiderato. Quindi di fatto la specifica definisce ogni componente, nonché l'intero computer, come una macchina a stati finiti, dal punto di vista della gestione energetica.  
-In generale gli stati 0 (G0, S0, D0, etc...) sono stati attivi, in cui il sistema è disponibili all'utente, mentre gli altri sono stati "addormentati", dove un numero più alto corrisponde a minori consumi e maggiore tempo per tornare allo stato attivo.
+In generale gli stati 0 (G0, S0, D0, etc...) sono stati attivi, in cui il sistema è disponibile all'utente, mentre gli altri sono stati "addormentati", dove un numero più alto corrisponde a minori consumi e maggiore tempo per tornare allo stato attivo.
  
 La specifica ACPI fa riferimento in vari punti al contesto del sistema (*system context*) e al contesto del dispositivo (*device context*): questi non sono altro che "dati variabili" memorizzati nel dispositivo e necessari al suo immediato funzionamento. Ad esempio, su una CPU il contesto potrebbe indicare il contenuto dei registri, su un dispositivo USB il suo indirizzo sul bus, e così via.
 La specifica stabilisce in quali stati i contesti devono essere mantenuti, in quali possono essere persi, e in quali vengono persi dall'hardware ma è richiesto al sistema operativo di implementare un metodo per salvarli in modo permanente.
@@ -30,16 +30,15 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
     * La sessione di lavoro può essere ripristinata senza necessariamente riavviare il sistema
     * I contesti relativi ai processi sono salvati in memoria
 * _G2_ Spegnimento soft:
-    * Il pc comsuma piccole quantità di energia, infatti sono presenti i segnali di PWON/PWGOOD da cortocircuitare per avviare il sistema
-    * Il sistema risulta spento a tutti gli effetti ma &egrave; possibile riavviare il sistema mediante WakeOnLan
-    * lo spegnimento avviene via software (dall'OS) oppure mediante il pulsante presente sul case dei computer desktop e nei notebook corrisponde con il tasto per l'accensione 
+    * Il pc comsuma piccole quantità di energia, infatti ad esempio nei computer conformi allo standard ATX l'alimentatore fornisce la tensione di *5 V standby* alla scheda madre
+    * Il sistema risulta spento a tutti gli effetti ma è possibile riavviare il sistema mediante Wake On LAN
+    * lo spegnimento avviene via software (dall'OS) oppure mediante il pulsante presente sul case dei computer, corrispondente al tasto per l'accensione
     * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
     * Nessun contesto viene salvato
 * _G3_ Spegnimento meccanico:
     * Azionato da un comando meccanico (tasto ON/OFF), equivale a staccare fisicamente il cavo di alimentazione e la batteria se presente
-    * Il sistema deve essere riacceso col medesimo tasto (non &egrave; possibile ricorrere al WakeOnLan), poi riavviato per ripristinare la sessione.
-    * Dalla specifica ACPI si deduce che il comando meccanico &egrave; l'interruttore presente sul retro del PSU (nei computer desktop) che toglie la corrente a tutta la mobo (tranne il modulo RTC che 
-		rimane alimentato mediante la batteria CMOS)
+    * Il sistema deve essere riacceso col medesimo tasto (non è possibile ricorrere al Wake On LAN o al normale tasto di accensione), poi riavviato per ripristinare la sessione.
+    * Un esempio può essere il tasto presente sul retro di molti alimentatori desktop, che spegne completamente l'alimentatore (le uniche componenti del computer che restano alimentate sono il modulo RTC e la "memoria CMOS", tramite la "batteria CMOS")
     * Non viene consumata energia
 
 ## Stati S
@@ -68,9 +67,6 @@ Sono stati che descrivono cosa accade a livello di sistema. S0 è associato a G0
     * Per riavviare la sessione è necessario un riavvio completo del sistema operativo
 
 ### Stati addizionali
-* _S0ix_ :
-	Gli stati del tipo _S0i1_ - _S0i3_ sono strettamente legati all'ambito dei notebook, infatti vengono usati per implementare il risparmio energetico durante le operazioni di apertura/chiusura
-	dello schermo. Pur mantenendo il consumo pari ai medesimi stati _S1_ - _S3_ garantiscono un tempo di risveglio inferiore. 
 	
 ## Stati C
 
@@ -163,7 +159,7 @@ Come sempre, più il numero dello stato cresce, più i consumi diminuiscono e la
 	* È utilizzato automaticamente in alternativa allo stato C1
 * _C1E_ (AMD):
 	* Viene interrotta la distribuzione di clock all'interno della CPU, come nel C3
-	* Viene utilizzato in automatico dalla CPU quando tutti i core si trovano nello stato C0
+	* Viene utilizzato in automatico dalla CPU quando tutti i core si trovano nello stato C1
 * _C2E_:
 	* Viene ridotta anche la tensione
 	* È utilizzato in alternativa allo stato C2
@@ -174,8 +170,11 @@ Poiché nei dispositivi mobili la CPU è uno dei componenti che consumano di pi�
 
 ## Stati P
 
-Stati di performance della CPU ( _P0_ - _P3_ ), il numero totale di questi &egrave; dipendente dal tipo di processore, servono per aumentare ulteriormente il risparmio energetico ,infatti all'aumentare 
-di questo stato diminuisce la frequenza interna della CPU (*Dynamic Frequency Scaling*, conosciuto anche come *CPU throttling*) di lavoro e il consumo energetico della CPU. 
+Sono stati che si applicano sia alla CPU che ai dispositivi. Sono tutti stati attivi, cioè che possono essere utilizzati solo nello stato C0 o D0.
+
+L'esatto numero di stati P (_P0_, _P1_, _P2_, etc...) è definito dal dispositivo o dalla CPU e non può superare 255.
+
+Servono per aumentare ulteriormente il risparmio energetico, infatti nel caso delle CPU all'aumentare dello stato diminuisce la frequenza interna di lavoro della CPU (*Dynamic Frequency Scaling*, conosciuto anche come *CPU throttling*) e di conseguenza il consumo.
 
 ## Stati D
 
@@ -205,20 +204,22 @@ Gli stati D0 e D3<sub>COLD</sub> sono definiti e obbligatori per tutti i disposi
 
 ## Stati non-ACPI 
 
-Anche alcuni dispositivi o bus, come quello PCI e PCIe, per gestire il risparmio energetico utilizzano un sistema di stati simile a quello ACPI, ma non trattato da quella specifica; sono infatti trattati
-all'interno delle specifiche di ogni singolo standard. 
+Anche alcuni dispositivi o bus, come quello PCI e PCIe, per gestire il risparmio energetico utilizzano un sistema di stati simile a quello ACPI, ma non trattato da quella specifica; sono infatti trattati all'interno delle specifiche di ogni singolo standard.
 Vista la loro importanza soprattutto nei computer portatili verranno accennati qui di seguito.
 
-## Stati T
+### Stati S0ix
 
-Stati ormai obsoleti legati alle funzionalit&agrave; della CPU, erano necessari con computer vecchi dove era possibile che, in seguito a surriscaldamento, prendesse fuoco. l'obiettivo era quello di 
-far "rilassare" la CPU quindi per una parte di tempo lavorava (circa 78% ) mentre nel resto non eseguiva istruzioni permettendo un lieve raffreddamento: questo si ripeteva con intervalli regolari.
-Oggi sono stati soppiantati dagli stati C e P.
+Gli stati _S0i1_ - _S0i3_ sono strettamente legati all'ambito dei notebook e sono utilizzati da alcuni SoC Intel. Hanno l'obiettivo di garantire consumi simili agli stati _S1_ - _S3_ ma un tempo di risveglio inferiore ed essere selezionabili direttamente dalla CPU quando vengono raggiunte opportune condizioni, senza l'intervento del sistema operativo.
+
+### Stati T
+
+Stati ormai obsoleti legati alle funzionalità della CPU, erano necessari con vecchi processori che potevano, in seguito a surriscaldamento, prendere fuoco.
+L'obiettivo era quello di far "rilassare" la CPU che quindi per una parte di tempo lavorava (circa 78%) mentre nel resto non eseguiva istruzioni permettendo un lieve raffreddamento: questo si ripeteva con intervalli regolari.
+Oggi sono stati soppiantati dagli stati C e P, nonché dalla capacità della maggior parte delle CPU di rilevare la propria temperatura e spegnersi se viene raggiunta una soglia limite.
 
 ### Stati B
 
-Descrivono il comportamento del bus PCI. Una cosa importante da tenere presente &egrave; che pu&ograve; essere abbandonato lo stato _B0_ solamente se **TUTTI** i dispositivi collegati al bus
-risultano inattivi. 
+Descrivono il comportamento del bus PCI. Una cosa importante da tenere presente è che può essere abbandonato lo stato _B0_ solamente se **tutti** i dispositivi collegati al bus risultano inattivi. 
 
 * _B0_: 
 	* Deve essere supportato da ogni bus PCI
@@ -228,18 +229,17 @@ risultano inattivi.
 	* Non non avviene alcun trasferimento di dati
 * _B2_:
 	* Viene interrotto il segnale di clock
-	* Per tornare allo stato _B0_ sono necessari circa 50ms
+	* Per tornare allo stato _B0_ sono necessari circa 50 ms
 * _B3_:
 	* Viene rimossa la tensione di alimentazione a tutti i dispositivi collegati al bus
-	* Quando viene riapplicata la tensione (per tornare allo stato attivo) deve essere mandato il segnale ***RST#*** in modo da tornare allo stato di idle e successivamente allo stato attivo 
+	* Quando viene riapplicata la tensione (per tornare allo stato attivo) deve essere inviato il segnale **RST#**  (il simbolo # indica un segnale "attivo basso", cioè attivato con uno stato logico 0) in modo da tornare allo stato di idle e successivamente allo stato attivo 
 
 ### Stati L
 
 Descrivono il comportamento dell'interfaccia PCIe.
 
-È necessario specificare che ogni dispositivo PCIe è alimentato dall'alimentazione principale, che può essere disattivata per il risparmio energetico, e da un'alimentazione secondaria sempre presente 
-(se non diversamente specificato) di circa 3.3 V. Quest'ultima svolge un ruolo importante in diverse situazioni in cui è necessario mantenere abilitati dei moduli a computer spento, ad esempio per
- la funzionalit&agrave; Wake on LAN.
+È necessario specificare che ogni dispositivo PCIe è alimentato dall'alimentazione principale, che può essere disattivata per il risparmio energetico, e da un'alimentazione secondaria sempre presente (se non diversamente specificato) di circa 3.3 V.
+Quest'ultima svolge un ruolo importante in diverse situazioni in cui è necessario mantenere abilitati dei moduli a computer spento, ad esempio per la funzionalità Wake on LAN.
 
 * _L0_:
     * Il bus funziona a regime
@@ -249,19 +249,19 @@ Descrivono il comportamento dell'interfaccia PCIe.
     * In ogni transizione di stato (_L0_ ⟷ _L1_) è necessario passare per questo livello
 * _L1_ IDLE elettrico (richiamato da un livello superiore):
     * Bassa latenza di uscita (circa 2-4 μs)
-    * Livello gestito dal protocollo **ASPM** (*Active State Power Management*, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da L0 a L2 READY o L3 READY
+    * Livello gestito dal protocollo **ASPM** (*Active State Power Management*, protocollo definito per aumentare il risparmio energetico nelle periferiche PCIe, porta il livello dello stato Link da L0 a L2/L3 READY
     * In assenza di operazioni attive sull'interfaccia viene ridotta l'alimentazione
     * Sono inoltre possibili delle ulteriori operazioni per il risparmio energetico:
         * Spegnimento di tutti i dispositivi radio
         * *Clock gating* sulla maggior parte delle porte PCIe (viene ridotta ulteriormente la frequenza)
         * Spegnimento **PLL** (*Phase Locked Loop*)
-* _L2 READY_ / _L3 READY_:
+* _L2/L3 READY_:
     * Fase di transizione tra lo stato L0<sub>s</sub> e L2 o L3
     * Prepara la porta PCIe a rimuovere la tensione d'alimentazione e il clock
-    * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara per entrare nel livello _D3<sub>COLD</sub>_
+    * Il dispositivo si trova in _D3<sub>HOT</sub>_ e si prepara ad entrare nel livello _D3<sub>COLD</sub>_
 * _L2_:
 	* Il dispositivo alimentato dalla tensione AUX
-    * In questo livello agisce il segnale **WAKE#** (il simbolo # indica un segnale "attivo basso", cioè attivato con uno stato logico 0), necessario ad esempio ad avviare il computer da remoto attraverso il Wake On LAN
+    * In questo livello agisce il segnale **WAKE#**, necessario ad esempio ad avviare il computer da remoto attraverso il Wake On LAN
 * _L3_:
     * Vengono rimossi l'alimentazione e il clock
     * Il dispositivo è completamente spento, visto che la tensione AUX non è supportata
@@ -271,8 +271,9 @@ I PLL sono circuiti di controllo molto usati nelle telecomunicazioni che permett
 
 ### Stati RC
 
-"Render Cpu", equivalenti agli stati C ma validi per le GPU (_RC0_ - _RC5_). Raramente &egrave; anche presente lo stato _RC6_ ma si preferisce non usarlo perch&egrave; potrebbe creare alcuni problemi 
-durante il risveglio. &egrave; infatti consigliato disattivare quest'ultimo stato. Esistono ulteriori stati (_RC6p_ e RC6pp_ dove viene ridotta ulteriormente la tensione di alimentazione.
+RC sta per *Render Cpu*. Sono equivalenti agli stati C ma validi per le GPU (_RC0_ - _RC5_). Raramente è anche presente lo stato _RC6_. Esistono ulteriori stati (_RC6p_ e _RC6pp_) dove viene ridotta ulteriormente la tensione di alimentazione, ma sono deprecati.
+
+Sono utilizzati praticamente solo da alcune GPU Intel, quindi non sono disponibili molte informazioni a riguardo.
 
 ## Riassunto
 
