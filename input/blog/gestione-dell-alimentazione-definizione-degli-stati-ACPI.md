@@ -278,5 +278,5 @@ Sono utilizzati praticamente solo da alcune GPU Intel, quindi non sono disponibi
 ## Riassunto
 
 Tutti gli stati ACPI e PCIe appena descritti sono riassunti nella seguente immagine dove vengono collocati dal "più acceso" al "più spento".
-<img alt="Tabella riassuntiva degli stati ACPI" title="Tabella riassuntiva degli stati ACPI" src="media/states.png" class="decorativa">
+<img alt="Tabella riassuntiva degli stati ACPI e PCIe" title="Tabella riassuntiva degli stati ACPI e PCIe" src="media/acpi-states.svg" class="decorativa">
 Nel prossimo articolo si inizierà a vedere come questa specifica viene effettivamente implementata a livello hardware nei notebook.       
