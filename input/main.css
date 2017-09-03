@@ -147,7 +147,7 @@ a:active {
 	padding-right: 0;
 }
 
-#content main ul ul {
+#content main ul ul, #content main ol ol {
 	padding-left: 1em;
 }
 
@@ -419,7 +419,7 @@ img.emblematica.noshadow {
 	speak: none;
 }
 
-ul {
+ul, ol {
 	list-style-position: inside;
 }
 
