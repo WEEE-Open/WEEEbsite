@@ -30,7 +30,7 @@ Sono stati che descrivono la percezione che ha l'utente finale del sistema compl
     * La sessione di lavoro può essere ripristinata senza necessariamente riavviare il sistema
     * I contesti relativi ai processi sono salvati in memoria
 * _G2_ Spegnimento soft:
-    * Il pc comsuma piccole quantità di energia, infatti ad esempio nei computer conformi allo standard ATX l'alimentatore fornisce la tensione di *5 V standby* alla scheda madre
+    * Il pc consuma piccole quantità di energia, infatti ad esempio nei computer conformi allo standard ATX l'alimentatore fornisce la tensione di *5 V standby* alla scheda madre
     * Il sistema risulta spento a tutti gli effetti ma è possibile riavviare il sistema mediante Wake On LAN
     * lo spegnimento avviene via software (dall'OS) oppure mediante il pulsante presente sul case dei computer, corrispondente al tasto per l'accensione
     * Per ripristinare la sessione di lavoro c'è un'alta latenza (riavvio del sistema)
