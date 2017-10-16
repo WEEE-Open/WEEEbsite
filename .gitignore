@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.htaccess
 output/
 input/blog/testpost*
 testpost/
