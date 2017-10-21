@@ -2,7 +2,7 @@ title: "Prossima tappa: Fixfest 2017!"
 date: 2017-10-06T19:00:00Z
 template: blogpost.php
 abstract: Dal 6 all'8 ottobre si terrà il primo <a href="https://fixfest.therestartproject.org/" title="Sito ufficiale del Fixfesto, presso The Restart Project">Fixfest</a>, a cui il team WEEE Open parteciperà inviando un proprio studente.
-read_more: true
+pinned: true
 facebook: https://www.facebook.com/weeeopenpolito/posts/497858323905864
 img:
     src: /blog/media/fixfest-2017-logo.png
