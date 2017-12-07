@@ -202,27 +202,6 @@ h2 a:hover, h2 a:active {
 	background: #fff;
 }
 
-/*a.linkbutton, a.linkbutton:link, a.linkbutton:visited, a.linkbutton:hover, a.linkbutton:active {
-	display: inline-block;
-	padding: 0 0.4rem;
-	color: #fff;
-	text-shadow: 0 0 0.1rem #3c3c3c99;
-	background-color: #00983a;
-	border: 0.1rem solid #00cc4e;
-	border-radius: 0.5rem;
-	text-decoration: none;
-	-o-transition: background-color 200ms;
-	-ms-transition: background-color 200ms;
-	-moz-transition: background-color 200ms;
-	-webkit-transition: background-color 200ms;
-	transition: background-color 200ms;
-}
-
-a.linkbutton:hover, a.linkbutton:active {
-	background-color: #00cc4e;
-	text-shadow: 0 0 0.1rem #3c3c3c;
-}*/
-
 .icon-pdf:before {
 	content: "";
 	display: inline-block;
@@ -277,14 +256,6 @@ a.linkbutton:hover, a.linkbutton:active {
 	transition: background-color 200ms;
 }
 
-/* se si usa button invece che div: */
-/*#menu-button:focus {
-	outline:none;
-}
-#menu-button::-moz-focus-inner {
-	border:0;
-}*/
-
 #menu.open #menu-button {
 	background-color: #c3c3c3;
 }
@@ -301,10 +272,9 @@ a.linkbutton:hover, a.linkbutton:active {
 }
 
 .persone .persona {
-	/* in teoria con 29 dovrebbe allinearsi perfettamente (30rem) */
 	width: 100%;
 	flex-grow: 1;
-	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
+	box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.29);
 	margin: 0.5rem;
 	padding: 0.5rem;
 }
@@ -354,7 +324,7 @@ img.emblematica {
 	display: block;
 	margin: 0 auto;
 	width: 12rem;
-	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
+	box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.29);
 }
 
 img.emblematica.noshadow {
@@ -364,7 +334,7 @@ img.emblematica.noshadow {
 #pinned .pinnedpost {
 	width: calc(100% - 0.6rem); /* padding */
 	padding: 0.5rem;
-	box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.29);
+	box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.29);
 	margin: 0.5rem auto 1rem auto;
 }
 
@@ -386,10 +356,6 @@ img.emblematica.noshadow {
 
 .postdata p, .postdata time {
 	margin: 0;
-	/*
-	float: right;
-	clear: both;
-	 */
 	font-size: 0.9rem;
 }
 
@@ -447,7 +413,6 @@ tr {
 td {
 	padding-right: 1.2em;
 }
-
 
 img.filler {
 	display: block;
@@ -536,13 +501,13 @@ small.author {
 		justify-content: space-between;
 	}
 
-    #pinned .pinnedpost {
-	    margin: 0 0 1rem 0;
-    }
+	#pinned .pinnedpost {
+		margin: 0 0 1rem 0;
+	}
 
-    #pinned .pinnedpost.pinned-3 {
-	    width: calc(33% - 1rem);
-    }
+	#pinned .pinnedpost.pinned-3 {
+		width: calc(33% - 1rem);
+	}
 
 	#pinned .pinnedpost.pinned-2 {
 		width: calc(50% - 0.5rem);
