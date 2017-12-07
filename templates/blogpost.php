@@ -12,7 +12,7 @@ $file->upDate(filemtime(TEMPLATES . DIRECTORY_SEPARATOR . 'common_functions.php'
 
 $img = '';
 if(isset($metadata['img']) && !(isset($metadata['img']['hide']) && $metadata['img']['hide'] === true)) {
-	$img = printImgEmblematica($metadata['img']);
+	$img = printImgDecorativa($metadata['img']);
 }
 
 $content = '<h1>'.$metadata['title'].'</h1>' . printPostData($metadata['date'], $lang) . $img . $content;

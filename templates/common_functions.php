@@ -9,17 +9,18 @@
  * @param string $lang
  * @param string|int $timestamp timestamp in UTC time zone
  * @param string $timezone time zone of the returned date
+ *
  * @return string formatted date
  * @throws Exception if time zone cannot be set (or if some random exception flies out of nowhere)
  */
-function printDate($timestamp, string $lang='', string $timezone='UTC'): string {
+function printDate($timestamp, string $lang = '', string $timezone = 'UTC'): string {
 	/* Dates in YAML files don't contain a time zone. We should actually use Europe/Rome,
 	 * but DST makes everything needlessly complicated.
 	 * Writing a time and date in YAML and seeing the same exact time and date seems a more
 	 * intuitive solution, and this code already isn't a masterpiece...
 	 */
 	if(!date_default_timezone_set($timezone)) {
-		throw new Exception('Server doesn\'t know about the '.$timezone.' time zone.');
+		throw new Exception('Server doesn\'t know about the ' . $timezone . ' time zone.');
 	}
 
 	switch($lang) {
@@ -50,7 +51,8 @@ function printDateMachineReadable($timestamp) {
 }
 
 function printPostData($timestamp, $lang) {
-	return '<div class="postdata"><time datetime="'.printDateMachineReadable($timestamp).'">'.printDate($timestamp, $lang).'</time></div>';
+	return '<div class="postdata"><time datetime="' . printDateMachineReadable($timestamp) . '">' . printDate($timestamp,
+			$lang) . '</time></div>';
 }
 
 function authorFooter($author, $lang) {
@@ -70,14 +72,18 @@ function mediumLink($url, $title, $lang) {
  *
  * @param $href
  * @param $lang
+ *
  * @return string HTML code of the button
  */
 function printButton($href, $lang): string {
 	if($lang !== 'it') {
 		throw new \RuntimeException('Not implemented');
 	}
+
 	return "<a href=\"$href\">Continua a leggere &rarr;</a>";
-};
+}
+
+;
 
 function unDoubleQuote(string $string): string {
 	$open = true;
@@ -89,11 +95,13 @@ function unDoubleQuote(string $string): string {
 			$replacement = '”';
 		}
 		$open = !$open;
+
 		return $replacement;
 	}, $string);
 	if(!$open) {
 		throw new \RuntimeException('Number of double quotes doesn\'t match!');
 	}
+
 	return $string;
 }
 
@@ -103,5 +111,27 @@ function printImgEmblematica(array $mdImg): string {
 	} else {
 		$shadow = '';
 	}
-	return '<img class="emblematica'.$shadow.'" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
+
+	return '<img class="emblematica' . $shadow . '" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
+}
+
+function printImgDecorativa(array $mdImg): string {
+	if(isset($mdImg['size'])) {
+		switch($mdImg['size']) {
+			case 'large':
+				$class = 'decorativa';
+				break;
+			default:
+			case 'medium':
+				$class = 'decorativa-flow';
+				break;
+			case 'small':
+				$class = 'emblematica noshadow';
+				break;
+		}
+	} else {
+		$class = 'decorativa-flow';
+	}
+
+	return '<img class="' . $class . '" src="' . $mdImg['src'] . '" alt="' . unDoubleQuote($mdImg['alt']) . '" title="' . unDoubleQuote($mdImg['title']) . '">';
 }

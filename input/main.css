@@ -449,8 +449,13 @@ small.author {
 	img.emblematica, img.inflow {
 		max-width: 50%;
 		float: left;
+		margin-top: 1rem;
 		margin-right: 1rem;
 		margin-bottom: 1rem;
+	}
+
+	.pinnedpost img.emblematica {
+		margin-top: 0;
 	}
 
 	img.decorativa-flow {

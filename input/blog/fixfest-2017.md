@@ -8,6 +8,7 @@ img:
     src: /blog/media/fixfest-2017-logo.png
     alt: Logo Fixfest
     title: Logo Fixfest 2017
+    size: small
 ---
 
 ## Fixfest
