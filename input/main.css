@@ -5,6 +5,7 @@
 
 pre, code {
 	font-family: monospace;
+	font-size: 0.9rem;
 }
 
 article, section, nav, footer, main {
@@ -406,12 +407,12 @@ thead {
 	text-align: left;
 }
 
-tr {
+thead tr {
 	border-bottom: 0.1em solid #3c3c3c;
 }
 
-td {
-	padding-right: 1.2em;
+th, td {
+	padding-right: .5rem;
 }
 
 img.filler {
