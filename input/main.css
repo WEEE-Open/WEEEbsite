@@ -429,6 +429,10 @@ img.decorativa {
 	height: auto;
 }
 
+img.decorativa.shadow {
+	box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.29);
+}
+
 img.decorativa-flow {
 	display: block;
 	margin: 0 auto;

@@ -10,7 +10,7 @@ Nel corso dell'ultimo anno ho progettato, realizzato e rifinito [il software](ht
 
 Il 12 aprile 2018 tale software ha finalmente raggiunto uno stato sufficientemente stabile da poterlo utilizzare ed è stato ufficialmente rilasciato all'interno del team. Da quel giorno è obbligatorio usare quello invece del vecchio inventario.
 
-<img alt="Interfaccia grafica del T.A.R.A.L.L.O." title="Interfaccia grafica del T.A.R.A.L.L.O." src="media/tarallo-gui.png" class="decorativa">
+<img alt="Interfaccia grafica del T.A.R.A.L.L.O." title="Interfaccia grafica del T.A.R.A.L.L.O." src="media/tarallo-gui.png" class="decorativa shadow">
 
 Le motivazioni di un simile progetto sono semplici: sapere cosa c'è in laboratorio, in che condizioni è, cosa è stato riparato, cosa no, cosa si può riparare e così via.
 
