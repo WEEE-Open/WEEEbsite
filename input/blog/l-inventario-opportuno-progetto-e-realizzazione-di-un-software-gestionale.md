@@ -131,7 +131,7 @@ Dopo molti tentativi ed esperimenti compiuti nel corso dei mesi, l'assetto final
 - Campi di testo libero
 - "Enum", valore scelto da un insieme limitato (che dipende dalla caratteristica)
 
-La distinzione su quale usare tra interi e reali è abbastanza arbitraria, anche perché i reali sono stati aggiunti in seguito: la tensione degli alimentatori dei portatili, espresse in volt, sono memorizzate come reali, mentre la frequenza delle CPU e delle RAM, espressa in hertz, è memorizzata come intero. In entrambi i casi, se fossero numeri troppo grandi, l'interfaccia grafica li converte automaticamente in multipli, e.g. visualizza "3.2 GHz".
+La distinzione su quale usare tra interi e reali è abbastanza arbitraria, anche perché i reali sono stati aggiunti in seguito: la tensione degli alimentatori dei portatili, espressa in volt, è memorizzata come numero reale, mentre la frequenza delle CPU e delle RAM, espressa in hertz, è memorizzata come intero. In entrambi i casi, se fossero numeri troppo grandi, l'interfaccia grafica li converte automaticamente in multipli, e.g. visualizza "3.2 GHz".
 
 I campi di testo libero sono utilizzati per le note, per i codici di inventario del Politecnico e per poco altro. Gli enum sono utilizzati ad esempio per i socket delle CPU o per lo standard delle RAM (DDR, DDR2, DDR3, etc...).
 
