@@ -8,6 +8,12 @@ pre, code {
 	font-size: 0.9rem;
 }
 
+pre {
+	border: 0.1em solid #c3c3c3;
+	background: #ebebeb;
+	width: 100%;
+}
+
 article, section, nav, footer, main {
 	display: block;
 }
@@ -505,6 +511,12 @@ small.author {
 		margin: 0;
 		width: 100%;
 	}
+
+	pre {
+		width: auto;
+		padding: 1em !important;
+	}
+
 
 	#pinned {
 		display: flex;
