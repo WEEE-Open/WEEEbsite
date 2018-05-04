@@ -34,12 +34,14 @@ Mettendo insieme tutti i pezzi, la entry nel menu di Syslinux/PXELINUX per avvia
 LABEL xubuntu1804x64OEM
   MENU LABEL Xubuntu 18.04 64 bit - OEM Install
   KERNEL nfs/xubuntu1804x64/casper/vmlinuz
-  APPEND initrd=nfs/xubuntu1804x64/casper/initrd.lz boot=casper\
-   ubiquity-only netboot=nfs\
-   nfsroot=192.168.0.10:/tftpboot/nfs/xubuntu1804x64 ---\
-   debian-installer/language=it\
-   keyboard-configuration/layoutcode?=it\
+  APPEND initrd=nfs/xubuntu1804x64/casper/initrd.lz boot=casper
+   ubiquity-only netboot=nfs
+   nfsroot=192.168.0.10:/tftpboot/nfs/xubuntu1804x64 ---
+   debian-installer/language=it
+   keyboard-configuration/layoutcode?=it
    oem-config/enable=true
 ```
 
-dove 192.168.0.10 è l'IP del server NFS. I percorsi di `vmlinuz` e `initrd.lz` sono relativi alla radice del server TFTP (`/tftpboot`) in quanto vengono inviati via TFTP e non NFS, ma questo è relativo all'[avvio tramite PXE](https://askubuntu.com/a/440802) e non all'installazione OEM.
+Di nuovo, gli a capo sono solo per leggibilità: da `APPEND` in poi è tutto sulla stessa riga.
+
+192.168.0.10 è l'IP del server NFS. I percorsi di `vmlinuz` e `initrd.lz` sono relativi alla radice del server TFTP (`/tftpboot`) in quanto vengono inviati via TFTP e non NFS, ma questo è relativo all'[avvio tramite PXE](https://askubuntu.com/a/440802) e non all'installazione OEM.
