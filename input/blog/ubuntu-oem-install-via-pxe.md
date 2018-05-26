@@ -28,7 +28,7 @@ keyboard-configuration/layoutcode?=it oem-config/enable=true
 
 Probabilmente l'unico parametro importante è `oem-config/enable=true`. Con `ubiquity-only` viene avviato direttamente il setup, senza avvia una sessione live (da cui è comunque possibile effettuare l'installazione OEM). È anche positivo il fatto di aver finalmente capito come impostare il layout della tastiera.
 
-Mettendo insieme tutti i pezzi, la entry nel menu di Syslinux/PXELINUX per avviare direttamente l'installazione OEM su Xubuntu 18.04, ma in generale su qualsiasi derivata di Ubuntu 18.04, è:
+[Mettendo insieme tutti i pezzi](https://github.com/WEEE-Open/ansible-pxe/), la entry nel menu di Syslinux/PXELINUX per avviare direttamente l'installazione OEM su Xubuntu 18.04, ma in generale su qualsiasi derivata di Ubuntu 18.04, è:
 
 ```
 LABEL xubuntu1804x64OEM
@@ -44,4 +44,4 @@ LABEL xubuntu1804x64OEM
 
 Di nuovo, gli a capo sono solo per leggibilità: da `APPEND` in poi è tutto sulla stessa riga.
 
-192.168.0.10 è l'IP del server NFS. I percorsi di `vmlinuz` e `initrd.lz` sono relativi alla radice del server TFTP (`/tftpboot`) in quanto vengono inviati via TFTP e non NFS, ma questo è relativo all'[avvio tramite PXE](https://askubuntu.com/a/440802) e non all'installazione OEM.
+192.168.0.10 è l'IP del server NFS. I percorsi di `vmlinuz` e `initrd.lz` sono relativi alla radice del server TFTP (`/tftpboot`) in quanto vengono inviati via TFTP e non NFS, ma questo riguarda l'[avvio tramite PXE](https://askubuntu.com/a/440802) e non l'installazione OEM in sé.
