@@ -10,7 +10,8 @@ pre, code {
 
 pre {
 	border: 0.1em solid #c3c3c3;
-	background: #ebebeb;
+	background: #f2f2f2;
+	border-radius: 0.4em;
 	width: 100%;
 }
 
@@ -460,13 +461,8 @@ small.author {
 	img.emblematica, img.inflow {
 		max-width: 50%;
 		float: left;
-		margin-top: 1rem;
 		margin-right: 1rem;
 		margin-bottom: 1rem;
-	}
-
-	.pinnedpost img.emblematica {
-		margin-top: 0;
 	}
 
 	img.decorativa-flow {
