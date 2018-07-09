@@ -1,16 +1,19 @@
 ---
-title: "L'inventario opportuno: progetto e realizzazione di un software gestionale"
+title: "L'inventario opportuno: progetto e realizzazione di un (abnorme) software gestionale"
 date: 2018-04-15T17:00:00Z
 template: blogpost.php
 author: Ludovico Pavesi
-abstract: Nel corso dell'ultimo anno ho progettato, realizzato e rifinito <a href="https://github.com/WEEE-Open/tarallo" title="T.A.R.A.L.L.O.">il software</a> che utilizziamo per fare l'inventario di tutti i computer e componenti che ci passano per le mani in laboratorio. Il 12 aprile 2018 tale software ha finalmente raggiunto uno stato sufficientemente stabile da poterlo utilizzare ed è stato ufficialmente rilasciato all'interno del team.
+pinned: true
+abstract: Nel corso dell'ultimo anno è stato progettato e realizzato <a href="https://github.com/WEEE-Open/tarallo" title="T.A.R.A.L.L.O.">il software</a> che utilizziamo per fare l'inventario di tutti i computer e componenti che entrano in laboratorio.
+img:
+    src: /blog/media/codice-del-tarallo.jpg
+    alt: Rappresentazione artistica del codice
+    title: Rappresentazione artistica del codice
 ---
 
 Nel corso dell'ultimo anno ho progettato, realizzato e rifinito [il software](https://github.com/WEEE-Open/tarallo) che utilizziamo per fare l'inventario di tutti i computer e componenti che ci passano per le mani in laboratorio.
 
 Il 12 aprile 2018 tale software ha finalmente raggiunto uno stato sufficientemente stabile da poterlo utilizzare ed è stato ufficialmente rilasciato all'interno del team. Da quel giorno è obbligatorio usare quello invece del vecchio inventario.
-
-<img alt="Interfaccia grafica del T.A.R.A.L.L.O." title="Interfaccia grafica del T.A.R.A.L.L.O." src="media/tarallo-gui.png" class="decorativa shadow">
 
 Le motivazioni di un simile progetto sono semplici: sapere cosa c'è in laboratorio, in che condizioni è, cosa è stato riparato, cosa no, cosa si può riparare e così via.
 
@@ -418,19 +421,21 @@ Una cosa di Backbone, ma in generale di qualsiasi framework, che avevo apprezzat
 
 Quindi, ispirandomi a Backbone, ho deciso di creare un "framework" da ben 68 righe, incluse quelle vuote e i commenti, per dare una qualche struttura al resto del codice. Il "framework", anche se non più utilizzato, è ancora [visibile nel repository archiviato](https://github.com/WEEE-Open/tarallo-frontend/blob/master/js/framework.js) su GitHub.
 
-Ritengo interessante descriverne brevemente il funzionamento, visto che in sé aveva funzionato abbastanza bene, pur non essendo privo di qualche problema, ma tanto il framework perfetto non esiste.
+Il framework in sé aveva funzionato abbastanza bene e questo fatto mi aveva abbastanza sorpreso. Non so fino a che punto il mio approccio fosse innovativo in quanto non conosco la maggior parte dei framework JS, ma ritengo comunque interessante descriverlo brevemente. Non era ovviamente esente da qualsiasi problema, ma dopotutto credo che nessun framework si possa definire "perfetto".
 
 Ci sono due tipi di elementi: View e Object, oltre all'oggetto globale Framework che contiene queste classi, la View "radice" e alcune cianfrusaglie. Ho usato le classi JS, anche se sono solo zucchero sintattico per non scrivere `prototype`, perché trovavo che rendessero più chiaro il codice.
 
-Gli Object hanno a disposizione la funzione `trigger()` che richiede come unico parametro l'evento, che nel resto del programma ho indicato con una stringa ma può essere qualsiasi cosa. La funzione `trigger()` in realtà ha anche come altro parametro l'Object, ma è già legato con `bind()`.
+Gli Object hanno a disposizione la funzione `trigger()` che richiede come unico parametro l'evento, che nel resto del programma ho indicato sempre con una stringa ma può essere qualsiasi oggetto. La funzione `trigger()` in realtà ha anche come altro parametro l'Object, ma è già legato con `bind()`.
 
 Le View fanno riferimento a un elemento HTML passato al costruttore, che hanno il compito di riempire con un qualche contenuto. Devono inoltre implementare la funzione `trigger()`, che riceve due parametri: `that`, l'Object che ha lanciato l'evento, e `event`, l'evento stesso, la stringa di prima.
 
 Quando un oggetto lancia un evento, il framework invoca la funzione `trigger(that, event)` della View radice, che valuta se è un evento rilevante ad esempio con `if(that === this.qualcosa && event === 'something-changed')`. Il `this.qualcosa` è un'istanza di una classe che estende Object e il confronto `that === this.qualcosa` è in sostanza un confronto tra puntatori, l'oggetto dev'essere *esattamente* quell'oggetto per funzionare ma in compenso è molto veloce. Si possono confrontare anche le proprietà degli oggetti o qualsiasi altra cosa, l'implementazione della funzione `trigger` nelle View è molto libera, ma in quasi tutti i casi ho eseguito soltanto quel tipo di confronti.
 
-Se l'evento è rilevante, la View agisce di conseguenza ad esempio modificando il proprio contenuto. Una volta valutato ciò, invoca a sua volta, ricorsivamente, la funzione `trigger(that, event)` su tutte le View contenute all'interno. Bisogna ricordarsi di farlo e quindi di salvare in ogni View un riferimento alle View che ci sono dentro, ma non era così terribile o complicato.
+Se l'evento è rilevante, la View agisce di conseguenza ad esempio modificando il proprio contenuto. Una volta valutato ciò, invoca a sua volta, ricorsivamente, la funzione `trigger(that, event)` su tutte le View contenute all'interno. Bisogna ricordarsi di farlo e quindi di salvare in ogni View un riferimento alle View che ci sono dentro, un'operazione che ammetto essere tediosa ma non così terribile o complicata.
 
 Invece *non* devono esserci riferimenti da una View a una che la contenga, né riferimenti a una View in un Object, mentre una View può e probabilmente deve contenere riferimenti agli Object, altrimenti non potrebbe eseguire confronti come `that === this.qualcosa`. Se queste condizioni sono rispettate, quando si vuole eliminare un intero albero di View, basta eliminare l'oggetto del DOM e il riferimento alla radice dalla View che la contiene: la radice, così scollegata, non ha più riferimenti che la puntano da nessuna parte e può essere raccolta dal garbage collector; una volta eliminata quella, le View che si trovavano all'interno non hanno più riferimenti e possono essere raccolte e così via.
+
+In pratica le View sono disposte ad albero o almeno a grafo aciclico (DAG) con una "radice" e possono avere riferimenti agli Object, mentre gli Object possono avere riferimenti solo ad altri Object.
 
 La scelta di utilizzare stringhe come eventi potrebbe sembrare limitante: se l'evento è "si è verificato un errore", bisogna utilizzare una stringa per ogni tipo di errore? E se l'evento fosse "è arrivata una risposta dal server", il contenuto della risposta dove lo metto? Per ovviare a questo problema senza scaraventare oggetti di qua e di là, che mi avrebbero inevitabilmente portato a lasciare reference dove non dovrebbero esserci e causare memory leak, quando un Object lo richiedeva ho aggiunto delle proprietà come `lastErrorMessage` o `serverResponse` o simili e le View sapevano che, ricevuto quell'evento e volendolo gestire, dovevano accedere a quelle proprietà. Una reference all'Object tanto dovevano necessariamente averla, altrimenti `that === this.qualcosa` non poteva essere vero.
 
@@ -440,23 +445,23 @@ Lo svantaggio di questo sistema è che per ogni evento vengono attraversate *tut
 
 Ho fatto la maggior parte delle prove su Firefox prima della versione 57 e, nonostante la complessità teorica `O(n)` di lanciare un evento, dove `n` è il numero di View, non c'era alcun ritardo percettibile. La funzione `trigger()` è ricorsiva, quindi si potrebbe pensare che il call stack cresca a dismisura, ma nella maggior parte dei casi c'erano al massimo 5 livelli di View, è difficile arrivare in casi realistici ad averne più di 200 e causare uno stack overflow.
 
-Un altro problema che potrebbe sembrare abbastanza serio è che gli Object hanno come unico modo per comunicare con le View gli eventi: nell'esempio poco sopra di validazione dei campi, la View non poteva decidere in altro modo di riprstinare il valore precedente se non attendendo l'arrivo dell'evento. Per ovviare a questo problema, che poteva in effetti causare leggeri problemi di performance, ho messo il codice di validazione direttamente nella View, anche se forse non è una soluzione particolarmente elegante.
+Visto che alcuni eventi possono causare il lancio di altri eventi, nel "Framework" ho implementato anche un meccanismo per cui gli eventi si accodano e solo quando uno ha finito di propagarsi può partire quello successivo, anche se è stato lanciato nel mezzo. Questo per fare in modo che ogni evento trovi l'albero delle View in uno stato stabile e non uno di transizione intermedio, rendendo più facile ragionare su cosa succede in ogni istante.
 
-Visto che alcuni eventi possono causare il lancio di altri eventi, nel "Framework" ho implementato anche un meccanismo per cui gli eventi si accodano e solo quando uno ha finito di propagarsi può partire quello successivo, anche se è stato lanciato nel mezzo. Questo per fare in modo che ogni evento trovi l'albero delle View in uno stato stabile e non uno di transizione intermedio, rendendo più facile pensare a come gestire gli eventi.
+Tuttavia anche questo "framework" non era esente da problemi: essendo decisamente minimalista ho dovuto comunque scrivere enormi quantità di codice per gestire gli elementi del DOM anche se l'elemento `<template>` è stato molto d'aiuto, ma soprattutto spesso mi sono imbattuto in problemi di "timing" in cui gli eventi scattavano nell'ordine sbagliato. Questo era senza dubbio il problema più grosso. L'ordine di esecuzione, in quanto vengono accodati, è deterministico, ma avendo funzioni `trigger()` sparse dappertutto diventava difficile seguire esattamente il flusso degli eventi senza posizionare breakpoint di qua e di là e guardare in diretta.
 
-Tuttavia anche questo "framework" non era esente da problemi: essendo decisamente minimalista ho dovuto comunque scrivere enormi quantità di codice per gestire gli elementi del DOM anche se l'elemento `<template>` è stato molto d'aiuto, ma soprattutto spesso mi sono imbattuto in problemi di "timing" in cui gli eventi scattavano nell'ordine sbagliato. L'ordine di esecuzione, in quanto vengono accodati, è deterministico, ma avendo funzioni `trigger()` sparse dappertutto diventava difficile seguire esattamente il flusso degli eventi senza posizionare breakpoint di qua e di là e guardare in diretta.
+Un altro punto abbastanza opinabile è la stretta correlazione tra Object e View, in quanto le View devono sapere quali eventi possono partire da quali Object se vogliono gestirli e a quali campi accedere ad esempio per recuperare il messaggio di errore che accompagna qualche evento, ma anche tra le varie View, che per effettuare pruning devono avere la certezza che quell'evento non sia utilizzato da nessuna parte più in profondità. Tutto questo rende difficile compartimentare il codice e creare componenti riutilizzabili, ma alla fine quello non è mai stato lo scopo, non mi sono mai aspettato che qualcuno si mettesse a creare componenti utilizzabili da più progetti.
 
 #### Il risultato finale
 
 Ci ho messo circa 6 mesi a passare da una pagina HTML bianca a qualcosa in grado di visualizzare gli oggetti, modificarli e inviare le modifiche al server. Questo contro i circa 2 mesi che ci avevo messo a completare il server.
 
-Va detto che anche la complessità del protocollo (le "transazioni enormi") hanno reso molto più difficile creare un'interfaccia opportuna e che ho anche dovuto pensare alla struttura HTML della pagina e scrivere delle regole CSS per renderla guardabile e anche che ho fatto varie rifiniture successive al server, anche se la struttura di base è stata costruita in 2 mesi.
+Va detto che anche la complessità del protocollo (le "transazioni enormi") ha reso molto più difficile creare un'interfaccia opportuna e che ho anche dovuto pensare alla struttura HTML della pagina e scrivere delle regole CSS per renderla guardabile. Inoltre il server ha subito ancora alcune rifiniture successive in questo lasso di tempo, anche se la struttura di base è stata costruita in 2 mesi.
 
 Alla fine, a dicembre 2017, il client era composto da circa 6500 righe di JS, il server non ricordo di preciso ma da circa 4000-5000 di PHP. Sono numeri un po' gonfiati perché ottenuti con `wc -l` quindi includono anche commenti e righe vuote, ma danno almeno un'idea delle dimensioni del progetto.
 
 Utilizzando i log di git, ho potuto calcolare più o meno le ore di lavoro: tra i commit a meno di 2 ore uno dall'altro ho lavorato per tutto il tempo, per quelli più distanti (e.g. in giorni diversi) ho calcolato mezz'ora di lavoro prima di ciascuno, sommando questi tempi ho ottenuto esattamente 592 ore. Solo per il client. Non riesco a capacitarmi di questo numero, eppure facendo i conti anche in altro modo sembra molto verosimile.
 
-Il client era utilizzabile, certo, ma mancavano ancora varie rifiniture, era molto spartano. Verso dicembre ho anche iniziato a cercare di importare `inventario.ods`, ma su questo punto tornerò dopo. Basti dire che ci sono voluti 4 mesi per completare quel lavoro.
+Il client era utilizzabile, certo, ma mancavano ancora varie rifiniture, era molto spartano. Verso dicembre ho anche iniziato a cercare di importare `inventario.ods`, ma su questo punto tornerò dopo: basti dire che ci sono voluti 4 mesi per completare quel lavoro.
 
 Più andavo avanti a importarlo, più scrivevo codice nello script PHP che lo importa, più mi rendevo conto di non poter rilasciare software in queste condizioni. Era utilizzabile, non aveva bug catastrofici, ma era troppo scomodo; avrei potuto sistemare quei problemi strada facendo ascoltando anche il parere degli utenti, ma guardare quella mole di JS gigantesca con problemi di timing mi lasciava sempre più dubbioso di tale strategia. Eppure qual era l'alternativa? Spostare il rendering sul server? Sarebbe stato un lavoro colossale! Va bene per il lungo termine, ma ora *dobbiamo* iniziare a usare il T.A.R.A.L.L.O., altrimenti non inizieremo mai più, qualsiasi cosa sarà meglio di `inventario.ods`!
 
@@ -519,6 +524,8 @@ Un altro fatto, abbastanza spiacevole, emerso dalla revisione inventariale è st
 Quando verso la fine della revisione inventariale ci siamo accorti che 40-50 RAM non erano mai esistite in quanto duplicati, abbiamo deciso di fare la cosa più faticosa ma anche meno soggetta a errori che si possa immaginare, per il futuro: scrivere il nostro codice di inventario su *tutto*, anche sulle RAM e sulle schede madri. L'unico posto dove ancora non sappiamo come scriverlo sono le CPU, ma fortunatamente restano quasi sempre nei pressi delle schede madri a cui appartengono e non ci è mai cambiato di dover cambiare una CPU per riparare un computer, quindi almeno quelle possiamo lasciarle senza codice senza correre rischi, sperando che queste non siano le ultime parole famose. Ogni RAM invece ora ha la sua etichetta o se c'è spazio il codice direttamente scritto con un pennarello: in questo modo è impossibile sbagliarsi e duplicare gli oggetti, speriamo.
 
 ## Struttura complessiva del T.A.R.A.L.L.O.
+
+<img alt="Interfaccia grafica del T.A.R.A.L.L.O." title="Interfaccia grafica del T.A.R.A.L.L.O." src="media/tarallo-gui.png" class="decorativa shadow">
 
 Il [codice sorgente](https://github.com/weee-open/tarallo-backend) è rilasciato sotto licenza libera e pubblicamente disponibile. Si trova quasi tutto in quel repository, ma ce n'è [un altro](https://github.com/weee-open/tarallo) con lo script da quasi 2000 righe che ha importato l'attuale inventario e una configurazione per Vagrant e Ansible in modo da poter provare il software in locale.
 
