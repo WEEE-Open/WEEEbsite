@@ -4,6 +4,11 @@ date: 2018-05-04T17:00:00Z
 template: blogpost.php
 author: Ludovico Pavesi
 abstract: Da un po' di tempo abbiamo iniziato a effettuare installazioni OEM di Xubuntu sui computer che abbiamo riparato. Avviando il sistema tramite PXE non si può accedere al menu in cui selezionare "Installazione OEM"
+pinned: true
+img:
+    src: /blog/media/cavi-ethernet.jpg
+    alt: Cavi Ethernet
+    title: Cavi Ethernet bellissimi, emblema dell'avvio tramite rete
 ---
 
 Da un po' di tempo abbiamo iniziato a effettuare installazioni OEM di Xubuntu sui computer che abbiamo riparato.
