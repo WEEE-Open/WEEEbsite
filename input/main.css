@@ -400,6 +400,19 @@ ul, ol {
 	list-style-position: inside;
 }
 
+ul.nodot {
+	list-style: none;
+	margin-top: 0.2em;
+}
+
+ul.nodot li {
+	margin-top: 0.5em;
+}
+
+ul.nodot li:first-of-type {
+	margin-top: 0;
+}
+
 blockquote {
 	margin: 0;
 	border-left: 0.3em solid #00983a;

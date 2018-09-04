@@ -527,29 +527,31 @@ Quando verso la fine della revisione inventariale ci siamo accorti che 40-50 RAM
 
 <img alt="Interfaccia grafica del T.A.R.A.L.L.O." title="Interfaccia grafica del T.A.R.A.L.L.O." src="media/tarallo-gui.png" class="decorativa shadow">
 
-Il [codice sorgente](https://github.com/weee-open/tarallo-backend) è rilasciato sotto licenza libera e pubblicamente disponibile. Si trova quasi tutto in quel repository, ma ce n'è [un altro](https://github.com/weee-open/tarallo) con lo script da quasi 2000 righe che ha importato l'attuale inventario e una configurazione per Vagrant e Ansible in modo da poter provare il software in locale.
+Il [codice sorgente](https://github.com/weee-open/tarallo) è rilasciato sotto licenza libera e pubblicamente disponibile. Tutto il necessario si trova quel repository, ma ce n'è [un altro](https://github.com/weee-open/tarallo-import-script) con lo script da quasi 2000 righe che ha importato l'attuale inventario.
 
-Quando backend in PHP e frontend in JS si trovavano in repository diversi era utile averne un altro che li includesse entrambi, mentre ora è meno necessario, ma la divisione è rimasta.
+È fornita anche una configurazione Vagrant per provare il software in locale, seguire le istruzioni nel readme per maggiori dettagli.
 
-Per chi volesse approcciarsi al codice sorgente, il design generale è questo: `index.php` è l'unico entry point, a cui con CGI e e rewrite rule viene passato il path visualizzato sul browser, e.g. `/item/PC42`.
+Per chi volesse approcciarsi al codice sorgente, il design generale è questo: `index.php` è l'unico entry point, a cui con CGI e rewrite rule viene passato il path visualizzato sul browser, e.g. `/item/PC42`.
 
 Quel file a sua volta smista tutto tra *APIv1* e *SSRv1* (Server-Side Rendering), a seconda di cosa è stato richiesto. API e SSR usano ciascuno un'istanza di FastRoute per capire che endpoint è stato richiesto e invocare la funzione che genera la risposta.
 
-**APIv1** è un'API vagamente RESTful e indubbiamente JSON, è in parte utilizzata dal client quando fa richieste via JS. In `Adapter.php` c'è tutto ciò che ci possa essere di importante, gli altri file di quella cartella sono classi di supporto che convertono dati da JSON a oggetti e fanno validazione, non sono particolarmente interessanti.
+La maggior parte dei dati viene trasferita da una funzione all'altra tramite gli oggetti delle classi Request e Response, conformi alla [PSR-7](https://www.php-fig.org/psr/psr-7/). O almeno suppongo che siano conformi, ho usato una libreria già fatta che la implementa.
 
-La classe `Adapter` contiene l'istanza di FastRoute e tutte le funzioni che generano le risposte, oltre alla gestione degli errori tramite try-catch che racchiudono praticamente tutto il programma, in modo da avere una risposta formattata in modo leggibile anche in caso di errore.
+**APIv1** è un'API vagamente RESTful e indubbiamente JSON, è in parte utilizzata dal client quando fa richieste via JS. In `Controller.php` c'è tutto ciò che ci possa essere di importante, gli altri file di quella cartella sono classi di supporto che convertono dati da JSON a oggetti e fanno validazione, non sono particolarmente interessanti.
+
+La classe `Controller` contiene l'istanza di FastRoute e tutte le funzioni che generano le risposte, oltre alla gestione degli errori tramite try-catch che racchiudono praticamente tutto il programma, in modo da avere una risposta formattata in modo leggibile anche in caso di errore.
 
 Non tutti gli endpoint indicati sono implementati (se si invocano generano un errore 500), ma l'API è comunque abbastanza stabile e completa da poter essere utilizzata da altri programmi che sfruttano il database del T.A.R.A.L.L.O. per ottenere e inserire informazioni. Ad esempio stiamo rifacendo lo [script che cancella il contenuto degli hard disk](https://github.com/weee-open/turbofresa) in modo che possa aggiornare l'inventario da solo, annotando quando un disco è stato cancellato e se c'erano errori: si tratta solo di fare alcune richieste GET e PATCH con un payload JSON.
 
 Quasi tutte le operazioni che si possono effettuare tramite interfaccia grafica sono anche possibili tramite API, e quelle che non lo sono si possono aggiungere facilmente: prima di fare quel lavoro volevo aspettare di averne effettivamente bisogno, però.
 
-**SSRv1** genera le pagine HTML. Anche lì c'è un `Adapter.php` con il suo router, funziona allo stesso modo di quello dell'API. I template sono basati su Plates.
+**SSRv1** genera le pagine HTML. Anche lì c'è un `Controller.php` con il suo router, funziona allo stesso modo di quello dell'API. I template sono basati su Plates.
 
 L'autenticazione avviene inviando username e password e utilizzando il cookie ricevuto in cambio, le sessioni scadono dopo 6 ore di inattività. L'autenticazione è ovviamente possibile sia da interfaccia grafica che da API.
 
 Nella directory `src` ci sono le parti comuni del server, con la rappresentazione interna degli oggetti e l'accesso al database. Tali componenti non si occupano però di validazione di JSON o traduzioni delle stringhe, quelle stanno tutte in APIv1 e SSRv1, anche perché le classi di `src` non sanno da che parte arrivano le richieste.
 
-Per l'accesso al database ho seguito il [pattern del DAO](https://en.wikipedia.org/wiki/Data_access_object), principalmente perché non volevo rifare un ORM da zero né usarne uno già fatto, e perché volevo rendere quanto più corti possibile i singoli file: dopo 200-300 righe inizia a diventare difficile aggiungere funzionalità o anche solo capire cosa fa quel file, separare gli oggetti dai DAO contribuisce ad accorciare i singoli file.
+Per l'accesso al database ho seguito il [pattern del DAO](https://en.wikipedia.org/wiki/Data_access_object), principalmente perché volevo progettare l'applicazione intorno al database e usare un ORM o scrivere a mano qualcosa di simile mi avrebbe limitato sotto questo punto di vista, e perché volevo rendere quanto più corti possibile i singoli file: dopo 200-300 righe inizia a diventare difficile aggiungere funzionalità o anche solo capire cosa fa quel file, separare gli oggetti dai DAO contribuisce ad accorciare i singoli file.
 
 In `test` sono presenti i test automatizzati, basati su PHPUnit.
 
@@ -587,7 +589,7 @@ Che restituisce questa tabella:
 | S3      | 2        |
 | Trident | 1        |
 
-Va anche detto che è una query abbastanza semplice perché non ci sono GPU integrate nelle CPU: se ci fossero conterebbe anche quelle, ma per evitarlo basta usare una `IN` o una join di `ItemFeature` con sé stessa per limitarsi agli oggetti con `Feature=type, ValueText=motherboard`.
+Va anche detto che è una query abbastanza semplice perché non ci sono GPU integrate nelle CPU: se ci fossero conterebbe anche quelle, ma per evitarlo basta usare una `IN` o una join di `ItemFeature` con sé stessa per limitarsi agli oggetti con `Feature=type, ValueEnum=motherboard`.
 
 Si può anche contare la quantità di moduli di RAM per dimensione:
 
