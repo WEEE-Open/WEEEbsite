@@ -11,46 +11,6 @@ Per aggiornarlo: `git submodule foreach git pull`.
 Per effettuare la build del sito, eseguire `php build.php` o `build.php`,
 il prodotto finito apparirà nella cartella `output`, a meno di unhandled exception varie.
 
-## TODO
-- [X] Rivedere il testo di tutte le pagine
-- [X] Barra di navigazione che segue lo scroll
-    - [ ] Trovare il modo di farla funzionare senza che sparisca a metà pagina per colpa del "footer che non si espande"
-- [X] Footer che non si espande
-- [X] Creare una home separata da "il progetto", scriverci in breve chi siamo e cosa facciamo e "Saremo alla Sustainability Week" (news)
-	- [X] Metterci la foto del disco rigido aperto
-	- [X] Metterci riquadri che scorrono con ultimi post o altre informazioni ("abbiamo recuperato 9001 pc il mese scorso", "riciclare è bello", etc...)
-- [X] Mettere link a tesi e pdf di presentazione in fondo a "il progetto"
-- [X] Link a pagina Facebook e codice su GitHub nel footer?
-    - [X] Mettere icona Facebook
-- [X] Creare pagina contatti
-	- [X] Mettere link a pagina Facebook
-	- [X] e indirizzo email
-	- [X] Metterci un "dove siamo"
-- [X] Trasformare "attività" in "news" (o "blog"?)
-    - [X] Metterci blog
-    - [X] Mettere foto sustainability week (in ritardo di 1 mese, va beh)
-    - [X] Mettere logo Linux Day per quel post
-- [X] Riordinare la pagina "chi siamo" e aggiungere nuove reclute
-    - [X] Metterla al fondo, di fianco ai contatti
-    - [X] Trovare un ordinamento sensato
-	- [ ] Mettere foto
-	- [X] Trovare un modo più compatto e leggibile per esprimere la mole di informazioni presente
-	    - [X] Eliminare età, per non aggiornarla ogni 2 min o lasciare informazioni vecchie
-	    - [X] Mettere gente affiancata
-	    - [X] Mettere ombre per effetto pseudo-3D molto material design
-- [X] Ridurre la quantità di verde ai lati
-- [ ] Mettere timeline nella pagina "obiettivi"
-- [ ] Trovare una lightbox funzionante per div.photogallery
-	- [ ] Creare la suddetta lightbox, poiché non esiste nulla di veramente *semplice* e senza milioni di dipendenze
-- [ ] Tradurre tutto in inglese
-- [X] Favicon
-- [X] Capire perché su tutti i browser esistenti, tranne Firefox,
-menu.js spara fuori un `undefined` in mezzo al testo
-- [X] Capire se `srcset` di `greenday980.jpg` sta funzionando
-- [X] Scrivere esattamente *dove* saremo alla Sustainability week, mettere una mappa, etc...
-	- [X] Creare pagina "eventi passati", o metterli là sotto
-- [X] Creare una mailing list e\o alias
-
 ## Licenze/crediti
 * Template e contenuto del sito, salvo diverse indicazioni, rilasciato sotto licenza [Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale](http://creativecommons.org/licenses/by-sa/4.0/).
 * `img/raee960.jpg`: [originale di mkthedy](https://pixabay.com/it/cestino-elettronico-piastre-622419/), originariamente rilasciata nel pubblico dominio (CC0).
