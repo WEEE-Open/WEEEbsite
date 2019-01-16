@@ -226,19 +226,6 @@ h2 a:hover, h2 a:active {
 	vertical-align: middle;
 }
 
-.icon-facebook:before {
-	content: "";
-	display: inline-block;
-	background: url("img/fb.svg") no-repeat;
-	-webkit-background-size: 1rem;
-	background-size: 1rem;
-	width: 1rem;
-	height: 1rem;
-	speak: none;
-	margin-right: 0.3rem;
-	vertical-align: middle;
-}
-
 .notevole {
 	font-size: 110%;
 }

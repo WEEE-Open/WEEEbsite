@@ -60,7 +60,7 @@ $active = function(string $what) use ($file_path) {
 <footer id="footer">
 	<p>Copyleft <span class="copyleft">&copy;</span>, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
 		<a href="https://github.com/WEEE-Open/WEEEbsite" target="_blank">Codice sorgente</a>.</p>
-	<p>Seguici su Facebook: <a class="icon-facebook" href="https://www.facebook.com/weeeopenpolito/" target="_blank" rel="nofollow">Team WEEE Open</a></p>
+	<p>Seguici su Facebook: <a href="https://www.facebook.com/weeeopenpolito/" target="_blank" rel="nofollow">Team WEEE Open</a> e Instagram: <a href="https://www.instagram.com/weeeopen/" target="_blank" rel="nofollow">@weeeopen</a></p>
 	<p><small>Il Team WEEE Open &egrave; finanziato dal Politecnico di Torino tramite i contributi alla progettualit&agrave; studentesca.</small></p>
 </footer>
 <script src="/menu.js"></script>
