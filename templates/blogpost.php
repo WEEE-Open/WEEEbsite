@@ -29,6 +29,16 @@ if(isset($metadata['medium'])) {
 	$content .= '<p>' . mediumLink($metadata['medium'], $metadata['title'], $lang) . '</p>';
 }
 
+if(isset($metadata['translations'])) {
+	foreach($metadata['translations'] as $link_lang => $link) {
+		if($link_lang == 'it') {
+			$content .= "<small><p>Questa pagina &egrave; <a href=\"$link\" lang=\"$link_lang\">disponibile anche in italiano</a>.</p></small>";
+		} elseif($link_lang == 'en') {
+			$content .= "<small><p>This page is <a href=\"$link\" lang=\"$link_lang\">also available in English</a>.</p></small>";
+		}
+	}
+}
+
 if(isset($metadata['next']) || isset($metadata['prev'])) {
 	$content .= '<nav class="pages">';
 	// not really but stops some warnings:

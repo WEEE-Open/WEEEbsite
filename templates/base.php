@@ -35,6 +35,13 @@ $active = function(string $what) use ($file_path) {
 	<meta name="application-name" content="WEEE Open">
 	<meta name="msapplication-TileColor" content="#00983A">
 	<meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
+	<?php
+	if(isset($metadata['translations'])) {
+		foreach($metadata['translations'] as $link_lang => $link) {
+			$content .= "<link rel=\"alternate\" hreflang=\"$link_lang\" href=\"$link\">";
+		}
+	}
+	?>
 </head>
 <body>
 <div id="logo">
