@@ -26,3 +26,5 @@ Ti senti creativo? Siamo sempre alla ricerca di nuovi metodi per riutilizzare i 
 Se ti piace quello che facciamo e vuoi entrare a far parte del nostro team, [compila il questionario](https://join.weeeopen.it/).
 
 Se vuoi saperne di più, puoi venire a trovarci giovedì 10/10 alle 19.00 in aula 11S.
+
+[Video della presentazione svolta in aula →](https://www.facebook.com/weeeopenpolito/videos/vb.341212969570401/418980281979893/)
