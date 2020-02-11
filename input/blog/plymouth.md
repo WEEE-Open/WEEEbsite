@@ -6,7 +6,7 @@ facebook: https://www.facebook.com/weeeopenpolito/photos/a.343589782666053/10677
 read_more: false
 pinned: false
 img:
-    src: /blog/media/plymouth.jpg
+    src: /blog/media/screenshot.png
     alt: ScreenShot tema Plymouth
     title: ScreenShot tema Plymouth
 ---
