@@ -2,7 +2,7 @@ title: Schede di espansione interne per pc: facciamo chiarezza.
 date: 2020-02-24T17:00:00Z
 template: blogpost.php
 author: Andrea Mannarella
-abstract: "Durante in nostro lavoro di riparazione dei PC che recuperiamo, ci siamo accorti che esistono svariate tipologie di connessione per le schede di espansione interne al PC"
+abstract: "Durante il nostro lavoro di riparazione dei PC che recuperiamo, ci siamo accorti che esistono svariate tipologie di connessione per le schede di espansione interne al PC"
 pinned: true
 img:
     src: /blog/media/PCIslots.jpg
@@ -10,7 +10,7 @@ img:
     title: Tipologie slot collegamnto periferiche
 ---
 
-Durante in nostro lavoro di riparazione dei PC che recuperiamo, ci siamo accorti che esistono svariate tipologie di connessione per le schede di espansione interne al PC, che siano tower, all in one, portatili, ecc…
+Durante il nostro lavoro di riparazione dei PC che recuperiamo, ci siamo accorti che esistono svariate tipologie di connessione per le schede di espansione interne al PC, che siano tower, all in one, portatili, ecc…
 
 Queste ci permettono di aggiungere, ad esempio, diverse tipologie di porte sia interne (sata, ide, scsi…) che esterne (come usb, jack, ethernet…) che saranno accessibili dal case, oppre schede grafiche o di altro tipo.
 
