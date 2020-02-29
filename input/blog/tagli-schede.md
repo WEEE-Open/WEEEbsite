@@ -1,4 +1,4 @@
-title: Schede di espansione interne per pc: facciamo chiarezza.
+title: "Schede di espansione interne per pc: facciamo chiarezza."
 date: 2020-02-24T17:00:00Z
 template: blogpost.php
 author: Andrea Mannarella
