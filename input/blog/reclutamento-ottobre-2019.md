@@ -3,7 +3,7 @@ date: 2019-10-08T08:30:00Z
 template: blogpost.php
 abstract: Sono aperte le candidature per entrare in team, <a href="https://join.weeeopen.it/">compila il questionario</a> o vienici a trovare giovedì 10/10 alle 19.00 in aula 11S
 pinned: true
-facebook: https://www.facebook.com/weeeopenpolito/posts/497858323905864
+facebook: https://www.facebook.com/weeeopen/posts/497858323905864
 img:
     src: /blog/media/pc-smontato-a-caso.jpg
     alt: Un computer smontato a caso
@@ -27,4 +27,4 @@ Se ti piace quello che facciamo e vuoi entrare a far parte del nostro team, [com
 
 Se vuoi saperne di più, puoi venire a trovarci giovedì 10/10 alle 19.00 in aula 11S.
 
-[Video della presentazione svolta in aula →](https://www.facebook.com/weeeopenpolito/videos/vb.341212969570401/418980281979893/)
+[Video della presentazione svolta in aula →](https://www.facebook.com/weeeopen/videos/vb.341212969570401/418980281979893/)
