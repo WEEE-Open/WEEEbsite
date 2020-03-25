@@ -2,7 +2,7 @@ title: Auguri al nostro Tommaso Marinelli, neolaureato magistrale!
 date: 2018-10-29T14:00:00Z
 template: blogpost.php
 abstract: Auguri al nostro Tommaso Marinelli, neolaureato magistrale! Pure alla cerimonia di laurea porta i colori WEEE Open, e noi siamo molto contenti di partecipare ai festeggiamenti! 
-facebook: https://www.facebook.com/weeeopenpolito/photos/a.343589782666053/730413430650351/
+facebook: https://www.facebook.com/weeeopen/photos/a.343589782666053/730413430650351/
 read_more: false
 pinned: false
 img:

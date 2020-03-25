@@ -2,7 +2,7 @@ title: Tema Plymouth
 date: 2020-02-10T20:00:00Z
 template: blogpost.php
 abstract: "Abbiamo creato un tema Plymouth con il nostro logo."
-facebook: https://www.facebook.com/weeeopenpolito/photos/a.343589782666053/1067713723586985/
+facebook: https://www.facebook.com/weeeopen/photos/a.343589782666053/1067713723586985/
 read_more: true
 pinned: false
 img:
