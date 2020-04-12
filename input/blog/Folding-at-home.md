@@ -8,7 +8,6 @@ pinned: true
 img:
     src: /blog/media/proteina.gif
     alt: Simulazione del movimento della proteina in esame.
-
     title: Se vi dicessimo che anche voi potreste contribuire alla ricerca contro il COVID-19?
 ---
 Se vi dicessimo che anche voi potreste contribuire alla ricerca contro il COVID-19?
