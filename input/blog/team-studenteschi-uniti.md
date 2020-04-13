@@ -6,7 +6,7 @@ facebook: https://www.facebook.com/weeeopen/posts/1968798543245161/
 read_more: true
 pinned: true
 img:
-src: /blog/media/gofound.jpg
+    src: /blog/media/gofound.jpg
     alt: Locandina campagna
     title: Abbiamo organizzato con altri Team del Politecnico una raccolta fondi a supporto della Protezione Civile.
 ---
