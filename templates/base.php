@@ -41,6 +41,9 @@ $active = function(string $what) use ($file_path) {
 			$content .= "<link rel=\"alternate\" hreflang=\"$link_lang\" href=\"$link\">";
 		}
 	}
+	if(isset($metadata['canonical'])) {
+		echo '<link rel="canonical" href="' . $metadata['canonical'] . '">';
+	}
 	?>
 </head>
 <body>
