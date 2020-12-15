@@ -409,6 +409,26 @@ blockquote > p, blockquote > * {
 	padding-left: 1em;
 }
 
+.footnotes li > p {
+	display: inline;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.footnotes li {
+	margin-top: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.footnotes > * {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.footnotes .footnote-backref {
+	text-decoration: none;
+}
+
 table, td, tr {
 	border-collapse: collapse;
 }

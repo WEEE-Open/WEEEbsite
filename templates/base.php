@@ -41,6 +41,9 @@ $active = function(string $what) use ($file_path) {
 			$content .= "<link rel=\"alternate\" hreflang=\"$link_lang\" href=\"$link\">";
 		}
 	}
+	if(isset($metadata['canonical'])) {
+		echo '<link rel="canonical" href="' . $metadata['canonical'] . '">';
+	}
 	?>
 </head>
 <body>
@@ -67,7 +70,7 @@ $active = function(string $what) use ($file_path) {
 <footer id="footer">
 	<p>Copyleft <span class="copyleft">&copy;</span>, sito e contenuto distribuiti con licenza <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
 		<a href="https://github.com/WEEE-Open/WEEEbsite" target="_blank">Codice sorgente</a>.</p>
-	<p>Seguici su Facebook: <a href="https://www.facebook.com/weeeopen/" target="_blank" rel="nofollow">Team WEEE Open</a>, Instagram: <a href="https://www.instagram.com/weeeopen/" target="_blank" rel="nofollow">@weeeopen</a>, LinkedIn: <a href="https://www.linkedin.com/company/weee-open/" target="_blank" rel="nofollow">WEEE Open</a> e sulla PoliTOnet: <a href="https://politecnico-di-torino.hivebrite.com/topics/9837/" target="_blank" rel="nofollow">Team WEEE Open</a></p>
+	<p>Seguici su Facebook: <a href="https://www.facebook.com/weeeopen/" target="_blank" rel="nofollow">Team WEEE Open</a>, Instagram: <a href="https://www.instagram.com/weeeopen/" target="_blank" rel="nofollow">@weeeopen</a>, YouTube: <a href="https://www.youtube.com/channel/UCznGQyMnq5LqLmyXCikzpag" target="_blank">WEEE Open</a>, LinkedIn: <a href="https://www.linkedin.com/company/weee-open/" target="_blank" rel="nofollow">WEEE Open</a> e sulla PoliTOnet: <a href="https://politecnico-di-torino.hivebrite.com/topics/9837/" target="_blank" rel="nofollow">Team WEEE Open</a></p>
 	<p><small>Il Team WEEE Open &egrave; finanziato dal Politecnico di Torino tramite i contributi alla progettualit&agrave; studentesca.</small></p>
 </footer>
 <script src="/menu.js"></script>
