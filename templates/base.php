@@ -56,6 +56,7 @@ $active = function(string $what) use ($file_path) {
 	<nav>
 		<a href="/index.html"<?php $active('index.html') ?>>WEEE Open</a
 		><a href="/blog/"<?php $active('blog/index.html') ?>>Blog</a
+		><a href="https://podcast.weeeopen.it" target="_blank">Podcast</a
 		><a href="/progetto.html"<?php $active('progetto.html') ?>>Il progetto</a
 		><a href="/entra-nel-team.html"<?php $active('entra-nel-team.html') ?>>Entra nel team</a
 		><a href="/chi-siamo.html"<?php $active('chi-siamo.html') ?>>Chi siamo</a

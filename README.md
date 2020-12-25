@@ -3,7 +3,7 @@ Il sito ch'è sito su [weeeopen.polito.it](http://weeeopen.polito.it).
 
 ## Build
 ### Installazione
-Dopo aver clonato il repo, entrare nella directory `ma` e dare il comando `composer install`
+Dopo aver clonato il repo con `git clone --recurse-submodules github.com/...`, entrare nella directory `ma` e dare il comando `composer install`
 per installare le dipendenze del [generatore di siti statici](https://github.com/lvps/mechatronic-anvil).
 Per aggiornarlo: `git submodule foreach git pull`.
 
