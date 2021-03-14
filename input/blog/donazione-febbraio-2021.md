@@ -17,3 +17,5 @@ In questa occasione la donazione è stata di particolare importanza poiché la s
 
 Ringraziamo tutti i ragazzi che hanno preso parte con molto entusiasmo ed assiduità alle attività ed un ringraziamento particolare va ai nostri docenti responsabili Debora Fino e Francesco Laviano per tutto il supporto.
 Speriamo quanto prima di soddisfare quante più richieste possibili, particolarmente in questo difficile periodo.
+
+Anche [PoliFlash ha parlato di noi](https://poliflash.polito.it/studenti_polito/il_team_weee_open_dona_25_pc_rigenerati_ad_una_scuola_torinese).
