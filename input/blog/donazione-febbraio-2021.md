@@ -1,4 +1,4 @@
-title: WEEE Talk
+title: Prima donazione del 2021
 date: 2021-2-2T12:00:00Z
 template: blogpost.php
 abstract: Abbiamo donato 25 computer riparati da noi all'I.C. Ilaria Alpi di Torino.
@@ -8,6 +8,7 @@ pinned: true
 img:
     src: /blog/media/donazionefeb2021.jpg
     alt: WEEEini con pc riparati
+    title: WEEEini con pc riparati
 
 title: Abbiamo donato 25 computer riparati da noi all'I.C. Ilaria Alpi di Torino.
 ---
